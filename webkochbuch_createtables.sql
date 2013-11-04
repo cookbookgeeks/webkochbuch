@@ -1,5 +1,5 @@
 ﻿CREATE TABLE recipes (
-	id integer PRIMARY KEY,
+	id serial PRIMARY KEY,
 	title varchar(100) NOT NULL,
 	description varchar(255) NOT NULL,
 	content text NOT NULL,
@@ -9,14 +9,14 @@
 );
 
 CREATE TABLE images (
-	id integer PRIMARY KEY,
+	id serial PRIMARY KEY,
 	recipe_id integer REFERENCES recipes(id),
 	file_path varchar(255) NOT NULL,
 	description varchar(255)
 );
 
 CREATE TABLE ratings (
-	id integer PRIMARY KEY,
+	id serial PRIMARY KEY,
 	recipe_id integer REFERENCES recipes(id),
 	user_id integer,
 	rating integer NOT NULL,
