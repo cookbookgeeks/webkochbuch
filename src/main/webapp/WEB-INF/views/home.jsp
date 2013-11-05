@@ -8,9 +8,40 @@
     <link rel="stylesheet" href="<c:url value="resources/css/bootstrap.min.css" />">
     <link rel="stylesheet" href="<c:url value="resources/css/font-awesome.css" />">
     <link rel="stylesheet" href="<c:url value="resources/css/webkochbuch-main.css" />">
+        <link rel="stylesheet" href="<c:url value="resources/css/summernote.css" />">
 
     <script src="<c:url value="resources/js/jquery.min.js" />" type="text/javascript"></script>
     <script src="<c:url value="resources/js/bootstrap.min.js" />" type="text/javascript"></script>
+    <script src="<c:url value="resources/js/summernote.min.js" />" type="text/javascript"></script>
+    
+    <script>
+$(document).ready(function() {
+  $('#summernote').summernote();
+});
+
+  $('.summernote').summernote({
+  toolbar: [
+    //['style', ['style']], // no style button
+    ['style', ['bold', 'italic', 'underline', 'clear']],
+    ['fontsize', ['fontsize']],
+    ['color', ['color']],
+    ['para', ['ul', 'ol', 'paragraph']],
+    ['height', ['height']],
+    //['insert', ['picture', 'link']], // no insert buttons
+    //['table', ['table']], // no table button
+    //['help', ['help']] //no help button
+  ]
+});
+var edit = function() {
+  $('.click2edit').summernote({focus: true});
+};
+var save = function() {
+  var aHTML = $('.click2edit').code(); //save HTML If you need(aHTML: array).
+  $('.click2edit').destroy();
+};
+  
+</script>
+
 </head>
 <body><div class="container">
       <div class="navbar navbar-default">
