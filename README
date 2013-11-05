@@ -4,6 +4,8 @@ contact info:
 ______________
 email:		cookbookgeeks@gmx.de
 
+Take a look at a current snapshot of webkochbuch, hosted by heroku: http://webkochbuch.herokuapp.com/
+
 IMPORTANT: if you imported code into eclipse before commit 5b8139a134cfe14f53d014811d3c18d5c678f3d6, please remove it, pull the current code base and reimport it into eclipse again. This is caused by a change of the top level package.
 
 USAGE:
