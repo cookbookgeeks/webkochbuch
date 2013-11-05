@@ -2,13 +2,13 @@
 <%@ page session="false" %>
 <html>
 <head>
-	<title>Home</title>
+	<title>Webkochbuch</title>
 </head>
 <body>
 <h1>
-	Hello world!  
+	Webkochbuch  
 </h1>
 
-<P>  The time on the server is ${serverTime}. </P>
+<P>Hier entsteht das Webkochbuch. Es ist ${serverTime}.</P>
 </body>
 </html>
