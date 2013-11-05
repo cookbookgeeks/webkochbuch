@@ -1,0 +1,12 @@
+webkochboch by cookbookgeeks
+====================
+contact info:
+______________
+email:		cookbookgeeks@gmx.de
+
+USAGE:
+1.)
+Webkochbuch uses a standard postgresql database to store its data. You can either use the productive database hosted by heroku or you can use a local database
+if you run webkochbuch locally. As a consequence, webkochbuch doesn't store the database url in a configuration file but reads it from an environment variable
+called DATABASE_URL. To run webkochbuch with a local database, excecute: export DATABASE_URL=postgres://user:password@localhost:5432/webkochbuch
+
