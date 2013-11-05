@@ -9,6 +9,7 @@
 	Webkochbuch  
 </h1>
 
-<P>Hier entsteht das Webkochbuch. Es ist ${serverTime}.</P>
+<P>Hier entsteht das Webkochbuch. Es ist ${serverTime}. Das ist ein Keks:</P>
+<img src="<c:url value="resources/images/test_keks.jpg" />" alt="Beispielbild" />
 </body>
 </html>
