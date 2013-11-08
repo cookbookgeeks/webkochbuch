@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
- * Handles requests for the application home page.
+ * Handles requests for the application home page which are not directly about recipes,
+ * such as start page, login/register page etc.
  */
 @Controller
 public class HomeController {
