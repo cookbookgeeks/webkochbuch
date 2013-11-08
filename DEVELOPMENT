@@ -2,10 +2,12 @@
 This file contains some useful information if you want to contribute to webkochbuch
 ##############
 
-Package structure:
+* to use the javadoc, please create a folder "doc/" and choose it as in the javadoc generation dialog ("Project"->"Create Javadoc"). The "doc/" folder should be used because it's included in the .gitignore file.
+
 * top-level-package: org.cookbookgeeks.webkochbuch
 * Controllers should be part of the package org.cookbookgeeks.webkochbuch.web
 * Functionality which is excecuted from a controller should be outsourced to an additional class called something like NameService.java and be part of the package org.cookbookgeeks.webkochbuch.service
 * POJO (plain old java objects) classes should be part of the package org.cookbookgeeks.webkochbuch.domain
 * .jsp views are located here: src/main/webapp/WEB-INF/views/
 * static resources like images, css and javascript files are located here: src/main/webapp/resources/
+
