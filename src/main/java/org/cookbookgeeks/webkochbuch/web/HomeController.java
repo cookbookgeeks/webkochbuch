@@ -1,4 +1,4 @@
-package org.cookbookgeeks.webkochbuch;
+package org.cookbookgeeks.webkochbuch.web;
 
 import java.text.DateFormat;
 import java.util.Date;
