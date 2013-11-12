@@ -25,8 +25,14 @@ public class Recipe implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
+	
+	@Column(name="title")
 	private String title;
+	
+	@Column(name="description")
 	private String desctiption;
+	
+	@Column(name="content")
 	private String content;
 	
 	@Column(name="preparation_endurance")
@@ -35,6 +41,7 @@ public class Recipe implements Serializable {
 	@Column(name="total_endurance")
 	private int totalEndurance;
 	
+	@Column(name="creation")
 	private Date creation;
 	
 	private List<Image> images;
