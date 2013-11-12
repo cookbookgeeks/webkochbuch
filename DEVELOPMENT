@@ -8,6 +8,7 @@ This file contains some useful information if you want to contribute to webkochb
 * Controllers should be part of the package org.cookbookgeeks.webkochbuch.web
 * Functionality which is excecuted from a controller should be outsourced to an additional class called something like NameService.java and be part of the package org.cookbookgeeks.webkochbuch.service
 * POJO (plain old java objects) classes should be part of the package org.cookbookgeeks.webkochbuch.domain
+* org.cookbookgeeks.webkochbuch.configuration should hold any configuration classes, such as the HibernateConfiguration class.
 * .jsp views are located here: src/main/webapp/WEB-INF/views/
 * static resources like images, css and javascript files are located here: src/main/webapp/resources/
 
