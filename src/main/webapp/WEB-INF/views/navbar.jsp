@@ -20,7 +20,7 @@
                 <a href="#"><i class="fa fa-user"></i> Profil</a>
               </li>
               <li>
-                <a href="kontakt.html"><i class="fa fa-envelope-o"></i> Kontakt</a>
+                <a href='<c:url value="contact.jsp"/>'><i class="fa fa-envelope-o"></i> Kontakt</a>
               </li>
             </ul>
           </div>
