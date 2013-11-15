@@ -5,7 +5,7 @@
  
 TODO:
 Abfrage ob User eingeloggt für rechte Sidebar
-for each schleife über neugikeiten iterieren und die letzten X neuigkeiten anzeigen
+
 
  -->
 
@@ -41,16 +41,40 @@ for each schleife über neugikeiten iterieren und die letzten X neuigkeiten anzei
         </div>
         <div class="col-md-6">
           <div class="panel panel-default">
-					<div class="panel-heading">This is a header
+					<div class="panel-heading"><h4>Kontakt</h4>
             </div>
             <div class="panel-body">
-              <p>Hello World</p>
-              	<table>
-              		<tr>
-              			<td>Bild</td>
-              			<td>Nachrichten aus der Essenswelt</td>
-              		</tr>
-              	</table>
+              <div class="row">
+                <div class="col-md-6">
+                  <label>First Name</label><br>
+                  <label>Last Name</label><br>
+                  <label>Email Address</label>
+                  <br><br>
+                  <label>Betreff</label>
+                </div>
+                <div class="col-md-6">
+                  <input class="span3" placeholder="Your First Name" type="text">
+                  <input class="span3" placeholder="Your Last Name" type="text">
+                  <input class="span3" placeholder="Your email address" type="text">
+                  <br><br>
+                  <select class="span3" id="subject" name="subject">
+                    <option selected value="na">Bitte w&auml;hlen:</option>
+                    <option value="service">Service</option>
+                    <option value="suggestions">Vorschl&auml;ge</option>
+                    <option value="Rezept">Rezept</option>
+                    <option value="sonstiges">Sonstiges</option>
+                  </select>
+                </div>
+              </div>
+              <form>
+                <div >
+                  <br>
+                  <label>Nachricht</label><br>
+                  <textarea class="input-xlarge span5" id="message" name="message" rows="10" cols="60"></textarea>
+                </div>
+                <br>
+                <button class="btn btn-primary " type="submit">Send</button>
+              </form>
             </div>
             <div class="panel-footer">
               
@@ -61,9 +85,7 @@ for each schleife über neugikeiten iterieren und die letzten X neuigkeiten anzei
         <div class="col-md-3">
         		
           <div class="panel panel-default">
-          
 				<%@ include file="rightSB.jsp" %>
-			
           </div>
         </div>
       </div>

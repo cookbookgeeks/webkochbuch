@@ -5,7 +5,7 @@
  
 TODO:
 Abfrage ob User eingeloggt für rechte Sidebar
-for each schleife über neugikeiten iterieren und die letzten X neuigkeiten anzeigen
+
 
  -->
 
@@ -41,16 +41,10 @@ for each schleife über neugikeiten iterieren und die letzten X neuigkeiten anzei
         </div>
         <div class="col-md-6">
           <div class="panel panel-default">
-					<div class="panel-heading">This is a header
+					<div class="panel-heading"><h4>Kontakt</h4>
             </div>
             <div class="panel-body">
-              <p>Hello World</p>
-              	<table>
-              		<tr>
-              			<td>Bild</td>
-              			<td>Nachrichten aus der Essenswelt</td>
-              		</tr>
-              	</table>
+             HIER STEHT DAS REGISTER FORM
             </div>
             <div class="panel-footer">
               
@@ -61,9 +55,7 @@ for each schleife über neugikeiten iterieren und die letzten X neuigkeiten anzei
         <div class="col-md-3">
         		
           <div class="panel panel-default">
-          
 				<%@ include file="rightSB.jsp" %>
-			
           </div>
         </div>
       </div>
