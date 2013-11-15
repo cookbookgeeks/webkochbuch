@@ -175,6 +175,22 @@ public class Recipe implements Serializable {
 		this.ratings = ratings;
 	}
 	
+	/**
+	 * Gets a builder which is used to create a Recipe object.
+	 * @param title of the recipe.
+	 * @param description of the recipe.
+	 * @param content of the recipe.
+	 * @param preparationEndurance of the recipe.
+	 * @param totalEndurance of the recipe.
+	 * @param creation of the recipe.
+	 * @return the Builder.
+	 */
+	public static Builder getBuilder(String title, String description, String content,
+				int preparationEndurance, int totalEndurance, Date creation) {
+		return new Builder(title, description, content, preparationEndurance,
+				totalEndurance, creation);
+	}
+	
 	// ----- other methods -----
 
 	/**
@@ -185,6 +201,53 @@ public class Recipe implements Serializable {
 				"\nContent: " + content + "\nPreparation endurance: " +
 				preparationEndurance + "\nTotal endurance: " + totalEndurance +
 				"\nCreation: " + creation.toString() + "\nId: " + id;
+	}
+	
+	public void update(String title, String description, String content,
+				int preparationEndurance, int totalEndurance, Date creation) {
+		this.title = title;
+		this.desctiption = description;
+		this.content = content;
+		this.preparationEndurance = preparationEndurance;
+		this.totalEndurance = totalEndurance;
+		this.creation = creation;
+	}
+	
+	/**
+	 * A builder class to create new Recipe objects.
+	 * @author Nils Sommer
+	 *
+	 */
+	public static class Builder {
+		Recipe built;
+		
+		/**
+		 * Creates new Builder instance
+		 * @param title of the recipe
+		 * @param description of the recipe
+		 * @param content of the recipe
+		 * @param preparationEndurance of the recipe
+		 * @param totalEndurance of the recipe
+		 * @param creation of the recipe
+		 */
+		public Builder(String title, String description, String content,
+				int preparationEndurance, int totalEndurance, Date creation) {
+			built = new Recipe();
+			built.title = title;
+			built.desctiption = description;
+			built.content = content;
+			built.preparationEndurance = preparationEndurance;
+			built.totalEndurance = totalEndurance;
+			built.creation = creation;
+		}
+		
+		/**
+		 * Builds the new Recipe object.
+		 * @return the instance of the created Recipe.
+		 */
+		public Recipe getBuild() {
+			return built;
+		}
 	}
 
 

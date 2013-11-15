@@ -39,7 +39,7 @@ public class RecipeController {
 	@RequestMapping(method=RequestMethod.POST, value="/recipe/add")
 	public String addRecipe(@ModelAttribute("recipe") Recipe recipe) {
 		//TODO: create recipe from post parameter	
-		return "/recipe/show/" + recipe.getId();
+		return "/recipe/" + recipe.getId();
 	}
 	
 	/**
