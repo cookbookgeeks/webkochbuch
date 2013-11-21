@@ -4,6 +4,9 @@
 <!-- 
 TODO:
 * User Object empfangen und anschließend auf diesem Objekt Bild, Namen, usw abfragen und anzeigen
+"spring security" verwenden und mit :
+<sec:authorize var="loggedIn" access="isAuthenticated()" />
+testen und variable setzen 
  -->
 
             <div class="panel-body">

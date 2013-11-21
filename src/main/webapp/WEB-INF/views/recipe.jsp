@@ -68,22 +68,34 @@ var save = function() {
         </div>
         <div class="col-md-6">
           <div class="panel panel-default">
-					<div class="panel-heading">This is a header
+					<div class="panel-heading">Name des Rezeptes
             </div>
             <div class="panel-body">
-              <p>Hello World</p>
-              	<table>
-              		<tr>
-              			<td>Menge in Zahlen</td>
-              			<td>Mengeneinheit</td>
-              		</tr>
-              	</table>
-              	<p>
-              	Hier steht der Rezeptinhalt. Beschreibung, Zubereitung usw...... 
-              	</p>
+              <div class="row">
+                <div class="col-md-6">
+                  <img src="https://app.divshot.com/img/placeholder-100x100.gif" height="200" width="200">
+                  <br><br></div>
+                <div class="col-md-6">
+                  <h5><b>Kartoffelgratin</b></h5>Leckeres Rezept mit Kartoffeln und Sahne<br>
+                  <i>Dauer: 30 min / 45 min Backofen</i><br>
+                  Wertung:<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i><br><br>
+                  <a href="edit.html"><span class="label label-success"><i class="fa fa-pencil"></i>&nbsp; Rezept bearbeiten</span></a>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <p><b>Zutaten:</b><br>
+                    800 gr Kartoffeln<br>
+                    1/4 L Milch<br>
+                    1 Prise Salz<br><br>
+                    <b>Zubereitung:</b><br><br>
+                    Die Kartoffeln sch&auml;en und in d&uuml;nne Scheiben schneiden, anschlie&szlig;end in einer Auflaufform schichten und jede Schicht mit Salz und Sahne versehen.<br>
+                    Das Ganze bei 200&deg;C Umluft 45 min lang im Backofen lassen.</p>
+                </div>
+              </div>
             </div>
             <div class="panel-footer">
-              
+              <a href="window.history.back()"><i class="fa fa-arrow-left"></i>&nbsp; Zur&uuml;ck zur vorherigen Seite</a>
             </div>
 			
           </div>
