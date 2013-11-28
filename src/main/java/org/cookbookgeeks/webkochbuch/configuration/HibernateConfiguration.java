@@ -1,5 +1,7 @@
 package org.cookbookgeeks.webkochbuch.configuration;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Properties;
 
 import javax.sql.DataSource;
@@ -7,6 +9,7 @@ import javax.sql.DataSource;
 import org.cookbookgeeks.webkochbuch.domain.Recipe;
 import org.cookbookgeeks.webkochbuch.web.RecipeController;
 import org.hibernate.dialect.H2Dialect;
+import org.postgresql.ds.common.BaseDataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
