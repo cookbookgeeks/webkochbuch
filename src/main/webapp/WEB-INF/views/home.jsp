@@ -14,10 +14,10 @@ for each schleife über neugikeiten iterieren und die letzten X neuigkeiten anzei
 	<title>Webkochbuch</title>
     <meta name="viewport" content="width=device-width">
 
-    <link rel="stylesheet" href="<c:url value="resources/css/bootstrap.min.css" />">
-    <link rel="stylesheet" href="<c:url value="resources/css/font-awesome.css" />">
-    <link rel="stylesheet" href="<c:url value="resources/css/webkochbuch-main.css" />">
-        <link rel="stylesheet" href="<c:url value="resources/css/summernote.css" />">
+    <link rel="stylesheet" href="<c:url value="resources/css/bootstrap.min.css" />" />
+    <link rel="stylesheet" href="<c:url value="resources/css/font-awesome.css" />" />
+    <link rel="stylesheet" href="<c:url value="resources/css/webkochbuch-main.css" />" />
+    <link rel="stylesheet" href="<c:url value="resources/css/summernote.css" />" />
 
     <script src="<c:url value="resources/js/jquery.min.js" />" type="text/javascript"></script>
     <script src="<c:url value="resources/js/bootstrap.min.js" />" type="text/javascript"></script>

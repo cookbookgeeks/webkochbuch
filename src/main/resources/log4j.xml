@@ -12,7 +12,7 @@
 	
 	<!-- Application Loggers -->
 	<logger name="org.cookbookgeeks.webkochbuch">
-		<level value="info" />
+		<level value="debug" />
 	</logger>
 	
 	<!-- 3rdparty Loggers -->
@@ -30,6 +30,14 @@
 
 	<logger name="org.springframework.web">
 		<level value="info" />
+	</logger>
+	
+	<logger name="org.hibernate">
+		<level value="debug" />
+	</logger>
+	
+	<logger name="org.postgresql">
+		<level value="debug" />
 	</logger>
 
 	<!-- Root Logger -->

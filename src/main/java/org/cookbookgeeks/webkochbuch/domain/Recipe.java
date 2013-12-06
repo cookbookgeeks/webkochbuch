@@ -30,7 +30,7 @@ public class Recipe implements Serializable {
 	private String title;
 	
 	@Column(name="description")
-	private String desctiption;
+	private String description;
 	
 	@Column(name="content")
 	private String content;
@@ -44,8 +44,10 @@ public class Recipe implements Serializable {
 	@Column(name="creation")
 	private Date creation;
 	
+	/* Will be needed later.
 	private List<Image> images;
 	private List<Rating> ratings;
+	*/
 	
 	// ----- Getters and setters here: -----
 	
@@ -80,15 +82,15 @@ public class Recipe implements Serializable {
 	/**
 	 * @return the desctiption
 	 */
-	public String getDesctiption() {
-		return desctiption;
+	public String getDescription() {
+		return description;
 	}
 	
 	/**
 	 * @param desctiption the desctiption to set
 	 */
-	public void setDesctiption(String desctiption) {
-		this.desctiption = desctiption;
+	public void setDescription(String desctiption) {
+		this.description = desctiption;
 	}
 	
 	/**
@@ -146,35 +148,7 @@ public class Recipe implements Serializable {
 	public void setCreation(Date creation) {
 		this.creation = creation;
 	}
-	
-	/**
-	 * @return the images
-	 */
-	public List<Image> getImages() {
-		return images;
-	}
 
-	/**
-	 * @param images the images to set
-	 */
-	public void setImages(List<Image> images) {
-		this.images = images;
-	}
-	
-	/**
-	 * @return the ratings
-	 */
-	public List<Rating> getRatings() {
-		return ratings;
-	}
-
-	/**
-	 * @param ratings the ratings to set
-	 */
-	public void setRatings(List<Rating> ratings) {
-		this.ratings = ratings;
-	}
-	
 	/**
 	 * Gets a builder which is used to create a Recipe object.
 	 * @param title of the recipe.
@@ -184,12 +158,12 @@ public class Recipe implements Serializable {
 	 * @param totalEndurance of the recipe.
 	 * @param creation of the recipe.
 	 * @return the Builder.
-	 */
+	 *//*
 	public static Builder getBuilder(String title, String description, String content,
 				int preparationEndurance, int totalEndurance, Date creation) {
 		return new Builder(title, description, content, preparationEndurance,
 				totalEndurance, creation);
-	}
+	}*/
 	
 	// ----- other methods -----
 
@@ -197,12 +171,12 @@ public class Recipe implements Serializable {
 	 * @return a short description of the object.
 	 */
 	public String toString() {
-		return "Title: " + title + "\nDescription: " + desctiption +
+		return "Title: " + title + "\nDescription: " + description +
 				"\nContent: " + content + "\nPreparation endurance: " +
 				preparationEndurance + "\nTotal endurance: " + totalEndurance +
 				"\nCreation: " + creation.toString() + "\nId: " + id;
 	}
-	
+	/*
 	public void update(String title, String description, String content,
 				int preparationEndurance, int totalEndurance, Date creation) {
 		this.title = title;
@@ -212,14 +186,14 @@ public class Recipe implements Serializable {
 		this.totalEndurance = totalEndurance;
 		this.creation = creation;
 	}
-	
+	*/
 	/**
 	 * A builder class to create new Recipe objects.
 	 * @author Nils Sommer
 	 *
-	 */
+	 *//*
 	public static class Builder {
-		Recipe built;
+		Recipe built;*/
 		
 		/**
 		 * Creates new Builder instance
@@ -229,7 +203,7 @@ public class Recipe implements Serializable {
 		 * @param preparationEndurance of the recipe
 		 * @param totalEndurance of the recipe
 		 * @param creation of the recipe
-		 */
+		 *//*
 		public Builder(String title, String description, String content,
 				int preparationEndurance, int totalEndurance, Date creation) {
 			built = new Recipe();
@@ -239,16 +213,16 @@ public class Recipe implements Serializable {
 			built.preparationEndurance = preparationEndurance;
 			built.totalEndurance = totalEndurance;
 			built.creation = creation;
-		}
+		}*/
 		
 		/**
 		 * Builds the new Recipe object.
 		 * @return the instance of the created Recipe.
-		 */
+		 *//*
 		public Recipe getBuild() {
 			return built;
 		}
-	}
+	}*/
 
 
 }

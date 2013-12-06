@@ -172,7 +172,14 @@
 			<version>1.4</version>
 		</dependency>
             
-            
+        <!-- Needed for datasource with pooling capabilities -->
+        <dependency>
+    		<groupId>c3p0</groupId>
+    		<artifactId>c3p0</artifactId>
+    		<version>0.9.1.2</version>
+    		<type>jar</type>
+    		<scope>compile</scope>
+    	</dependency>    
 		
 	</dependencies>
     <build>
