@@ -6,11 +6,19 @@ email:		cookbookgeeks@gmx.de
 
 Take a look at a current snapshot of webkochbuch, hosted by heroku: http://webkochbuch.herokuapp.com/
 
-IMPORTANT: if you imported code into eclipse before commit 5b8139a134cfe14f53d014811d3c18d5c678f3d6, please remove it, pull the current code base and reimport it into eclipse again. This is caused by a change of the top level package.
-
-USAGE:
-1.)
-Webkochbuch uses a standard postgresql database to store its data. You can either use the productive database hosted by heroku or you can use a local database
-if you run webkochbuch locally. As a consequence, webkochbuch doesn't store the database url in a configuration file but reads it from an environment variable
-called DATABASE_URL. To run webkochbuch with a local database, excecute: export DATABASE_URL=postgres://user:password@localhost:5432/webkochbuch
-
+To run webkochbuch successfully on your own machine, please remind:
+- webkochbuch currently stores its database connection url, username and password in the src/main/webapp/WEB-INF/hibernate.properties
+  Please adjust it to your own databasae! IMPORTANT: Don't push the edited file back to the git repository! Use .gitignore or something
+  else to prevent that!
+- webkochbuch currently works with its old database tables. There is a script called 
+  webkochbuch_createtables_experimental.sql to create the corresponding database tables.
+- The user of your database which is used by webkochbuch must have the rights to read and write the corresponding tables.
+  To achieve that, open a sql command line and type;
+  GRANT SELECT on recipes to username;
+  GRANT CREATE on recipes to username;
+  GRANT DELETE on recipes to username;
+  GRANT UPDATE on recipes to username;
+  
+FUTURE:
+- it is planned to make webkochbuch read the database url from an environment variable (also needed for heroku)
+- it is planned to port the java code to work with the new database tables
