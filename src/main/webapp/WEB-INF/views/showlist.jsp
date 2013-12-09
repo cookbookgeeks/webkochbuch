@@ -59,7 +59,7 @@ for (int i=sitenumber*10; i<=Arraylist.length;  i++)
             </div>
             <div class="panel-body">
               
-              <!-- insert for each here -->
+              <c:forEach items="${recipes}" var="recipe">
               
               <div class="row">
                 <div class="col-md-4">
@@ -67,11 +67,11 @@ for (int i=sitenumber*10; i<=Arraylist.length;  i++)
                 </div>
                 <div class="col-md-8">
                   
-                  <h5><a href="rezep.html"><b>Kartoffelgratin</b></a></h5>
-                  <a href="rezep.html">
-                  Leckeres Rezept mit Kartoffeln und Sahne                    
+                  <h5><a href="/webkochbuch/recipe/${recipe.id}"><b>${recipe.title}</b></a></h5>
+                  <a href="/webkochbuch/recipe/${recipe.id}">
+                  ${recipe.description}                    
                   <br>                    
-                  <i>Dauer: 30 min / 45 min Backofen</i>                    
+                  <i>Dauer: ${recipe.preparationEndurance} min / ${recipe.totalEndurance} min Backofen</i>                    
                   </a><br>
                   Wertung: 
                   <i class="fa fa-star"></i>
@@ -83,74 +83,7 @@ for (int i=sitenumber*10; i<=Arraylist.length;  i++)
                 </div>
               </div>
               
-              <!-- NEUES REZEPT -->
-              
-              <div class="row">
-                <div class="col-md-4">
-                  <img src="https://app.divshot.com/img/placeholder-100x100.gif">
-                </div>
-                <div class="col-md-8">
-                  <p><a href="rezep.html">                    </a></p>
-                  <h5><a href="rezep.html"><b>Erbseneintopf</b></a></h5>
-                  <a href="#">
-                  Einfach, schnell, s‰ttigend
-                  <br>                    
-                  <i>Dauer: 20 min </i>                    
-                  </a><br>
-                  Wertung: 
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star-o"></i>
-                  <i class="fa fa-star-o"></i>
-                  <i class="fa fa-star-o"></i>
-                  <p></p>
-                </div>
-              </div>
-              <!-- NEUES REZEPT -->
-              
-              <div class="row">
-                <div class="col-md-4">
-                  <img src="https://app.divshot.com/img/placeholder-100x100.gif">
-                </div>
-                <div class="col-md-8">
-                  <p><a href="rezep.html">                    </a></p>
-                  <h5><a href="rezep.html"><b>Makkaroni-Auflauf</b></a></h5>
-                  <a href="#">
-                  Bella Italia! Hackfleisch, Makkaroni,..
-                  <br>                    
-                  <i>Dauer: 45 min / 30 min Backofen</i>                    
-                  </a><br>
-                  Wertung: 
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star-o"></i>
-                  <i class="fa fa-star-o"></i>
-                  <p></p>
-                </div>
-              </div>
-              <!-- NEUES REZEPT -->
-              
-              <div class="row">
-                <div class="col-md-4">
-                  <img src="https://app.divshot.com/img/placeholder-100x100.gif">
-                </div>
-                <div class="col-md-8">
-                  <p><a href="rezep.html">                    </a></p>
-                  <h5><a href="rezep.html"><b>Butterbrot</b></a></h5>
-                  <a href="#">
-                  simpel, wie bei Groﬂmutter
-                  <br>                    
-                  <i>Dauer: 5 min</i>                    
-                  </a><br>
-                  Wertung: 
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star-o"></i>
-                  <i class="fa fa-star-o"></i>
-                  <i class="fa fa-star-o"></i>
-                  <i class="fa fa-star-o"></i>
-                  <p></p>
-                </div>
+			</c:forEach>
                 
             </div>
             <div class="panel-footer">
