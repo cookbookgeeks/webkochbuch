@@ -44,6 +44,7 @@ public class RecipeController {
 		
 		// check if there is a recipe with the given id
 		if( recipe == null ) {
+			logger.debug("No recipe with id" + id + "found. Return error page.");
 			return "recipeNotFound";
 		}
 		
@@ -72,10 +73,27 @@ public class RecipeController {
 	 * @param recipe which is added.
 	 * @return the view recipe with the id of the created recipe.
 	 */
-	@RequestMapping(method=RequestMethod.POST, value="/recipe/add")
+	@RequestMapping(method=RequestMethod.POST, value="/recipe/adddata")
 	public String addRecipe(@ModelAttribute("recipe") Recipe recipe) {
-		//TODO: create recipe from post parameter	
+		logger.debug("Adding new recipe.");
+		
+		// Adding the recipe
+		recipeService.add(recipe.getTitle(), recipe.getDescription(), recipe.getContent(),
+				recipe.getPreparationEndurance(), recipe.getTotalEndurance(),
+				recipe.getCreation());
+		
+		// Display view with the newly created recipe.
 		return "/recipe/" + recipe.getId();
+	}
+	
+	/**
+	 * Maps url which returns an input form view for adding recipes.
+	 * @return
+	 */
+	@RequestMapping(method=RequestMethod.GET, value="/recipe/add")
+	public String addForm() {
+		logger.debug("Returning addRecipe view.");
+		return "addRecipe";
 	}
 	
 	/**
@@ -85,7 +103,11 @@ public class RecipeController {
 	 */
 	@RequestMapping(method=RequestMethod.GET, value="/recipe/delete/{id}")
 	public String deleteRecipe(@PathVariable("id") int id) {
-		//TODO: delete recipe.
+		logger.debug("Deleting recipe with id " + id + ".");
+		
+		// Deleting recipe.
+		recipeService.delete(id);
+		
 		return "/";
 	}
 	
@@ -94,10 +116,27 @@ public class RecipeController {
 	 * @param recipe which gets edited.
 	 * @return the view recipe with the id of the recipe.
 	 */
-	@RequestMapping(method=RequestMethod.POST, value="/recipe/edit")
+	@RequestMapping(method=RequestMethod.POST, value="/recipe/editdata")
 	public String editRecipe(@ModelAttribute("recipe") Recipe recipe) {
-		//TODO: edit recipe.
+		logger.debug("Editing recipe with id " + recipe.getId() + ".");
+		
+		// Update recipe.
+		recipeService.edit(recipe.getId(), recipe.getTitle(), recipe.getDescription(),
+				recipe.getContent(), recipe.getPreparationEndurance(),
+				recipe.getTotalEndurance(), recipe.getCreation());
+		
+		// Display edited recipe.
 		return "/recipe/" + recipe.getId();
+	}
+	
+	/**
+	 * Maps url which returns an input form view for adding recipes.
+	 * @return
+	 */
+	@RequestMapping(method=RequestMethod.GET, value="/recipe/edit")
+	public String editForm() {
+		logger.debug("Returning editRecipe view.");
+		return "editRecipe";
 	}
 
 }

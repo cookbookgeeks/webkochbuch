@@ -74,7 +74,7 @@ public class RecipeService {
 	 */
 	public void add(String title, String description, String content,
 			int preparationEndurance, int totalEndurance, Date creation) {
-		logger.debug("Adding new person");
+		logger.debug("Adding new recipe");
 		
 		// Retrieve session from Hibernate
 		Session session = sessionFactory.getCurrentSession();
@@ -121,7 +121,7 @@ public class RecipeService {
 	 */
 	public void edit(Integer id, String title, String description, String content,
 			int preparationEndurance, int totalEndurance, Date creation) {
-		logger.debug("Editing existing person");
+		logger.debug("Editing existing recipe");
 		
 		// Retrieve session from Hibernate
 		Session session = sessionFactory.getCurrentSession();
