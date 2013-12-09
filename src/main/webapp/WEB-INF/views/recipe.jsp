@@ -77,7 +77,7 @@ var save = function() {
                   <img src="https://app.divshot.com/img/placeholder-100x100.gif" height="200" width="200">
                   <br><br></div>
                 <div class="col-md-6">
-                  <h5><b>${recipe.name}</b></h5>${recipe.description}<br>
+                  <h5><b>${recipe.title}</b></h5>${recipe.description}<br>
                   <i>Dauer: ${recipe.preparationEndurance} min / 
                   Gesamt: ${recipe.totalEndurance} min </i><br>
                   Wertung:<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i><br><br>
@@ -86,8 +86,9 @@ var save = function() {
               </div>
               <div class="row">
                 <div class="col-md-12">
-                  <p><b>Zutaten:</b><br>
-					${recipe.incredients}
+                  <p>
+                  <!-- <b>Zutaten:</b><br> -->
+					
                     <b>Zubereitung:</b><br><br>
                     ${recipe.content}
 					</p>
