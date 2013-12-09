@@ -4,8 +4,8 @@
               <i>Navigation</i>
             </div>
             <ul class="list-group">
-              <li class="list-group-item"><a href="rezep.html">Rezept des Tages</a></li>
-              <li class="list-group-item"><a href="liste.html">Kochen</a></li>
+              <li class="list-group-item"><a href="/recipe/0">Rezept des Tages</a></li>
+              <li class="list-group-item"><a href="liste.html">Kochen</a></li> <!-- Aufruf über showlist mit Übergabe einer Kategorienummer/-Name -->
               <li class="list-group-item"><a href="liste.html">Backen</a></li>
               <li class="list-group-item"><a href="liste.html">Desert</a></li>
             </ul>

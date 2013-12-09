@@ -4,7 +4,7 @@
 <!--
  
 TODO:
-Abfrage ob User eingeloggt für rechte Sidebar
+
 for each schleife über neugikeiten iterieren und die letzten X neuigkeiten anzeigen
 
  -->
@@ -41,10 +41,13 @@ for each schleife über neugikeiten iterieren und die letzten X neuigkeiten anzei
         </div>
         <div class="col-md-6">
           <div class="panel panel-default">
-					<div class="panel-heading">This is a header
+					<div class="panel-heading">Herzlich Wilkommen
             </div>
             <div class="panel-body">
-              <p>Hello World</p>
+              <p>Wilkommen im Kochbuch der Cookbookgeeks. Hier finden sich viele tolle, 
+              leckere und interessante Rezepte, und in Zukunft auch eine Menge Scoialfeatures.</p>
+              <br>
+              <p>Neueste Rezepte:</p>
               	<table>
               		<tr>
               			<td>Bild</td>
@@ -67,7 +70,7 @@ for each schleife über neugikeiten iterieren und die letzten X neuigkeiten anzei
           </div>
         </div>
       </div>
-    <div class="container">
+    <div class="container" align="center">
       <footer>
     		<%@ include file="footer.jsp" %>
       </footer>
