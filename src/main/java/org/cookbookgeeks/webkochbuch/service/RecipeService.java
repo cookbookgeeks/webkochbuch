@@ -57,7 +57,7 @@ public class RecipeService {
 		Session session = sessionFactory.getCurrentSession();
 		
 		// Create a Hibernate query (HQL)
-		Query query = session.createQuery("FROM  Person");
+		Query query = session.createQuery("FROM  Recipe");
 		
 		// Retrieve all
 		return  query.list();
