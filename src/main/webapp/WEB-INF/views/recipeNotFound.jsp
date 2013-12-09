@@ -8,5 +8,6 @@
 </head>
 <body>
 <h1>Sorry, the requested recipe cannot be found!</h1>
+<!-- FIXME: Embed the site into the standard layout -->
 </body>
 </html>
