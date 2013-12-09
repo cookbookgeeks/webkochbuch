@@ -74,7 +74,7 @@ var save = function() {
             <div class="panel-body">
             <div class="row">
                 <div class="col-md-6">
-                  <img src="https://app.divshot.com/img/placeholder-100x100.gif" height="200" width="200">
+                  <img src="/resources/food/${recipe.id}.jpg" height="200" width="200">
                   <br><br></div>
                 <div class="col-md-6">
                   <h5><b>${recipe.title}</b></h5>${recipe.description}<br>
