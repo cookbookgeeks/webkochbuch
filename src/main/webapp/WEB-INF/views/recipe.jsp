@@ -78,6 +78,7 @@ var save = function() {
                   <br><br></div>
                 <div class="col-md-6">
                   <h5><b>${recipe.title}</b></h5>${recipe.description}<br>
+                  Erstellt: ${recipe.creation}<br>
                   <i>Dauer: ${recipe.preparationEndurance} min / 
                   Gesamt: ${recipe.totalEndurance} min </i><br>
                   Wertung:<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i><br><br>
@@ -94,14 +95,6 @@ var save = function() {
 					</p>
                 </div>
               </div>
-              
-              	<table style="border: 0px;">
-              		<tr><td>Beschreibung:</td><td>${recipe.description}</td></tr>
-              		<tr><td>Inhalt:</td><td>${recipe.content}</td></tr>
-              		<tr><td>Vorbereitungszeit in Minuten:</td><td>${recipe.preparationEndurance}</td></tr>
-              		<tr><td>Gesamtzeit in Minuten:</td><td>${recipe.totalEndurance}</td></tr>
-              		<tr><td>Erstellt:</td><td>${recipe.creation}</td></tr>
-              	</table>
             </div>
             <div class="panel-footer">
               <a href="window.history.back()"><i class="fa fa-arrow-left"></i>&nbsp; Zur&uuml;ck zur vorherigen Seite</a>
