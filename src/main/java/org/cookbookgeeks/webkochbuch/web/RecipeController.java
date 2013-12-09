@@ -1,5 +1,8 @@
 package org.cookbookgeeks.webkochbuch.web;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.slf4j.Logger;
@@ -41,6 +44,22 @@ public class RecipeController {
 		
 		model.addAttribute("recipe", recipe);
 		return "recipe";
+	}
+	
+	/**
+	 * Shows a list of all recipes.
+	 * @param model Model the view extracts its data from.
+	 * @return the view showList.jsp
+	 */
+	@RequestMapping(method=RequestMethod.GET, value="/list")
+	public String listRecipes(Model model) {
+		logger.debug("Returning view with list of all recipes");
+		
+		// Get all recipes.
+		List<Recipe> recipes = recipeService.getAll();
+		
+		model.addAttribute("recipes", recipes);
+		return "showList";
 	}
 	
 	/**
