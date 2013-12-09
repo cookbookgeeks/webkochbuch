@@ -4,3 +4,4 @@ target
 .project
 .springBeans
 doc
+src\main\webapp\WEB-INF\hibernate.properties
