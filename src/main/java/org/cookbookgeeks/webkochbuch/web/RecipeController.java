@@ -42,6 +42,11 @@ public class RecipeController {
 		// Get recipe.
 		Recipe recipe = recipeService.getRecipe(id);
 		
+		// check if there is a recipe with the given id
+		if( recipe == null ) {
+			return "recipeNotFound";
+		}
+		
 		model.addAttribute("recipe", recipe);
 		return "recipe";
 	}
