@@ -13,8 +13,17 @@ CREATE TABLE recipes (
 );
 
 
-ALTER TABLE public.recipes OWNER TO postgres;
+ALTER TABLE public.recipes OWNER TO username;
 
+--
+-- Add sequence and user rights for id increment
+--
+CREATE SEQUENCE hibernate_sequence
+  INCREMENT 1
+  MAXVALUE 9223372036854775807
+  START 100000;
+  
+grant usage on sequence hibernate_sequence to username;
 
 
 --
