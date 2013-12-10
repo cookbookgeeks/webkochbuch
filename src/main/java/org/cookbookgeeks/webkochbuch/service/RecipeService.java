@@ -63,6 +63,33 @@ public class RecipeService {
 		return  query.list();
 	}
 	
+	public List<Recipe> getTopItems(int limit) {
+		logger.debug("Retrieving top Recipes");
+		
+		// Retrieve session from Hibernate
+		Session session = sessionFactory.getCurrentSession();
+		
+		// Create a Hibernate query (HQL)
+		Query query = session.createQuery("FROM  Recipe");
+		query.setMaxResults(limit);
+		
+		// Retrieve all
+		return  query.list();
+	}
+	
+	public List<Recipe> getItemsRange(int start, int end) {
+		logger.debug("Retrieving recipes from start to end value");
+		
+		// Retrieve session from Hibernate
+		Session session = sessionFactory.getCurrentSession();
+		
+		// Create a Hibernate query (HQL)
+		Query query = session.createQuery("FROM  Recipe LIMIT "+start+","+ end);
+		
+		// Retrieve all
+		return  query.list();
+	}
+	
 	/**
 	 * Add a Recipe object to the database.
 	 * @param title of the recipe.

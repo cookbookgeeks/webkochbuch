@@ -74,7 +74,7 @@ var save = function() {
             <div class="panel-body">
             <div class="row">
                 <div class="col-md-6">
-                  <img src="/resources/food/${recipe.id}.jpg" height="200" width="200">
+                  <img src="/resources/images/food/${recipe.id}.jpg" height="200" width="200">
                   <br><br></div>
                 <div class="col-md-6">
                   <h5><b>${recipe.title}</b></h5>${recipe.description}<br>
@@ -82,7 +82,7 @@ var save = function() {
                   <i>Dauer: ${recipe.preparationEndurance} min / 
                   Gesamt: ${recipe.totalEndurance} min </i><br>
                   Wertung:<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i><br><br>
-                  <a href="edit.html"><span class="label label-success"><i class="fa fa-pencil"></i>&nbsp; Rezept bearbeiten</span></a>
+                  <a href="edit/${recipe.id}"><span class="label label-success"><i class="fa fa-pencil"></i>&nbsp; Rezept bearbeiten</span></a>
                 </div>
               </div>
               <div class="row">

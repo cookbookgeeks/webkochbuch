@@ -63,12 +63,12 @@ for (int i=sitenumber*10; i<=Arraylist.length;  i++)
               
               <div class="row">
                 <div class="col-md-4">
-                  <img src="https://app.divshot.com/img/placeholder-100x100.gif">
+                  <img src="/resources/images/food/${recipe.id}.jpg" width="100" height="100">
                 </div>
                 <div class="col-md-8">
                   
-                  <h5><a href="/webkochbuch/recipe/${recipe.id}"><b>${recipe.title}</b></a></h5>
-                  <a href="/webkochbuch/recipe/${recipe.id}">
+                  <h5><a href="/recipe/${recipe.id}"><b>${recipe.title}</b></a></h5>
+                  <a href="/recipe/${recipe.id}">
                   ${recipe.description}                    
                   <br>                    
                   <i>Dauer: ${recipe.preparationEndurance} min / ${recipe.totalEndurance} min Backofen</i>                    

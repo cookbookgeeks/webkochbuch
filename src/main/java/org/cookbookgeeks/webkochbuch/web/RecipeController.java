@@ -133,10 +133,21 @@ public class RecipeController {
 	 * Maps url which returns an input form view for adding recipes.
 	 * @return
 	 */
-	@RequestMapping(method=RequestMethod.GET, value="/recipe/edit")
+	@RequestMapping(method=RequestMethod.GET, value="/recipe/edit/{id}")
 	public String editForm() {
 		logger.debug("Returning editRecipe view.");
 		return "editRecipe";
+	}
+	
+	/**
+	 * Shows the contact form.
+	 * @return the view contact.jsp
+	 */
+	@RequestMapping(method=RequestMethod.GET, value="/contact")
+	public String contactForm() {
+		logger.debug("Returning view with contact form");
+		
+		return "contact";
 	}
 
 }
