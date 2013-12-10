@@ -139,15 +139,6 @@ public class RecipeController {
 		return "editRecipe";
 	}
 	
-	/**
-	 * Shows the contact form.
-	 * @return the view contact.jsp
-	 */
-	@RequestMapping(method=RequestMethod.GET, value="/contact")
-	public String contactForm() {
-		logger.debug("Returning view with contact form");
-		
-		return "contact";
-	}
+
 
 }

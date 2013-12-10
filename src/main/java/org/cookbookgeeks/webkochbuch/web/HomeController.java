@@ -37,4 +37,26 @@ public class HomeController {
 		return "home";
 	}
 	
+	/**
+	 * Shows the contact form.
+	 * @return the view contact.jsp
+	 */
+	@RequestMapping(method=RequestMethod.GET, value="/contact")
+	public String contactForm() {
+		logger.debug("Returning view with contact form");
+		
+		return "contact";
+	}
+	
+	/**
+	 * Shows the category-overview.
+	 * @return the view categories.jsp
+	 */
+	@RequestMapping(method=RequestMethod.GET, value="/categories")
+	public String categoryView() {
+		logger.debug("Returning view with overview of categories");
+		
+		return "categories";
+	}
+	
 }
