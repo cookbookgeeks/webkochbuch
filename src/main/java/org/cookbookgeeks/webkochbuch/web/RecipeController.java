@@ -1,6 +1,6 @@
 package org.cookbookgeeks.webkochbuch.web;
 
-import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -77,13 +77,14 @@ public class RecipeController {
 	public String addRecipe(@ModelAttribute("recipe") Recipe recipe) {
 		logger.debug("Adding new recipe.");
 		
+		// Current date.
+		recipe.setCreation(new Date());
+		
 		// Adding the recipe
-		recipeService.add(recipe.getTitle(), recipe.getDescription(), recipe.getContent(),
-				recipe.getPreparationEndurance(), recipe.getTotalEndurance(),
-				recipe.getCreation());
+		recipeService.add(recipe);
 		
 		// Display view with the newly created recipe.
-		return "/recipe/" + recipe.getId();
+		return "redirect:/recipe/" + recipe.getId();
 	}
 	
 	/**
@@ -91,8 +92,11 @@ public class RecipeController {
 	 * @return
 	 */
 	@RequestMapping(method=RequestMethod.GET, value="/recipe/add")
-	public String addForm() {
+	public String addForm(Model model) {
 		logger.debug("Returning addRecipe view.");
+		
+		model.addAttribute("recipe", new Recipe());
+		
 		return "addRecipe";
 	}
 	
@@ -108,7 +112,7 @@ public class RecipeController {
 		// Deleting recipe.
 		recipeService.delete(id);
 		
-		return "/";
+		return "redirect:/";
 	}
 	
 	/**
@@ -120,22 +124,36 @@ public class RecipeController {
 	public String editRecipe(@ModelAttribute("recipe") Recipe recipe) {
 		logger.debug("Editing recipe with id " + recipe.getId() + ".");
 		
+		// update date
+		recipe.setCreation(new Date());
+		
 		// Update recipe.
-		recipeService.edit(recipe.getId(), recipe.getTitle(), recipe.getDescription(),
-				recipe.getContent(), recipe.getPreparationEndurance(),
-				recipe.getTotalEndurance(), recipe.getCreation());
+		recipeService.edit(recipe);
 		
 		// Display edited recipe.
-		return "/recipe/" + recipe.getId();
+		return "redirect:/recipe/" + recipe.getId();
 	}
 	
 	/**
 	 * Maps url which returns an input form view for adding recipes.
 	 * @return
 	 */
-	@RequestMapping(method=RequestMethod.GET, value="/recipe/edit")
-	public String editForm() {
+	@RequestMapping(method=RequestMethod.GET, value="/recipe/edit/{id}")
+	public String editForm(@PathVariable("id") int id, Model model) {
 		logger.debug("Returning editRecipe view.");
+		
+		// Get the recipe.
+		Recipe recipe = recipeService.getRecipe(id);
+		
+		// Check if it exists at all.
+		if( recipe == null ) {
+			logger.debug("Recipe with id " + id + " does not exist!");
+			return "recipeNotFound";
+		}
+		
+		// Give recipe object to view.
+		model.addAttribute("recipe", recipe);
+		
 		return "editRecipe";
 	}
 

@@ -4,7 +4,7 @@
 		"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
   <session-factory>
-    <property name="hibernate.dialect">org.hibernate.dialect.HSQLDialect</property>
+    <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
     <!-- This enables sql stuff in the logging -->
     <property name="show_sql">true</property>
     <!-- 

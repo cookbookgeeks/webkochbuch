@@ -33,7 +33,7 @@ public class RecipeService {
 	 * @param id of the recipe.
 	 * @return Recipe object.
 	 */
-	public Recipe getRecipe(int id) {
+	public Recipe getRecipe(Integer id) {
 		logger.debug("Retrieving person with id: " + id);
 		
 		// Retrieve session from Hibernate
@@ -65,28 +65,13 @@ public class RecipeService {
 	
 	/**
 	 * Add a Recipe object to the database.
-	 * @param title of the recipe.
-	 * @param description of the recipe.
-	 * @param content of the recipe.
-	 * @param preparationEndurance of the recipe.
-	 * @param totalEndurance of the recipe.
-	 * @param creation of the recipe.
+	 * @param recipe to save to the database.
 	 */
-	public void add(String title, String description, String content,
-			int preparationEndurance, int totalEndurance, Date creation) {
+	public void add(Recipe recipe) {
 		logger.debug("Adding new recipe");
 		
 		// Retrieve session from Hibernate
 		Session session = sessionFactory.getCurrentSession();
-		
-		// Create a new Recipe
-		Recipe recipe = new Recipe();
-		recipe.setTitle(title);
-		recipe.setDescription(description);
-		recipe.setContent(content);
-		recipe.setPreparationEndurance(preparationEndurance);
-		recipe.setTotalEndurance(totalEndurance);
-		recipe.setCreation(creation);
 		
 		// Save
 		session.save(recipe);
@@ -111,31 +96,24 @@ public class RecipeService {
 	
 	/**
 	 * Edit the information of a stored Recipe object.
-	 * @param id of the recipe.
-	 * @param title of the recipe.
-	 * @param description of the recipe.
-	 * @param content of the recipe.
-	 * @param preparationEndurance of the recipe.
-	 * @param totalEndurance of the recipe.
-	 * @param creation of the recipe.
+	 * @param edited recipe object with edited data.
 	 */
-	public void edit(Integer id, String title, String description, String content,
-			int preparationEndurance, int totalEndurance, Date creation) {
+	public void edit(Recipe edited) {
 		logger.debug("Editing existing recipe");
 		
 		// Retrieve session from Hibernate
 		Session session = sessionFactory.getCurrentSession();
 		
 		// Retrieve existing recipe via id
-		Recipe recipe = (Recipe) session.get(Recipe.class, id);
+		Recipe recipe = (Recipe) session.get(Recipe.class, edited.getId());
 		
 		// Assign updated values to this recipe
-		recipe.setTitle(title);
-		recipe.setDescription(description);
-		recipe.setContent(content);
-		recipe.setPreparationEndurance(preparationEndurance);
-		recipe.setTotalEndurance(totalEndurance);
-		recipe.setCreation(creation);
+		recipe.setTitle(edited.getTitle());
+		recipe.setDescription(edited.getDescription());
+		recipe.setContent(edited.getContent());
+		recipe.setPreparationEndurance(edited.getPreparationEndurance());
+		recipe.setTotalEndurance(edited.getTotalEndurance());
+		recipe.setCreation(edited.getCreation());
 
 		// Save updates
 		session.save(recipe);
