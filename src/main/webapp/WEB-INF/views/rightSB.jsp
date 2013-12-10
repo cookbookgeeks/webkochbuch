@@ -42,12 +42,12 @@ TODO:
                   <h4 class="media-heading">Lukas Langenbacher <small> Karlsruhe</small></h4>
                   <hr style="margin:8px auto">
                   <span class="label label-default">zum Profil</span><span class="label label-default">Freunde</span>
-                  <a href="index.html"><span class="label label-info">log out</span></a>
+                  <a href="/"><span class="label label-info">log out</span></a>
                 </div>
               </div>
             </div>
             <div class="panel-footer">
-              <p class="smalltext"><a href="index.html"><i class="fa fa-unlock-o"></i>&nbsp; log out</a></p>
+              <p class="smalltext"><a href="/"><i class="fa fa-unlock-o"></i>&nbsp; log out</a></p>
             </div>
           </div>
         </div>

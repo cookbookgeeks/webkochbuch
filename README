@@ -12,6 +12,8 @@ To run webkochbuch successfully on your own machine, please remind:
   else to prevent that!
 - webkochbuch currently works with its old database tables. There is a script called 
   webkochbuch_createtables_experimental.sql to create the corresponding database tables.
+- IMPORTANT: Due to the fact that this Version is build to run on heroku and similar platforms, 
+  you have to edit line 19 in server.xml of your local spring IDE to make hyperlinks and includes work!   
 - The user of your database which is used by webkochbuch must have the rights to read and write the corresponding tables.
   To achieve that, open a sql command line and type;
   GRANT SELECT on recipes to username;

@@ -73,7 +73,7 @@ Abfrage ob User eingeloggt für rechte Sidebar
                   <textarea class="input-xlarge span5" id="message" name="message" rows="10" cols="60"></textarea>
                 </div>
                 <br>
-                <button class="btn btn-primary " type="submit">Send</button>
+                <button class="btn btn-primary btn-success " type="submit">Send</button>
               </form>
             </div>
             <div class="panel-footer">
