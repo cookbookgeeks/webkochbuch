@@ -20,6 +20,7 @@ To run webkochbuch successfully on your own machine, please remind:
   GRANT CREATE on recipes to username;
   GRANT DELETE on recipes to username;
   GRANT UPDATE on recipes to username;
+- Follow the instructions of the experimental database script to create a sequence for automatic id incrementation!
   
 FUTURE:
 - it is planned to make webkochbuch read the database url from an environment variable (also needed for heroku)
