@@ -1,7 +1,9 @@
 package org.cookbookgeeks.webkochbuch.service;
 
 import java.util.List;
+
 import javax.annotation.Resource;
+
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -47,6 +49,7 @@ public class RecipeService {
 	 * Getting a list with all available recipes.
 	 * @return A list with Recipe objects.
 	 */
+	@SuppressWarnings("unchecked")
 	public List<Recipe> getAll() {
 		logger.debug("Retrieving all persons");
 		
@@ -60,6 +63,7 @@ public class RecipeService {
 		return  query.list();
 	}
 	
+	@SuppressWarnings("unchecked")
 	public List<Recipe> getTopItems(int limit) {
 		logger.debug("Retrieving top Recipes");
 		
@@ -74,6 +78,7 @@ public class RecipeService {
 		return  query.list();
 	}
 	
+	@SuppressWarnings("unchecked")
 	public List<Recipe> getItemsRange(int start, int end) {
 		logger.debug("Retrieving recipes from start to end value");
 		
@@ -106,16 +111,16 @@ public class RecipeService {
 	 * @param id of the Recipe object.
 	 */
 	public void delete(Integer id) {
-		logger.debug("Deleting existing person");
+		logger.debug("Deleting existing recipe");
 		
 		// Retrieve session from Hibernate
 		Session session = sessionFactory.getCurrentSession();
 		
 		// Retrieve existing recipe first
-		Recipe person = (Recipe) session.get(Recipe.class, id);
+		Recipe recipe = (Recipe) session.get(Recipe.class, id);
 		
 		// Delete 
-		session.delete(person);
+		session.delete(recipe);
 	}
 	
 	/**
