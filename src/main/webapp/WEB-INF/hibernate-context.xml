@@ -12,8 +12,6 @@
 			http://www.springframework.org/schema/context
 			http://www.springframework.org/schema/context/spring-context-3.0.xsd
 	   		">
-
-	<context:property-placeholder location="/WEB-INF/hibernate.properties" />
     
     <!-- Enable annotation style of managing transactions -->
 	<tx:annotation-driven transaction-manager="transactionManager" />	
@@ -24,22 +22,27 @@
 	<!-- See http://docs.jboss.org/hibernate/stable/core/api/index.html?org/hibernate/Session.html -->
 	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean"
 				 p:dataSource-ref="dataSource"
-				 p:configLocation="${hibernate.config}"
+				 p:configLocation="/WEB-INF/hibernate.cfg.xml"
 				 p:packagesToScan="org.cookbookgeeks.webkochbuch.service"/>
 	
-	<!-- Declare a datasource that has pooling capabilities-->	 
+	<!-- read environment variable -->	 
+	<bean class="java.net.URI" id="dbUrl">
+    	<constructor-arg value="#{systemEnvironment['DATABASE_URL']}"/>
+	</bean>
+	
+	<!-- Declare a datasource that has pooling capabilities-->
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
 				destroy-method="close"
-				p:driverClass="${app.jdbc.driverClassName}"
-				p:jdbcUrl="${app.jdbc.url}"
-				p:user="${app.jdbc.username}"
-				p:password="${app.jdbc.password}"
+				p:driverClass="org.postgresql.Driver"
+				p:jdbcUrl="#{ 'jdbc:postgresql://' + @dbUrl.getHost() + ':' + @dbUrl.getPort() + @dbUrl.getPath() }"
+				p:user="#{ @dbUrl.getUserInfo().split(':')[0] }"
+				p:password="#{ @dbUrl.getUserInfo().split(':')[1] }"
 				p:acquireIncrement="5"
 				p:idleConnectionTestPeriod="60"
 				p:maxPoolSize="100"
 				p:maxStatements="50"
 				p:minPoolSize="10" />
-
+	
 	<!-- Declare a transaction manager-->
 	<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager" 
        			p:sessionFactory-ref="sessionFactory" />
