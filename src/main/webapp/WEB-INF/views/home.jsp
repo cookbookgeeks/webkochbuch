@@ -44,14 +44,18 @@ for each schleife über neugikeiten iterieren und die letzten X neuigkeiten anzei
 					<div class="panel-heading">Herzlich Wilkommen
             </div>
             <div class="panel-body">
-              <p>Wilkommen im Kochbuch der Cookbookgeeks. Hier finden sich viele tolle, 
+              <p>Wilkommen im Kochbuch der Cookbookgeeks. Hier findet man viele tolle, 
               leckere und interessante Rezepte, und in Zukunft auch eine Menge Scoialfeatures.</p>
               <br>
-              <p>Neueste Rezepte:</p>
+              <p><u>Neueste Rezepte:</u></p>
               	<table>
               		<tr>
-              			<td>Bild</td>
-              			<td>Nachrichten aus der Essenswelt</td>
+              			<td><img src="/resources/images/food/2.jpg" width="80" height="80"></td>
+              			<td>Gulaschsuppe</td>
+              		</tr>
+              		<tr>
+              			<td><img src="/resources/images/food/3.jpg" width="80" height="80"></td>
+              			<td>Linseneintopf</td>
               		</tr>
               	</table>
             </div>
