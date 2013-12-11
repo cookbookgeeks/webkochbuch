@@ -82,7 +82,8 @@ var save = function() {
                   <i>Dauer: ${recipe.preparationEndurance} min / 
                   Gesamt: ${recipe.totalEndurance} min </i><br>
                   Wertung:<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i><br><br>
-                  <a href="edit/${recipe.id}"><span class="label label-success"><i class="fa fa-pencil"></i>&nbsp; Rezept bearbeiten</span></a>
+                  <a href="/recipe/edit/${recipe.id}"><span class="label label-success"><i class="fa fa-pencil"></i>&nbsp; Rezept bearbeiten</span></a>
+                  <a href="/recipe/delete/${recipe.id}"><span class="label label-success"><i class="fa fa-pencil"></i>&nbsp; Rezept löschen</span></a>
                 </div>
               </div>
               <div class="row">
