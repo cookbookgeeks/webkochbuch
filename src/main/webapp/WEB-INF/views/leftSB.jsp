@@ -9,6 +9,7 @@
               <li class="list-group-item"><a href="/list">Kochen</a></li> <!-- Aufruf über list mit Übergabe einer Kategorienummer/-Name -->
               <li class="list-group-item"><a href="/list">Backen</a></li>
               <li class="list-group-item"><a href="/list">Desert</a></li>
+              <li class="list-group-item"><a href="/recipe/add">Rezept erstellen</a></li>
             </ul>
             <div class="panel-footer">
               <div class="row">
