@@ -37,7 +37,9 @@
 					<div class="panel-heading"><h4>Kontakt</h4>
             </div>
             <div class="panel-body">
+            <div class="form-group">
               <div class="row">
+              
                 <div class="col-md-6">
                   <label>First Name</label><br>
                   <label>Last Name</label><br>
@@ -46,11 +48,11 @@
                   <label>Betreff</label>
                 </div>
                 <div class="col-md-6">
-                  <input class="span3" placeholder="Your First Name" type="text">
-                  <input class="span3" placeholder="Your Last Name" type="text">
-                  <input class="span3" placeholder="Your email address" type="text">
+                  <input class="span3 form-control" placeholder="Your First Name" type="text">
+                  <input class="span3 form-control" placeholder="Your Last Name" type="text">
+                  <input class="span3 form-control" placeholder="Your email address" type="text">
                   <br><br>
-                  <select class="span3" id="subject" name="subject">
+                  <select class="span3 form-control" id="subject" name="subject">
                     <option selected value="na">Bitte w&auml;hlen:</option>
                     <option value="service">Service</option>
                     <option value="suggestions">Vorschl&auml;ge</option>
@@ -63,11 +65,12 @@
                 <div >
                   <br>
                   <label>Nachricht</label><br>
-                  <textarea class="input-xlarge span5" id="message" name="message" rows="10" cols="60"></textarea>
+                  <textarea class="input-xlarge span5 form-control" id="message" name="message" rows="10" cols="60"></textarea>
                 </div>
                 <br>
-                <button class="btn btn-primary btn-success " type="submit">Send</button>
+                <button class="btn  btn-success " type="submit">Send</button>
               </form>
+              </div>
             </div>
             <div class="panel-footer">
               
