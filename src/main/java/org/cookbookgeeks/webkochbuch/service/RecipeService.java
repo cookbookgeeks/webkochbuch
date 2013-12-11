@@ -1,10 +1,7 @@
 package org.cookbookgeeks.webkochbuch.service;
 
-import java.util.Date;
 import java.util.List;
-
 import javax.annotation.Resource;
-
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
