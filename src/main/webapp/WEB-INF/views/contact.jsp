@@ -1,13 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
 
-<!--
- 
-TODO:
-Abfrage ob User eingeloggt für rechte Sidebar
-
-
- -->
 
 <html>
 <head>

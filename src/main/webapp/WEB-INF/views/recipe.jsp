@@ -97,7 +97,7 @@ var save = function() {
               </div>
             </div>
             <div class="panel-footer">
-              <a href="window.history.back()"><i class="fa fa-arrow-left"></i>&nbsp; Zur&uuml;ck zur vorherigen Seite</a>
+              <a href="javascript:history.back()"><i class="fa fa-arrow-left"></i>&nbsp; Zur&uuml;ck zur vorherigen Seite</a>
             </div>
 			
           </div>
