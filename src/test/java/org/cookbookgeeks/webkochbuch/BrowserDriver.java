@@ -2,6 +2,7 @@ package org.cookbookgeeks.webkochbuch;
 
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.By.ByClassName;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -44,9 +45,22 @@ public class BrowserDriver {
 		}
 	}
 	
+	
 	public static void loadPage(String url){;
 //		LOGGER.info("Directing browser to:" + url);
 		getCurrentDriver().get(url);
+	}
+	
+	public static String getPageLoaded(){
+		return mDriver.getCurrentUrl();
+	}
+	
+	public static boolean checkForError(){
+		WebElement msg = mDriver.findElement(By.className("panel-heading"));
+		if(msg.getText().equals("Fehler"))
+				return true;
+		else
+			return false;
 	}
 	
 	public static void clickPage(String r){

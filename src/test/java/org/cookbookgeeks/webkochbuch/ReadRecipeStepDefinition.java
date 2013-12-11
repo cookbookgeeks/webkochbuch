@@ -12,7 +12,7 @@ public class ReadRecipeStepDefinition {
 	  
 	@Given("^I have a hyperlink to an existing recipe$")
 	public void I_have_a_hyperlink_to_an_existing_recipe() throws Throwable {
-	   link = "http://localhost:8080/webkochbuch/recipe/0";
+	   link = "http://localhost:8080/recipe/0";
 	}
 
 	@When("^I open a hyperlink to a recipe$")
@@ -22,7 +22,9 @@ public class ReadRecipeStepDefinition {
 
 	@Then("^the Website with the requested recipe appears$")
 	public void the_Website_with_the_requested_recipe_appears() throws Throwable {
-//		BrowserDriver.clickPage("Auflauf");
+		if(link.equals(BrowserDriver.getPageLoaded())==false){
+			throw new Exception();
+		}
 	}
 
 
