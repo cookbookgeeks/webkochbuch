@@ -22,5 +22,4 @@ To run webkochbuch successfully on your own machine, please remind:
   You have to set this environment variable on your local setup to be able to connect to your database.
   
 FUTURE:
-- it is planned to make webkochbuch read the database url from an environment variable (also needed for heroku)
 - it is planned to port the java code to work with the new database tables
