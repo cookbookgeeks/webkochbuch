@@ -19,6 +19,7 @@ Webkochbuch TODO:
   - Suche: Suchmethoden in Serviceklasse des Rezepts einbauen (SQL statements für hibernate query), UI-Seite bauen, evtl ajax benutzen wenn es sinn macht?
     - Suchmethoden: Recht einfach, überlegen welche select Abfragen für welche Suchen gebraucht werden und die Methoden schreiben.
     - UI: Idee: Irgendwo auf Seite kleines Suchfeld mit ajax zur Schnellsuche und eigene Suchseite für detailliertere Suchen.
+    - Pagination (serverseitig)
 
       SCHWIERIGKEIT: Keine.
     
