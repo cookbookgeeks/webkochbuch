@@ -3,7 +3,7 @@
 --
 
 CREATE TABLE recipes (
-    id integer NOT NULL,
+    id integer PRIMARY KEY,
     title character varying(100) NOT NULL,
     description character varying(255) NOT NULL,
     content text NOT NULL,
