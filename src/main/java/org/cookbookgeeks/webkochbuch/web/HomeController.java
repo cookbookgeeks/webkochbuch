@@ -39,6 +39,7 @@ public class HomeController {
 	
 	/**
 	 * Shows the contact form.
+	 * 
 	 * @return the view contact.jsp
 	 */
 	@RequestMapping(method=RequestMethod.GET, value="/contact")
@@ -50,6 +51,7 @@ public class HomeController {
 	
 	/**
 	 * Shows the category-overview.
+	 * 
 	 * @return the view categories.jsp
 	 */
 	@RequestMapping(method=RequestMethod.GET, value="/categories")
