@@ -25,6 +25,15 @@ CREATE SEQUENCE hibernate_sequence
   
 grant usage on sequence hibernate_sequence to username;
 
+create table images (
+  id		integer primary key,
+  path		varchar(255) not null,
+  description		varchar(255) not null,
+  recipe_id	integer,
+  foreign key (recipe_id) references recipes (id)
+);
+
+grant select,insert,update,delete on images to username;
 
 --
 -- Data for Name: recipes; Type: TABLE DATA; Schema: public; Owner: postgres

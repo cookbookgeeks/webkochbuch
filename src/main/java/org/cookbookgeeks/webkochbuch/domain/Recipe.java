@@ -2,17 +2,20 @@ package org.cookbookgeeks.webkochbuch.domain;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
  * POJO which represents a Recipe.
+ * 
  * @author Nils Sommer
  *
  */
@@ -46,10 +49,15 @@ public class Recipe implements Serializable {
 	@Column(name="creation")
 	private Date creation;
 	
-	/* Will be needed later.
+	@OneToMany(mappedBy="recipe")
 	private List<Image> images;
-	private List<Rating> ratings;
-	*/
+	
+	/**
+	 * Default Constructor.
+	 */
+	public Recipe() {
+		
+	}
 	
 	// ----- Getters and setters here: -----
 	
@@ -149,6 +157,13 @@ public class Recipe implements Serializable {
 	 */
 	public void setCreation(Date creation) {
 		this.creation = creation;
+	}
+	
+	/**
+	 * @return a list of all image object which belong to this recipe
+	 */
+	public List<Image> getImages() {
+		return images;
 	}
 	
 	// ----- other methods -----

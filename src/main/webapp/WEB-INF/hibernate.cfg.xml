@@ -13,5 +13,6 @@
     
     <!-- Add all classes which should be mapped here: -->
     <mapping class="org.cookbookgeeks.webkochbuch.domain.Recipe"/>
+    <mapping class="org.cookbookgeeks.webkochbuch.domain.Image"/>
   </session-factory>
 </hibernate-configuration>
