@@ -8,6 +8,7 @@ import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.cookbookgeeks.webkochbuch.domain.Image;
 import org.cookbookgeeks.webkochbuch.domain.Recipe;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 /**
  * This class implements all regularily used database functions such as adding, deleting,
  * updating or reading of objects.
+ * 
  * @author Nils Sommer
  *
  */
@@ -29,6 +31,7 @@ public class RecipeService {
 
 	/**
 	 * Getting a recipe by id.
+	 * 
 	 * @param id of the recipe.
 	 * @return Recipe object.
 	 */
@@ -47,6 +50,7 @@ public class RecipeService {
 	
 	/**
 	 * Getting a list with all available recipes.
+	 * 
 	 * @return A list with Recipe objects.
 	 */
 	@SuppressWarnings("unchecked")
@@ -63,6 +67,12 @@ public class RecipeService {
 		return  query.list();
 	}
 	
+	/**
+	 * Get a list of the top items.
+	 * 
+	 * @param limit number of items to get
+	 * @return list of items
+	 */
 	@SuppressWarnings("unchecked")
 	public List<Recipe> getTopItems(int limit) {
 		logger.debug("Retrieving top Recipes");
@@ -78,6 +88,13 @@ public class RecipeService {
 		return  query.list();
 	}
 	
+	/**
+	 * Gets a list of items from a specific range.
+	 * 
+	 * @param start start of the range
+	 * @param end end of the range
+	 * @return list of items
+	 */
 	@SuppressWarnings("unchecked")
 	public List<Recipe> getItemsRange(int start, int end) {
 		logger.debug("Retrieving recipes from start to end value");
@@ -94,6 +111,7 @@ public class RecipeService {
 	
 	/**
 	 * Add a Recipe object to the database.
+	 * 
 	 * @param recipe to save to the database.
 	 */
 	public void add(Recipe recipe) {
@@ -108,6 +126,7 @@ public class RecipeService {
 	
 	/**
 	 * Delete a Recipe object from the database by id.
+	 * 
 	 * @param id of the Recipe object.
 	 */
 	public void delete(Integer id) {
@@ -125,6 +144,7 @@ public class RecipeService {
 	
 	/**
 	 * Edit the information of a stored Recipe object.
+	 * 
 	 * @param edited recipe object with edited data.
 	 */
 	public void edit(Recipe edited) {
@@ -146,5 +166,21 @@ public class RecipeService {
 
 		// Save updates
 		session.save(recipe);
+	}
+	
+	/**
+	 * Adding an image to a recipe.
+	 * 
+	 * @param image to add to the recipe
+	 * @param recipeId Id of the recipe to add the image to
+	 */
+	public void addImage(Image image, Integer recipeId) {
+		logger.debug("Adding image to Recipe " + recipeId);
+		Session session = sessionFactory.getCurrentSession();
+
+		Recipe recipe = (Recipe) session.get(Recipe.class, recipeId);
+		image.setRecipe(recipe);
+		
+		session.save(image);
 	}
 }
