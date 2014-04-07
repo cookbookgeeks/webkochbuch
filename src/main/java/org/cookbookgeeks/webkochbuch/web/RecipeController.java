@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.cookbookgeeks.webkochbuch.domain.Image;
 import org.cookbookgeeks.webkochbuch.domain.Recipe;
 import org.cookbookgeeks.webkochbuch.service.RecipeService;
 import org.springframework.stereotype.Controller;
@@ -31,13 +32,14 @@ public class RecipeController {
 	
 	/**
 	 * Shows a recipe.
+	 * 
 	 * @param id of the recipe which wil be shown.
 	 * @param model Model the view extracts its data from.
 	 * @return the view recipe.jsp
 	 */
 	@RequestMapping(method=RequestMethod.GET, value="/recipe/{id}")
 	public String showRecipe(@PathVariable("id") int id, Model model) {
-		logger.debug("Returning view recipe with recipe.id=" + id);
+		logger.info("Returning view recipe with recipe.id=" + id);
 		
 		// Get recipe.
 		Recipe recipe = recipeService.getRecipe(id);
@@ -54,12 +56,13 @@ public class RecipeController {
 	
 	/**
 	 * Shows a list of all recipes.
+	 * 
 	 * @param model Model the view extracts its data from.
 	 * @return the view showList.jsp
 	 */
 	@RequestMapping(method=RequestMethod.GET, value="/list")
 	public String listRecipes(Model model) {
-		logger.debug("Returning view with list of all recipes");
+		logger.info("Returning view with list of all recipes");
 		
 		// Get all recipes.
 		List<Recipe> recipes = recipeService.getAll();
@@ -70,12 +73,13 @@ public class RecipeController {
 	
 	/**
 	 * Adds a recipe and shows it afterwards.
+	 * 
 	 * @param recipe which is added.
 	 * @return the view recipe with the id of the created recipe.
 	 */
 	@RequestMapping(method=RequestMethod.POST, value="/recipe/adddata")
 	public String addRecipe(@ModelAttribute("recipe") Recipe recipe) {
-		logger.debug("Adding new recipe.");
+		logger.info("Adding new recipe.");
 		
 		// Current date.
 		recipe.setCreation(new Date());
@@ -89,11 +93,12 @@ public class RecipeController {
 	
 	/**
 	 * Maps url which returns an input form view for adding recipes.
-	 * @return
+	 * 
+	 * @return the addRecipe view
 	 */
 	@RequestMapping(method=RequestMethod.GET, value="/recipe/add")
 	public String addForm(Model model) {
-		logger.debug("Returning addRecipe view.");
+		logger.info("Returning addRecipe view.");
 		
 		model.addAttribute("recipe", new Recipe());
 		
@@ -102,12 +107,13 @@ public class RecipeController {
 	
 	/**
 	 * Deletes a recipe and redirects to the start page.
+	 * 
 	 * @param id of the recipe which gets deleted.
 	 * @return the view of the start page.
 	 */
 	@RequestMapping(method=RequestMethod.GET, value="/recipe/delete/{id}")
 	public String deleteRecipe(@PathVariable("id") int id) {
-		logger.debug("Deleting recipe with id " + id + ".");
+		logger.info("Deleting recipe with id " + id + ".");
 		
 		// Deleting recipe.
 		recipeService.delete(id);
@@ -117,12 +123,13 @@ public class RecipeController {
 	
 	/**
 	 * Edits a recipe and show it afterwards.
+	 * 
 	 * @param recipe which gets edited.
 	 * @return the view recipe with the id of the recipe.
 	 */
 	@RequestMapping(method=RequestMethod.POST, value="/recipe/editdata")
 	public String editRecipe(@ModelAttribute("recipe") Recipe recipe) {
-		logger.debug("Editing recipe with id " + recipe.getId() + ".");
+		logger.info("Editing recipe with id " + recipe.getId() + ".");
 		
 		// update date
 		recipe.setCreation(new Date());
@@ -136,11 +143,12 @@ public class RecipeController {
 	
 	/**
 	 * Maps url which returns an input form view for adding recipes.
-	 * @return
+	 * 
+	 * @return the editRecipe view
 	 */
 	@RequestMapping(method=RequestMethod.GET, value="/recipe/edit/{id}")
 	public String editForm(@PathVariable("id") int id, Model model) {
-		logger.debug("Returning editRecipe view.");
+		logger.info("Returning editRecipe view.");
 		
 		// Get the recipe.
 		Recipe recipe = recipeService.getRecipe(id);
@@ -157,6 +165,12 @@ public class RecipeController {
 		return "editRecipe";
 	}
 	
-
+	@RequestMapping(method=RequestMethod.GET, value="/image/delete/{id}")
+	public String deleteImage(@PathVariable("id") int id) {
+		logger.info("Deleting image with id " + id);
+		recipeService.deleteImage(id);
+		
+		return "redirect:/";
+	}
 
 }
