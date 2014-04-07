@@ -36,7 +36,7 @@ public class RecipeService {
 	 * @return Recipe object.
 	 */
 	public Recipe getRecipe(Integer id) {
-		logger.debug("Retrieving person with id: " + id);
+		logger.info("Retrieving person with id: " + id);
 		
 		// Retrieve session from Hibernate
 		Session session = sessionFactory.getCurrentSession();
@@ -55,7 +55,7 @@ public class RecipeService {
 	 */
 	@SuppressWarnings("unchecked")
 	public List<Recipe> getAll() {
-		logger.debug("Retrieving all persons");
+		logger.info("Retrieving all persons");
 		
 		// Retrieve session from Hibernate
 		Session session = sessionFactory.getCurrentSession();
@@ -75,7 +75,7 @@ public class RecipeService {
 	 */
 	@SuppressWarnings("unchecked")
 	public List<Recipe> getTopItems(int limit) {
-		logger.debug("Retrieving top Recipes");
+		logger.info("Retrieving top Recipes");
 		
 		// Retrieve session from Hibernate
 		Session session = sessionFactory.getCurrentSession();
@@ -97,7 +97,7 @@ public class RecipeService {
 	 */
 	@SuppressWarnings("unchecked")
 	public List<Recipe> getItemsRange(int start, int end) {
-		logger.debug("Retrieving recipes from start to end value");
+		logger.info("Retrieving recipes from start to end value");
 		
 		// Retrieve session from Hibernate
 		Session session = sessionFactory.getCurrentSession();
@@ -115,7 +115,7 @@ public class RecipeService {
 	 * @param recipe to save to the database.
 	 */
 	public void add(Recipe recipe) {
-		logger.debug("Adding new recipe");
+		logger.info("Adding new recipe");
 		
 		// Retrieve session from Hibernate
 		Session session = sessionFactory.getCurrentSession();
@@ -130,7 +130,7 @@ public class RecipeService {
 	 * @param id of the Recipe object.
 	 */
 	public void delete(Integer id) {
-		logger.debug("Deleting existing recipe");
+		logger.info("Deleting existing recipe");
 		
 		// Retrieve session from Hibernate
 		Session session = sessionFactory.getCurrentSession();
@@ -148,7 +148,7 @@ public class RecipeService {
 	 * @param edited recipe object with edited data.
 	 */
 	public void edit(Recipe edited) {
-		logger.debug("Editing existing recipe");
+		logger.info("Editing existing recipe");
 		
 		// Retrieve session from Hibernate
 		Session session = sessionFactory.getCurrentSession();
@@ -175,12 +175,26 @@ public class RecipeService {
 	 * @param recipeId Id of the recipe to add the image to
 	 */
 	public void addImage(Image image, Integer recipeId) {
-		logger.debug("Adding image to Recipe " + recipeId);
+		logger.info("Adding image to Recipe " + recipeId);
 		Session session = sessionFactory.getCurrentSession();
 
 		Recipe recipe = (Recipe) session.get(Recipe.class, recipeId);
 		image.setRecipe(recipe);
 		
 		session.save(image);
+	}
+	
+	/**
+	 * Deletes an image.
+	 * 
+	 * @param id of the image
+	 */
+	public void deleteImage(Integer id) {
+		logger.info("Deleting image with id " + id);
+		Session session = sessionFactory.getCurrentSession();
+		
+		Image image = (Image) session.get(Image.class, id);
+		
+		session.delete(image);
 	}
 }
