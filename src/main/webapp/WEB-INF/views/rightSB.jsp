@@ -39,7 +39,7 @@ TODO:
 
             <div class="panel-body">
               <div class="media">
-                <a href="#">                <img class="media-object dp img-circle" src="http://www.huffmancode.com/img/hardik.jpg" style="width: 80px;height:80px;">            </a>
+                <a href="#">                <img class="media-object dp img-circle" src="<c:url value="/resources/images/test_keks.jpg" />" style="width: 80px;height:80px;">            </a>
                 <div class="media-body">
                   <h4 class="media-heading">Lukas Langenbacher <small> Karlsruhe</small></h4>
                   <hr style="margin:8px auto">

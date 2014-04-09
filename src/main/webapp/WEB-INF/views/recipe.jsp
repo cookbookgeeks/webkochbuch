@@ -19,6 +19,16 @@ Abfrage ob User eingeloggt für rechte Sidebar
     <script src="<c:url value="/resources/js/bootstrap.min.js" />" type="text/javascript"></script>
     
     <script src="/resources/js/summernote.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    function loeschen() {
+    if(confirm("Rezept wirklich löschen?")){
+    	location.href="/recipe/delete/${recipe.id}";
+    	}
+    else {
+    	location.href="/recipe/${recipe.id}";
+    	}
+    }
+    </script>
     
     <script>
 $(document).ready(function() {
@@ -83,7 +93,7 @@ var save = function() {
                   Gesamt: ${recipe.totalEndurance} min </i><br>
                   Wertung:<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i><br><br>
                   <a href="/recipe/edit/${recipe.id}"><span class="label label-success"><i class="fa fa-pencil"></i>&nbsp; Rezept bearbeiten</span></a>
-                  <a href="/recipe/delete/${recipe.id}"><span class="label label-success"><i class="fa fa-pencil"></i>&nbsp; Rezept löschen</span></a>
+                  <a href="javascript:loeschen()"><span class="label label-success"><i class="fa fa-pencil"></i>&nbsp; Rezept löschen</span></a>
                 </div>
               </div>
               <div class="row">

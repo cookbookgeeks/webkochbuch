@@ -12,7 +12,7 @@
               <li class="list-group-item"><a href="/recipe/add">Rezept erstellen</a></li>
             </ul>
             <div class="panel-footer">
-              <div class="row">
+              <div class=" input-group">
                   <form id="custom-search-form" class="form-search form-horizontal pull-right">
                     <input class="search-query" placeholder="Search" type="text">
                     <button type="submit" class="btn">
