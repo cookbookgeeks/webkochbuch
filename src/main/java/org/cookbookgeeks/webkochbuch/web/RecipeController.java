@@ -165,6 +165,12 @@ public class RecipeController {
 		return "editRecipe";
 	}
 	
+	/**
+	 * Deletes an image.
+	 * 
+	 * @param id of the image
+	 * @return the start page view
+	 */
 	@RequestMapping(method=RequestMethod.GET, value="/image/delete/{id}")
 	public String deleteImage(@PathVariable("id") int id) {
 		logger.info("Deleting image with id " + id);
