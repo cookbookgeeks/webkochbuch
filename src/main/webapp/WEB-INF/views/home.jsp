@@ -13,7 +13,10 @@ for each schleife über neugikeiten iterieren und die letzten X neuigkeiten anzei
 <head>
 	<title>Webkochbuch</title>
     <meta name="viewport" content="width=device-width">
-
+    
+    <link rel="shortcut icon" href="<c:url value="/resources/icons/favicon.ico" />" type="image/x-icon">
+	<link rel="icon" href="<c:url value="/resources/icons/favicon.ico" />" type="image/x-icon">
+	
     <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.min.css" />" />
     <link rel="stylesheet" href="<c:url value="/resources/css/font-awesome.css" />" />
     <link rel="stylesheet" href="<c:url value="/resources/css/webkochbuch-main.css" />" />
