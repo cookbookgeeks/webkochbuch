@@ -125,6 +125,10 @@ public class Image implements Serializable {
 	
 	// ----- other methods -----
 	
+	public String getResourcesPath() {
+		return path.replaceFirst(".*(?=(\\/resources))", "");
+	}
+	
 	public String toString() {
 		return "File path: " + path + "\nDescription: " + description +
 				"\nId: " + id;

@@ -104,9 +104,40 @@ var save = function() {
                     <b>Zubereitung:</b><br><br>
                     ${recipe.content}
 					</p>
+					<c:if test="${!recipe.images.isEmpty()}">
+					<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+					  <!-- Indicators -->
+					  <ol class="carousel-indicators">
+					  	<c:forEach var="image" items="${recipe.images}" varStatus="loop">
+					    <li data-target="#carousel-example-generic" data-slide-to="${loop.index}" <c:if test="${loop.index == 0}">class="active"</c:if>></li>
+					    </c:forEach>
+					  </ol>
+					
+					  <!-- Wrapper for slides -->
+					  <div class="carousel-inner">
+					  <c:forEach var="image" items="${recipe.images}" varStatus="loop">
+					    <div class="item <c:if test="${loop.index == 0}">active</c:if>">
+					      <img src="<c:url value="${image.getResourcesPath()}" />" alt="${image.description}" />
+					      <div class="carousel-caption">
+					      	${image.description}
+					      </div>
+					    </div>
+					  </c:forEach>
+					  </div>
+					
+					  <!-- Controls -->
+					  <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+					    <span class="glyphicon glyphicon-chevron-left"></span>
+					  </a>
+					  <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+					    <span class="glyphicon glyphicon-chevron-right"></span>
+					  </a>
+					</div>
+				</c:if>
                 </div>
               </div>
             </div>
+            
             <div class="panel-footer">
               <a href="javascript:history.back()"><i class="fa fa-arrow-left"></i>&nbsp; Zur&uuml;ck zur vorherigen Seite</a>
             </div>
