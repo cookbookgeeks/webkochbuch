@@ -169,6 +169,30 @@ public class RecipeService {
 	}
 	
 	/**
+	 * Saving image object in the database.
+	 * 
+	 * @param image
+	 */
+	public Integer saveImage(Image image) {
+		logger.info("Saving image.");
+		Session session = sessionFactory.getCurrentSession();
+		return (Integer) session.save(image);
+	}
+	
+	/**
+	 * Get image by id.
+	 * 
+	 * @param id of the image
+	 * @return the image object
+	 */
+	public Image getImage(Integer id) {
+		logger.info("Getting image by id: " + id.toString());
+		Session session = sessionFactory.getCurrentSession();
+		Image image = (Image) session.get(Image.class, id);
+		return image;
+	}
+	
+	/**
 	 * Adding an image to a recipe.
 	 * 
 	 * @param image to add to the recipe
