@@ -9,19 +9,15 @@ http://webkochbuch.herokuapp.com/
 
 ### Run webkochbuch locally
 
- - webkochbuch currently works with its old database tables. There is a script called 
-  webkochbuch_createtables_experimental.sql to create the corresponding database tables.
- - IMPORTANT: Due to the fact that this Version is build to run on heroku and similar platforms, 
-  you have to edit line 19 in server.xml of your local spring IDE to make hyperlinks and includes work!   
- - The user of your database which is used by webkochbuch must have the rights to read and write the corresponding tables.
-  To achieve that, open a sql command line and type;
-  GRANT SELECT on recipes to username;
-  GRANT CREATE on recipes to username;
-  GRANT DELETE on recipes to username;
-  GRANT UPDATE on recipes to username;
- - Follow the instructions of the experimental database script to create a sequence for automatic id incrementation!
+ - Install postgesql, start it and create a new database.
+ - Call the sql script "webkochbuch_createtables_experimental.sql on the database (replace 'username' with your postgres username).
+ - Due to the fact that this Version is build to run on heroku and similar platforms, 
+  you have to edit line 19 in server.xml of your local spring IDE to make hyperlinks and includes work!
  - webkochbuch reads its database url (including username and password) from an environment variable called DATABASE_URL.
-  You have to set this environment variable on your local setup to be able to connect to your database.
+   You have to set this environment variable on your local setup to be able to connect to your database.
+   It looks like that: postgres://username:password@hostname:port/database
+ - Create a directory where webkochbuch can store uploaded files. You have to make sure that webkochbuch has the rights to write/read on that directory. Store the path to the directory in an environment variable called WEBKOCHBUCH_UPLOADS_DESTINATION
+ - Now, run webkochbuch using the spring tool suite or call the corresponding maven commands.
   
 ### Future plans
 
