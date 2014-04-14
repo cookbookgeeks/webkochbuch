@@ -14,6 +14,7 @@
 
     <script src="<c:url value="/resources/js/jquery.min.js" />" type="text/javascript"></script>
     <script src="<c:url value="/resources/js/bootstrap.min.js" />" type="text/javascript"></script>
+    <script src="<c:url value="/resources/js/jquery.form.js" />" type="text/javascript"></script>
 
 </head>
 <body><div class="container">
@@ -37,10 +38,41 @@
 					<div class="panel-heading">Rezept bearbeiten
             </div>
             <div class="panel-body">
-              <!-- TODO: Add input form and give the recipe via POST to the editRecipe controller method. -->
-              <div class="form-group">
+<div class="form-group">
+<form id="fileUploadForm" method="post" enctype="multipart/form-data" action="/upload">
+<table>
+	<tr>
+		<td><label>Bilddatei:</label></td>
+		<td><input type="file" name="file" class="form-control" /></td>
+	</tr>
+	<tr>
+		<td></td>
+		<td>
+			<div class="progress">
+		 		<div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+		  		</div>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td><label>Bildunterschrift:</label></td>
+		<td><input type="text" name="description" maxlength="255" />
+	</tr>
+	<tr>
+		<td></td>
+		<td><button value="Submit" class="btn btn-succes">Bild hochladen</button></td>
+	</tr>
+	<tr>
+		<td></td>
+		<td><div id="result"></div></td>
+	</tr>
+</table>
+</form>
+</div>
+
+<div class="form-group">
 <c:url var="saveUrl" value="/recipe/editdata" />
-<form:form modelAttribute="recipe" method="POST" action="${saveUrl}">
+<form:form id="recipeForm" modelAttribute="recipe" method="POST" action="${saveUrl}">
  <form:hidden path="id" />
  <table>
   <tr>
@@ -95,6 +127,36 @@
       </footer>
     </div>
 
+    <script type="text/javascript">
+    var options = {
+  			url: '/upload',
+  			type: 'POST',
+  			resetForm: true,
+  			clearForm: true,
+  			// update progress bar
+  			uploadProgress: function(event, position, total, percentComplete) {
+	            $('.progress-bar').width(percentComplete + '%');
+	     	},
+	     	// set progress bar back, clear result box
+	     	beforeSubmit: function(arr, $form, options) {
+	     		$('.progress-bar').width(0 + '%');
+	     		$('#result').innerHTML = "";
+	     	},
+	     	// check if upload successfull
+	     	success: function(data) {
+	     		if(data != "null") {
+	     			// append id of uploaded image to recipe form
+	     			$('#recipeForm').append('<input type="hidden" name="ids" value="' + data + '" />');
+	     		} else {
+	     			// show error message
+	     			$('#result').innerHTML = "Upload fehlgeschlagen!";
+	     		}
+	     	}
+  	};
+    
+    $('#fileUploadForm').ajaxForm(options);
+    </script>
+    
 </body>
 </html>
 

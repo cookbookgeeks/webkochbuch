@@ -5,6 +5,10 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.util.Date;
 
+import javax.annotation.Resource;
+
+import org.cookbookgeeks.webkochbuch.domain.Image;
+import org.cookbookgeeks.webkochbuch.service.RecipeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -23,9 +27,8 @@ import org.springframework.web.multipart.MultipartFile;
 @Controller
 public class FileUploadController {
 	
-	public FileUploadController() {
-		
-	}
+	@Resource(name="recipeService")
+	private RecipeService recipeService;
 	
 	public static final Logger logger = LoggerFactory.getLogger(FileUploadController.class);
 	
@@ -35,8 +38,17 @@ public class FileUploadController {
 	/** Path of the uploads storage. */
 	public static final String destination = (System.getenv(destinationVarName) != null) ? System.getenv(destinationVarName) : "/tmp";
 	
+	/**
+	 * Accepts a file and a description string, saves the file to a target directory
+	 * and persists an image object to the database.
+	 * 
+	 * @param file
+	 * @param description
+	 * @return
+	 */
 	@RequestMapping(value = "/upload", method = RequestMethod.POST)
-	public @ResponseBody String uploadFileHandler(@RequestParam("file") MultipartFile file) {
+	public @ResponseBody String uploadFileHandler(@RequestParam("file") MultipartFile file,
+			@RequestParam("description") String description) {
 		Date date = new Date();
 		String name = "recipe_image_" + date.getTime();
 		
@@ -55,20 +67,30 @@ public class FileUploadController {
                 stream.close();
  
                 logger.info("Saved upload file to " + serverFile.getAbsolutePath());
+                
+                // Persist image metadata in db:
+                Image image = new Image();
+                image.setPath(serverFile.getAbsolutePath());
+                image.setDescription(description);
+                
+                Integer id = recipeService.saveImage(image);
  
-                return "Successfully uploaded file.";
+                if(id != null) {
+                	logger.info("Image with id " + id + " persisted.");
+                	return id.toString();
+                } else {
+                	logger.debug("Failed to persist image object.");
+                	return "null";
+                }
 			} catch(Exception ex) {
+				logger.debug("Failed to save file to disk.");
 				ex.printStackTrace();
-				return "Failed to upload file.";
+				return "null";
 			}
 		} else {
-			return "Cannot upload empty files.";
+			logger.debug("Failed to save file to disk because the file is empty.");
+			return "null";
 		}
-	}
-	
-	@RequestMapping(value = "/uploadform", method = RequestMethod.GET)
-	public String uploadForm() {
-		return "AjaxUploadForm";
 	}
 	
 }

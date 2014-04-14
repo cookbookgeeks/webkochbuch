@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * @author Nils Sommer
@@ -72,20 +73,31 @@ public class RecipeController {
 	}
 	
 	/**
-	 * Adds a recipe and shows it afterwards.
+	 * Adding a recipe, optionally with image relationships.
 	 * 
-	 * @param recipe which is added.
-	 * @return the view recipe with the id of the created recipe.
+	 * @param recipe to add
+	 * @param ids of the images that belong to the recipe
+	 * @return the view of the newly created recipe
 	 */
 	@RequestMapping(method=RequestMethod.POST, value="/recipe/adddata")
-	public String addRecipe(@ModelAttribute("recipe") Recipe recipe) {
-		logger.info("Adding new recipe.");
+	public String addRecipe(@ModelAttribute("recipe") Recipe recipe, 
+			@RequestParam(value = "ids", required = false) List<Integer> ids) {
+		logger.info("Adding new recipe with images.");
 		
 		// Current date.
 		recipe.setCreation(new Date());
 		
 		// Adding the recipe
 		recipeService.add(recipe);
+		
+		// add recipe relationship to images
+		if(ids != null) {
+			for(Integer id : ids) {
+				Image image = recipeService.getImage(id);
+				image.setRecipe(recipe);
+				recipeService.saveImage(image);
+			}
+		}
 		
 		// Display view with the newly created recipe.
 		return "redirect:/recipe/" + recipe.getId();
@@ -125,10 +137,12 @@ public class RecipeController {
 	 * Edits a recipe and show it afterwards.
 	 * 
 	 * @param recipe which gets edited.
+	 * @param ids of the images that belong to the recipe
 	 * @return the view recipe with the id of the recipe.
 	 */
 	@RequestMapping(method=RequestMethod.POST, value="/recipe/editdata")
-	public String editRecipe(@ModelAttribute("recipe") Recipe recipe) {
+	public String editRecipe(@ModelAttribute("recipe") Recipe recipe,
+			@RequestParam(value = "ids", required = false) List<Integer> ids) {
 		logger.info("Editing recipe with id " + recipe.getId() + ".");
 		
 		// update date
@@ -136,6 +150,15 @@ public class RecipeController {
 		
 		// Update recipe.
 		recipeService.edit(recipe);
+		
+		// add recipe relationship to images
+		if(ids != null) {
+			for(Integer id : ids) {
+				Image image = recipeService.getImage(id);
+				image.setRecipe(recipe);
+				recipeService.saveImage(image);
+			}
+		}
 		
 		// Display edited recipe.
 		return "redirect:/recipe/" + recipe.getId();
