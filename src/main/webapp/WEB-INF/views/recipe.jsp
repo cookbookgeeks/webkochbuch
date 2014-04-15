@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page session="false" %>
 
 <!-- 
@@ -87,8 +88,8 @@ var save = function() {
                   <img src="/resources/images/food/${recipe.id}.jpg" height="200" width="200">
                   <br><br></div>
                 <div class="col-md-6">
-                  <h5><b>${recipe.title}</b></h5>${recipe.description}<br>
-                  Erstellt: ${recipe.creation}<br>
+                  <h5><b>${recipe.title}</b></h5><br>${recipe.description}<br>
+                  Erstellt: <fmt:formatDate value="${recipe.creation}" pattern="dd.mm.yyyy" /> <br>
                   <i>Dauer: ${recipe.preparationEndurance} min / 
                   Gesamt: ${recipe.totalEndurance} min </i><br>
                   Wertung:<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i><br><br>
