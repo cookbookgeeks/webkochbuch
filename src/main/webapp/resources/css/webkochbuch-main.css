@@ -9,6 +9,10 @@ body { background-color: rgb(30,120,40);}
   background-repeat:no-repeat;
 }
 
+.editdelete {
+	margin:auto;
+}
+
 .header >h1  {
 font-family: cursive; 
 color: white;
