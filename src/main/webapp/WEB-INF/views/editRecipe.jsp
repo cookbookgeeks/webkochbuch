@@ -14,6 +14,8 @@
     <script src="<c:url value="/resources/js/jquery.min.js" />" type="text/javascript"></script>
     <script src="<c:url value="/resources/js/bootstrap.min.js" />" type="text/javascript"></script>
     <script src="<c:url value="/resources/js/jquery.form.js" />" type="text/javascript"></script>
+    <script src="<c:url value="/resources/js/bootstrap.file-input.js" />" type="text/javascript"></script>
+    
 
 </head>
 <body><div class="container">
@@ -42,13 +44,13 @@
 <table>
 	<tr>
 		<td><label>Bilddatei:</label></td>
-		<td><input type="file" name="file" class="form-control" /></td>
+		<td><input type="file" title="Durchsuchen" name="file" class="btn-success" /> </td>
 	</tr>
 	<tr>
 		<td></td>
 		<td>
 			<div class="progress">
-		 		<div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+		 		<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
 		  		</div>
 			</div>
 		</td>
@@ -59,7 +61,7 @@
 	</tr>
 	<tr>
 		<td></td>
-		<td><button value="Submit" class="btn btn-succes">Bild hochladen</button></td>
+		<td><button value="Submit" class="btn btn-success">Bild hochladen</button></td>
 	</tr>
 	<tr>
 		<td></td>
@@ -155,7 +157,11 @@
     
     $('#fileUploadForm').ajaxForm(options);
     </script>
-    
+
+<script>$(document).ready(function(){
+	$('input[type=file]').bootstrapFileInput();
+	$('.file-inputs').bootstrapFileInput();
+	});</script>    
 </body>
 </html>
 
