@@ -1,8 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
 
-
-
 <!-- 
 Dieser View erwartet zwei Parameter:
 * eine ArryList über die dann iteriert wird
@@ -62,7 +60,7 @@ for (int i=sitenumber*10; i<=Arraylist.length;  i++)
               
               <div class="row">
                 <div class="col-md-4">
-                  <img src="/resources/images/food/${recipe.id}.jpg" width="100" height="100">
+                  <img src="${recipe.images[0].getResourcesPath()}" width="100" height="100">
                 </div>
                 <div class="col-md-8">
                   
@@ -73,6 +71,7 @@ for (int i=sitenumber*10; i<=Arraylist.length;  i++)
                   <i>Dauer: ${recipe.preparationEndurance} min / ${recipe.totalEndurance} min Backofen</i>                    
                   </a><br>
                   Wertung: 
+                  
                   <i class="fa fa-star"></i>
                   <i class="fa fa-star"></i>
                   <i class="fa fa-star"></i>
