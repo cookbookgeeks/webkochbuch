@@ -7,6 +7,7 @@ import java.util.Date;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.io.FilenameUtils;
 import org.cookbookgeeks.webkochbuch.domain.Image;
 import org.cookbookgeeks.webkochbuch.service.RecipeService;
 import org.slf4j.Logger;
@@ -76,7 +77,7 @@ public class FileUploadController {
 					dir.mkdirs();
 				}
 
-                File serverFile = new File(dir.getAbsolutePath() + File.separator + name);
+                File serverFile = new File(dir.getAbsolutePath() + File.separator + name + "." + FilenameUtils.getExtension(file.getOriginalFilename()));
                 BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
                 stream.write(bytes);
                 stream.close();
