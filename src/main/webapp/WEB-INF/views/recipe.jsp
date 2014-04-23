@@ -53,7 +53,13 @@ Abfrage ob User eingeloggt für rechte Sidebar
             <div class="panel-body">
             <div class="row">
                 <div class="col-md-6">
-                  <img src="/resources/images/food/${recipe.id}.jpg" height="200" width="200">
+                <c:if test="${!recipe.images.isEmpty()}">
+                  <img src="${recipe.images.get(0).getResourcesPath()}" height="200" width="200">
+                   </c:if>
+                  <c:if test="${recipe.images.isEmpty()}">
+                  <img src="<c:url value="/resources/images/notfound.jpg" />" width="100" height="100">
+                  </c:if>
+                  
                   <br><br></div>
                 <div class="col-md-6">
                   <h5><b>${recipe.title}</b></h5><br>${recipe.description}<br>
