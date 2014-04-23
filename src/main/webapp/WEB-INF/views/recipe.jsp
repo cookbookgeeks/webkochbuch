@@ -57,7 +57,7 @@ Abfrage ob User eingeloggt für rechte Sidebar
                   <img src="${recipe.images.get(0).getResourcesPath()}" height="200" width="200">
                    </c:if>
                   <c:if test="${recipe.images.isEmpty()}">
-                  <img src="<c:url value="/resources/images/notfound.jpg" />" width="100" height="100">
+                  <img src="<c:url value="/resources/images/notfound.jpg" />" width="200" height="200">
                   </c:if>
                   
                   <br><br></div>
