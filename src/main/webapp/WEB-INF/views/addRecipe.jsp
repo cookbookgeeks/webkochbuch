@@ -11,11 +11,12 @@
     <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.min.css" />" />
     <link rel="stylesheet" href="<c:url value="/resources/css/font-awesome.css" />" />
     <link rel="stylesheet" href="<c:url value="/resources/css/webkochbuch-main.css" />" />
-
+	
     <script src="<c:url value="/resources/js/jquery.min.js" />" type="text/javascript"></script>
     <script src="<c:url value="/resources/js/bootstrap.min.js" />" type="text/javascript"></script>
     <script src="<c:url value="/resources/js/jquery.form.js" />" type="text/javascript"></script>
     <script src="<c:url value="/resources/js/bootstrap.file-input.js" />" type="text/javascript"></script>
+    <script src="<c:url value="/resources/js/tinymce/tinymce.min.js" />" type="text/javascript"></script>
 
 </head>
 <body><div class="container">
@@ -98,13 +99,15 @@
   <tr>
    <td><form:label path="content">Inhalt:</form:label></td>
    <td>
-   <form:textarea path="content" cols="50" rows="10"  class="form-control"/></td>
+   <form:textarea path="content" cols="50" rows="10"  class="form-control"/> 
+   </td>
   </tr>
  
  </table>
  <input type="submit" value="Save" class="btn btn-success"/>
- </div>
 </form:form>
+ </div>
+
 
             </div>
             <div class="panel-footer">
@@ -157,11 +160,38 @@
     
     $('#fileUploadForm').ajaxForm(options);
     </script>
-    <script>$(document).ready(function(){
+    <script>$(document).ready(function(){    
 	$('input[type=file]').bootstrapFileInput();
 	$('.file-inputs').bootstrapFileInput();
-	});</script>
+	tinymce.init({
+	    selector: "textarea",
+	    	theme: "modern",
+	        //width: 300,
+	        height: 300,
+	        menubar:false,
+	        statusbar: false,
+	        language : 'de',
+	        fontsize_formats: "8pt 10pt 12pt 14pt 18pt 24pt 36pt",
+	        plugins: [
+						"advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker",
+						"searchreplace  visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
+						"save table contextmenu directionality emoticons template paste textcolor"
 
+	       ],
+	       toolbar: " fontsizeselect | undo redo  | bold italic  | bullist numlist outdent indent | preview fullpage | forecolor emoticons", 
+	       style_formats: [
+	            {title: 'Bold text', inline: 'b'},
+	            {title: 'Big header', block: 'h1', styles: {color: '#000000'}},
+	            {title: 'Example 1', inline: 'span', classes: 'example1'},
+	            {title: 'Example 2', inline: 'span', classes: 'example2'},
+	            
+	        ]
+
+	 });
+
+	});</script>
+	
+	      
 </body>
 </html>
 
