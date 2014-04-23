@@ -36,7 +36,21 @@ public class FileUploadController {
 	public static final String destinationVarName = "WEBKOCHBUCH_UPLOADS_DESTINATION";
 	
 	/** Path of the uploads storage. */
-	public static final String destination = (System.getenv(destinationVarName) != null) ? System.getenv(destinationVarName) : "/tmp";
+	public String destination;
+	
+	/**
+	 * Standard constructor. Initializes file storage path.
+	 */
+	public FileUploadController() {
+		String env = System.getenv(destinationVarName);
+		if(env == null) {
+			logger.warn("Environment variable " + destinationVarName + " not found. File uploads will not work. "
+					+ "Files will be redirected to: /tmp");
+			destination = "/tmp";
+		} else {
+			destination = env;
+		}
+	}
 	
 	/**
 	 * Accepts a file and a description string, saves the file to a target directory
