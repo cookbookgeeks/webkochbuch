@@ -49,6 +49,7 @@ public class FileUploadController {
 			destination = "/tmp";
 		} else {
 			destination = env;
+			logger.info("Initializing file upload storage to use location: " + destination);
 		}
 	}
 	
