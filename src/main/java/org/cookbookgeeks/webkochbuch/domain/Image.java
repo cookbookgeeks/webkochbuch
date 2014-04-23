@@ -1,5 +1,6 @@
 package org.cookbookgeeks.webkochbuch.domain;
 
+import java.io.File;
 import java.io.Serializable;
 
 import javax.persistence.Column;
@@ -126,7 +127,8 @@ public class Image implements Serializable {
 	// ----- other methods -----
 	
 	public String getResourcesPath() {
-		return path.replaceFirst(".*(?=(\\/resources))", "");
+		final String seperator = "\\" + File.separator;
+		return path.replaceFirst(".*(?=(" + seperator + "resources))", "");
 	}
 	
 	public String toString() {
