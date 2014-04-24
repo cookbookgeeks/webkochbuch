@@ -13,6 +13,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+/**
+ * POJO that represents an image.
+ * 
+ * @author Nils Sommer
+ *
+ */
 @Entity
 @Table(name="images")
 public class Image implements Serializable {
