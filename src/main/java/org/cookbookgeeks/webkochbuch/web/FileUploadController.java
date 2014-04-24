@@ -74,7 +74,12 @@ public class FileUploadController {
                 File dir = new File(destination);
 				if (!dir.exists()) {
 					logger.debug("Directory " + destination + "does not exist. Will try to create it.");
-					dir.mkdirs();
+					if(dir.mkdirs()) {
+						logger.debug("Creating directory successful.");
+					} else {
+						logger.error("Failed creating directory. Uploading files impossible");
+						return "null";
+					}
 				}
 
                 File serverFile = new File(dir.getAbsolutePath() + File.separator + name + "." + FilenameUtils.getExtension(file.getOriginalFilename()));
