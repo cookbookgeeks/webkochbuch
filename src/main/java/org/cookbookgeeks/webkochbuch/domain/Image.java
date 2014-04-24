@@ -126,11 +126,19 @@ public class Image implements Serializable {
 	
 	// ----- other methods -----
 	
+	/**
+	 * Helper method to get the path in a format usable for tomcat.
+	 * This should be removed in future by reorganizing the upload location
+	 * handling.
+	 * 
+	 * @return the path
+	 */
 	public String getResourcesPath() {
 		final String seperator = "\\" + File.separator;
 		return path.replaceFirst(".*(?=(" + seperator + "resources))", "");
 	}
 	
+	/** {@inheritDoc} */
 	public String toString() {
 		return "File path: " + path + "\nDescription: " + description +
 				"\nId: " + id;

@@ -168,9 +168,7 @@ public class Recipe implements Serializable {
 	
 	// ----- other methods -----
 
-	/**
-	 * @return a short description of the object.
-	 */
+	/** {@inheritDoc} */
 	public String toString() {
 		return "Title: " + title + "\nDescription: " + description +
 				"\nContent: " + content + "\nPreparation endurance: " +
