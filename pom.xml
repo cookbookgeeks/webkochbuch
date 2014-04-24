@@ -163,6 +163,11 @@
 			<artifactId>hibernate-entitymanager</artifactId>
 			<version>4.2.7.Final</version>
 		</dependency>
+		<dependency>
+   			<groupId>org.hibernate</groupId>
+   			<artifactId>hibernate-search-orm</artifactId>
+   			<version>4.2.0.Final</version>
+		</dependency>
 		
 		<!-- some stuff for hibernate etc. -->
 		<dependency>
