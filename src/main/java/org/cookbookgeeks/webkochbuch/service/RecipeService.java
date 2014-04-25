@@ -42,7 +42,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class RecipeService {
 	
-	protected static Logger logger = Logger.getLogger("service");
+	protected static final Logger logger = Logger.getLogger("service");
 	
 	@Resource(name="sessionFactory")
 	private SessionFactory sessionFactory;
@@ -238,5 +238,17 @@ public class RecipeService {
 		Image image = (Image) session.get(Image.class, id);
 		
 		session.delete(image);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Recipe> search(String pattern) {
+		logger.info("Searching recipes by pattern: " + pattern);
+		Session session = sessionFactory.getCurrentSession();
+		
+		
+		
+		Query query = session.createQuery("FROM  Recipe");
+		
+		return query.list();		
 	}
 }
