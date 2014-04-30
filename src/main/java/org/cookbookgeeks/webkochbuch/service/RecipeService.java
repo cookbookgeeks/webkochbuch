@@ -26,6 +26,8 @@ import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.search.FullTextSession;
+import org.hibernate.search.Search;
 import org.cookbookgeeks.webkochbuch.domain.Image;
 import org.cookbookgeeks.webkochbuch.domain.Recipe;
 import org.springframework.stereotype.Service;
@@ -240,15 +242,39 @@ public class RecipeService {
 		session.delete(image);
 	}
 	
+	public void createIndex() {
+		FullTextSession fullTextSession = Search.getFullTextSession(sessionFactory.getCurrentSession());
+		try {
+			fullTextSession.createIndexer().startAndWait();
+		} catch (InterruptedException e) {
+			logger.error("############ Creating index failed.");
+			e.printStackTrace();
+		}
+	}
+	
 	@SuppressWarnings("unchecked")
 	public List<Recipe> search(String pattern) {
 		logger.info("Searching recipes by pattern: " + pattern);
-		Session session = sessionFactory.getCurrentSession();
+		FullTextSession fullTextSession = Search.getFullTextSession(sessionFactory.getCurrentSession());
+		org.hibernate.search.query.dsl.QueryBuilder qb = fullTextSession.getSearchFactory().buildQueryBuilder().forEntity(Recipe.class).get();
+		org.apache.lucene.search.Query luceneQuery = qb.keyword().onFields("title", "description", "content").matching(pattern).createQuery();
+		org.hibernate.Query hibQuery = fullTextSession.createFullTextQuery(luceneQuery, Recipe.class);
+		List<Recipe> result = hibQuery.list();
 		
+		return result;
+	}
+	
+	// TODO
+	public List<Recipe> search(String pattern, List<String> attributes) {
+		logger.info("Searching recipes by pattern: " + pattern);
+		FullTextSession fullTextSession = Search.getFullTextSession(sessionFactory.getCurrentSession());
+		org.hibernate.search.query.dsl.QueryBuilder qb = fullTextSession.getSearchFactory().buildQueryBuilder().forEntity(Recipe.class).get();
+		org.apache.lucene.search.Query luceneQuery = qb.keyword().onFields("title", "description", "content").matching(pattern).createQuery();
+		org.hibernate.Query hibQuery = fullTextSession.createFullTextQuery(luceneQuery, Recipe.class);
 		
+		@SuppressWarnings("unchecked")
+		List<Recipe> result = hibQuery.list();
 		
-		Query query = session.createQuery("FROM  Recipe");
-		
-		return query.list();		
+		return result;
 	}
 }

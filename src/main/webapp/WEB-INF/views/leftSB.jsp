@@ -13,8 +13,8 @@
             </ul>
             <div class="panel-footer">
               <div class=" input-group">
-                  <form id="custom-search-form" class="form-search form-horizontal pull-right">
-                    <input class="search-query" placeholder="Search" type="text">
+                  <form id="custom-search-form" class="form-search form-horizontal pull-right" method="GET" action="/search">
+                    <input class="search-query" placeholder="Search" type="text" name="s">
                     <button type="submit" class="btn">
                       <i class="fa fa-search"></i>
                     </button>
