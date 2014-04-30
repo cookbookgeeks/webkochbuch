@@ -78,7 +78,7 @@ public class FileUploadController {
 	 * 
 	 * @param file
 	 * @param description
-	 * @return
+	 * @return the id of the created image database entry, null if anything failed
 	 */
 	@RequestMapping(value = "/upload", method = RequestMethod.POST)
 	public @ResponseBody String uploadFileHandler(@RequestParam("file") MultipartFile file,

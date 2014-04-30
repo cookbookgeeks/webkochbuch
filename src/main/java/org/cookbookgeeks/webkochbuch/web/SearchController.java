@@ -21,7 +21,8 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @author Nils Sommer
  *
  */
-@Controller(value="/search")
+@Controller
+@RequestMapping("/search")
 public class SearchController {
 	
 	private static final Logger Logger = LoggerFactory.getLogger(SearchController.class);
@@ -29,17 +30,18 @@ public class SearchController {
 	@Resource(name="recipeService")
 	private RecipeService recipeService;
 	
-	@RequestMapping(method=RequestMethod.GET, params="s")
+	@RequestMapping(method=RequestMethod.GET)
 	public String genericSearch(Model model, @RequestParam("s") String pattern) {
 		List<Recipe> recipes = recipeService.search(pattern);
 		if(!recipes.isEmpty()) {
 			Logger.info(recipes.size() + "results found for generic search with pattern: " + pattern);
 			model.addAttribute("recipes", recipes);
 		}
+		model.addAttribute("lastPattern", pattern);
 		return "search";
 	}
 	
-	@RequestMapping(method=RequestMethod.GET, params={"s", "attributes"})
+	@RequestMapping(method=RequestMethod.GET, params = {"s", "attributes"})
 	public String detailedSearch(Model model, @RequestParam("s") String pattern, 
 			@RequestParam("attributes") List<String> attributes) {
 		List<Recipe> recipes = recipeService.search(pattern, attributes);
@@ -47,6 +49,7 @@ public class SearchController {
 			Logger.info(recipes.size() + "results found for detailed search with pattern: " + pattern);
 			model.addAttribute("recipes", recipes);
 		}
+		model.addAttribute("lastPattern", pattern);
 		return "search";
 	}
 

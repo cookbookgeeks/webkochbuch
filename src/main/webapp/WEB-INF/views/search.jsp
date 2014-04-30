@@ -45,6 +45,31 @@ for each schleife über neugikeiten iterieren und die letzten X neuigkeiten anzei
           <div class="panel panel-default">
 					<div class="panel-heading">Suche</div>
             <div class="panel-body">
+            	<form action="/search" method="GET" class="form-horizontal" role="form">
+            		<div class="input-group">
+	            			Suchen in
+            				<label class="checkbox-inline">
+            					<input type="checkbox" name="attributes" value="title" checked /> Titel
+            				</label>
+            				<label class="checkbox-inline">
+            					<input type="checkbox" name="attributes" value="description" checked /> Beschreibung
+            				</label>
+            				<label class="checkbox-inline">
+            					<input type="checkbox" name="attributes" value="content" checked /> Inhalt
+            				</label>
+	            	</div>
+	            	<div class="input-group">
+	            			<label class="sr-only" for="searchInput">Suchtext</label>
+	            			<input type="text" name="s" id="searchInput" class="form-control" autofocus value="${lastPattern}" />
+	            			<span class="input-group-btn">
+	            				<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span> Suchen</button>
+	            			</span>
+	            	</div>
+            	</form>
+            	
+            	<c:if test="${recipes.isEmpty()}">
+            		<p>Es wurden <b>keine Ergebnisse</b> gefunden. Versuchen Sie es mit (einem) anderen Suchbegriff(en).</p>
+            	</c:if>
              	<c:forEach items="${recipes}" var="recipe">
              		<div class="row">
                 		<div class="col-md-4">
