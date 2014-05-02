@@ -243,6 +243,11 @@ public class RecipeService {
 		session.delete(image);
 	}
 	
+	/**
+	 * Creates index files for the fulltext search.
+	 * Call this method, if unindexed objects are in the database
+	 * or you run webkochbuch for the first time.
+	 */
 	public void createIndex() {
 		FullTextSession fullTextSession = Search.getFullTextSession(sessionFactory.getCurrentSession());
 		try {

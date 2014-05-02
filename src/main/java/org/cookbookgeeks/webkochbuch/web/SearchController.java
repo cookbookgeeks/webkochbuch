@@ -18,8 +18,11 @@
 
 package org.cookbookgeeks.webkochbuch.web;
 
+import java.io.File;
 import java.util.List;
+
 import javax.annotation.Resource;
+
 import org.cookbookgeeks.webkochbuch.domain.Recipe;
 import org.cookbookgeeks.webkochbuch.service.RecipeService;
 import org.slf4j.Logger;
@@ -29,6 +32,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * Controller for search actions.
@@ -82,6 +86,17 @@ public class SearchController {
 		}
 		model.addAttribute("lastPattern", pattern);
 		return "search";
+	}
+	
+	/**
+	 * Calls the createIndex() method.
+	 * 
+	 * @return a message
+	 */
+	@RequestMapping(method=RequestMethod.GET, value="/createindex")
+	public @ResponseBody String createIndex() {
+		Logger.info("Creating index.");
+		return "Index erstellt.";
 	}
 
 }
