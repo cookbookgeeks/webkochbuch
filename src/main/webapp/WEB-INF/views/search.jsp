@@ -67,7 +67,7 @@ for each schleife über neugikeiten iterieren und die letzten X neuigkeiten anzei
 	            	</div>
             	</form>
             	
-            	<c:if test="${recipes.isEmpty()}">
+            	<c:if test="${empty recipes}">
             		<p>Es wurden <b>keine Ergebnisse</b> gefunden. Versuchen Sie es mit (einem) anderen Suchbegriff(en).</p>
             	</c:if>
              	<c:forEach items="${recipes}" var="recipe">
