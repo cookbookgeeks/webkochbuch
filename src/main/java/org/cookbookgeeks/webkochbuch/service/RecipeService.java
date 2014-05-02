@@ -253,19 +253,32 @@ public class RecipeService {
 		}
 	}
 	
-	@SuppressWarnings("unchecked")
+	/**
+	 * Executes a generic search on all recipes for the given pattern.
+	 * 
+	 * @param pattern to search for
+	 * @return a list of recipes
+	 */
 	public List<Recipe> search(String pattern) {
 		logger.info("Searching recipes by pattern: " + pattern);
 		final FullTextSession fullTextSession = Search.getFullTextSession(sessionFactory.getCurrentSession());
 		final org.hibernate.search.query.dsl.QueryBuilder qb = fullTextSession.getSearchFactory().buildQueryBuilder().forEntity(Recipe.class).get();
 		final org.apache.lucene.search.Query luceneQuery = qb.keyword().onFields("title", "description", "content").matching(pattern).createQuery();
 		final org.hibernate.Query hibQuery = fullTextSession.createFullTextQuery(luceneQuery, Recipe.class);
+		@SuppressWarnings("unchecked")
 		final List<Recipe> result = hibQuery.list();
 		
 		return result;
 	}
 	
-	// TODO
+	/**
+	 * Executes a search on all recipes for the given pattern only
+	 * on the given fields (attributes). 
+	 * 
+	 * @param pattern to search for
+	 * @param attributes of the recipes to search on
+	 * @return a list of recipes
+	 */
 	public List<Recipe> search(String pattern, List<String> attributes) {
 		logger.info("Searching recipes by pattern: " + pattern);
 		final FullTextSession fullTextSession = Search.getFullTextSession(sessionFactory.getCurrentSession());

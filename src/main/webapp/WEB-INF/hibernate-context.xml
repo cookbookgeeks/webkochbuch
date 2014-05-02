@@ -38,11 +38,12 @@
 		</property>
 	</bean>
 				 
-	
+	<!-- Read index storage location from environment variable. -->
 	<bean class="java.lang.String" id="luceneIndexLocation">
 		<constructor-arg value="#{systemEnvironment['LUCENE_INDEX_LOCATION']}"/>
 	</bean>
 	
+	<!-- Read database url from environment variable. -->
 	<bean class="java.net.URI" id="dbUrl">
     	<constructor-arg value="#{systemEnvironment['DATABASE_URL']}"/>
 	</bean>
