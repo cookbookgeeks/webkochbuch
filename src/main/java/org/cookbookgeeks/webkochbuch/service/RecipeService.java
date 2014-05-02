@@ -28,6 +28,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.search.FullTextSession;
 import org.hibernate.search.Search;
+import org.hibernate.search.query.dsl.TermMatchingContext;
 import org.cookbookgeeks.webkochbuch.domain.Image;
 import org.cookbookgeeks.webkochbuch.domain.Recipe;
 import org.springframework.stereotype.Service;
@@ -255,11 +256,11 @@ public class RecipeService {
 	@SuppressWarnings("unchecked")
 	public List<Recipe> search(String pattern) {
 		logger.info("Searching recipes by pattern: " + pattern);
-		FullTextSession fullTextSession = Search.getFullTextSession(sessionFactory.getCurrentSession());
-		org.hibernate.search.query.dsl.QueryBuilder qb = fullTextSession.getSearchFactory().buildQueryBuilder().forEntity(Recipe.class).get();
-		org.apache.lucene.search.Query luceneQuery = qb.keyword().onFields("title", "description", "content").matching(pattern).createQuery();
-		org.hibernate.Query hibQuery = fullTextSession.createFullTextQuery(luceneQuery, Recipe.class);
-		List<Recipe> result = hibQuery.list();
+		final FullTextSession fullTextSession = Search.getFullTextSession(sessionFactory.getCurrentSession());
+		final org.hibernate.search.query.dsl.QueryBuilder qb = fullTextSession.getSearchFactory().buildQueryBuilder().forEntity(Recipe.class).get();
+		final org.apache.lucene.search.Query luceneQuery = qb.keyword().onFields("title", "description", "content").matching(pattern).createQuery();
+		final org.hibernate.Query hibQuery = fullTextSession.createFullTextQuery(luceneQuery, Recipe.class);
+		final List<Recipe> result = hibQuery.list();
 		
 		return result;
 	}
@@ -267,13 +268,36 @@ public class RecipeService {
 	// TODO
 	public List<Recipe> search(String pattern, List<String> attributes) {
 		logger.info("Searching recipes by pattern: " + pattern);
-		FullTextSession fullTextSession = Search.getFullTextSession(sessionFactory.getCurrentSession());
-		org.hibernate.search.query.dsl.QueryBuilder qb = fullTextSession.getSearchFactory().buildQueryBuilder().forEntity(Recipe.class).get();
-		org.apache.lucene.search.Query luceneQuery = qb.keyword().onFields("title", "description", "content").matching(pattern).createQuery();
-		org.hibernate.Query hibQuery = fullTextSession.createFullTextQuery(luceneQuery, Recipe.class);
+		final FullTextSession fullTextSession = Search.getFullTextSession(sessionFactory.getCurrentSession());
+		final org.hibernate.search.query.dsl.QueryBuilder qb = fullTextSession.getSearchFactory().buildQueryBuilder().forEntity(Recipe.class).get();
 		
+		// Create query
+		// This will get even more ugly if more attributes should be supported ...
+		// FIXME
+		TermMatchingContext tmc = null;
+		if(attributes.contains("title") && attributes.contains("description") && attributes.contains("content")) {
+			tmc = qb.keyword().onFields("title", "description", "content");
+		} else if(attributes.contains("title") && attributes.contains("description") && !attributes.contains("content")) {
+			tmc = qb.keyword().onFields("title", "description");
+		} else if(attributes.contains("title") && !attributes.contains("description") && attributes.contains("content")) {
+			tmc = qb.keyword().onFields("title", "content");
+		} else if(!attributes.contains("title") && attributes.contains("description") && attributes.contains("content")) {
+			tmc = qb.keyword().onFields("description", "content");
+		} else if(attributes.contains("title") && !attributes.contains("description") && !attributes.contains("content")) {
+			tmc = qb.keyword().onField("title");
+		} else if(!attributes.contains("title") && attributes.contains("description") && !attributes.contains("content")) {
+			tmc = qb.keyword().onField("description");
+		} else if(!attributes.contains("title") && !attributes.contains("description") && attributes.contains("content")) {
+			tmc = qb.keyword().onField("content");
+		} else {	// none of the attributes appear
+			return null;
+		}
+		
+		final org.apache.lucene.search.Query luceneQuery = tmc.matching(pattern).createQuery();
+		final org.hibernate.Query hibQuery = fullTextSession.createFullTextQuery(luceneQuery, Recipe.class);
+
 		@SuppressWarnings("unchecked")
-		List<Recipe> result = hibQuery.list();
+		final List<Recipe> result = hibQuery.list();
 		
 		return result;
 	}
