@@ -20,12 +20,29 @@
     <!-- See http://static.springsource.org/spring/docs/3.0.x/javadoc-api/org/springframework/orm/hibernate3/annotation/AnnotationSessionFactoryBean.html --> 							
 	<!-- See http://docs.jboss.org/hibernate/stable/core/api/index.html?org/hibernate/SessionFactory.html -->
 	<!-- See http://docs.jboss.org/hibernate/stable/core/api/index.html?org/hibernate/Session.html -->
-	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean"
-				 p:dataSource-ref="dataSource"
-				 p:configLocation="/WEB-INF/hibernate.cfg.xml"
-				 p:packagesToScan="org.cookbookgeeks.webkochbuch.service"/>
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="packagesToScan">
+			<list>
+				<value>org.cookbookgeeks.webkochbuch.domain</value>
+				<value>org.cookbookgeeks.webkochbuch.service</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
+				<prop key="show_sql">false</prop>
+				<prop key="hibernate.search.default.directory_provider">filesystem</prop>
+				<prop key="hibernate.search.default.indexBase">#{luceneIndexLocation}</prop>
+			</props>
+		</property>
+	</bean>
+				 
 	
-	<!-- read environment variable -->	 
+	<bean class="java.lang.String" id="luceneIndexLocation">
+		<constructor-arg value="#{systemEnvironment['LUCENE_INDEX_LOCATION']}"/>
+	</bean>
+	
 	<bean class="java.net.URI" id="dbUrl">
     	<constructor-arg value="#{systemEnvironment['DATABASE_URL']}"/>
 	</bean>
