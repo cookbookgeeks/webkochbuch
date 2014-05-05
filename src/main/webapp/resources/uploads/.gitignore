@@ -1,0 +1,5 @@
+# Uploaded files shall not be shared with git:
+*
+# This gitignore file shall stay (all other files in this
+# dir will be ignored).
+!.gitignore
