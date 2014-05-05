@@ -18,7 +18,6 @@
 
 package org.cookbookgeeks.webkochbuch.web;
 
-import java.io.File;
 import java.util.List;
 
 import javax.annotation.Resource;
