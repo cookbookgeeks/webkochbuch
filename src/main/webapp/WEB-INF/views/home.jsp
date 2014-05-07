@@ -9,7 +9,8 @@ for each schleife über neugikeiten iterieren und die letzten X neuigkeiten anzei
 
  -->
 
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
 	<title>Webkochbuch</title>
     <meta name="viewport" content="width=device-width">
