@@ -1,6 +1,9 @@
 package org.cookbookgeeks.webkochbuch;
 
 
+import java.util.Iterator;
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.By.ByClassName;
 import org.openqa.selenium.WebDriver;
@@ -67,4 +70,39 @@ public class BrowserDriver {
 		WebElement recipe = mDriver.findElement(By.partialLinkText(r));
 		recipe.click();
 	}
+	
+	public static void clickLink(String link){
+		WebElement button = mDriver.findElement(By.linkText(link));
+		button.click();
+	}
+	
+	public static void clickLinkByID(String id){
+		WebElement button = mDriver.findElement(By.id(id));
+		button.click();
+	}
+	
+	public static void fillTextfield(String id, String text){
+		WebElement textField = mDriver.findElement(By.id(id));
+		textField.sendKeys(text);
+	}
+	
+	public static void submitFormular(){
+		WebElement form = mDriver.findElement(By.id("recipeForm"));
+		form.submit();
+	}
+	
+//	public static boolean findText(String text){
+//		List<WebElement> paragraphs;
+//		paragraphs = mDriver.findElements(By.tagName("p"));
+//		
+//		for ( Iterator<WebElement> iterator = paragraphs.iterator(); iterator.hasNext(); ){
+////			if(iterator.next().getText().endsWith(text)){
+////				return true;
+////			}
+//			System.out.println(iterator.next().getText());
+//		}
+//		return false; 
+//
+//	}
+	
 }
