@@ -21,6 +21,8 @@ package org.cookbookgeeks.webkochbuch.web;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.net.URL;
+import java.nio.file.Path;
 import java.util.Date;
 
 import javax.annotation.Resource;
@@ -30,6 +32,7 @@ import org.cookbookgeeks.webkochbuch.domain.Image;
 import org.cookbookgeeks.webkochbuch.service.RecipeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -49,28 +52,10 @@ public class FileUploadController {
 	@Resource(name="recipeService")
 	private RecipeService recipeService;
 	
+	@Autowired
+	private String uploadsFolder;
+	
 	public static final Logger logger = LoggerFactory.getLogger(FileUploadController.class);
-	
-	/** Name of an environment variable that contains the path of the uploads storage. */
-	public static final String destinationVarName = "WEBKOCHBUCH_UPLOADS_DESTINATION";
-	
-	/** Path of the uploads storage. */
-	public String destination;
-	
-	/**
-	 * Standard constructor. Initializes file storage path.
-	 */
-	public FileUploadController() {
-		String env = System.getenv(destinationVarName);
-		if(env == null) {
-			logger.warn("Environment variable " + destinationVarName + " not found. File uploads will not work. "
-					+ "Files will be redirected to: /tmp");
-			destination = "/tmp";
-		} else {
-			destination = env;
-			logger.info("Initializing file upload storage to use location: " + destination);
-		}
-	}
 	
 	/**
 	 * Accepts a file and a description string, saves the file to a target directory
@@ -89,9 +74,10 @@ public class FileUploadController {
 		if(!file.isEmpty()) {
 			try {
 				byte bytes[] = file.getBytes();
-                File dir = new File(destination);
+				File dir = new File(uploadsFolder);
+				logger.info(dir.toString());
 				if (!dir.exists()) {
-					logger.debug("Directory " + destination + "does not exist. Will try to create it.");
+					logger.debug("Directory " + uploadsFolder + "does not exist. Will try to create it.");
 					if(dir.mkdirs()) {
 						logger.debug("Creating directory successful.");
 					} else {
@@ -107,9 +93,9 @@ public class FileUploadController {
  
                 logger.info("Saved upload file to " + serverFile.getAbsolutePath());
                 
-                // Persist image metadata in db:
+                // Persist image metadata in db:                
                 Image image = new Image();
-                image.setPath(serverFile.getAbsolutePath());
+                image.setPath(serverFile, dir);
                 image.setDescription(description);
                 
                 Integer id = recipeService.saveImage(image);

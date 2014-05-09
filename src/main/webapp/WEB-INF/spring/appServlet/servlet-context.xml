@@ -39,4 +39,8 @@
 	    </beans:bean>
 	</mvc:interceptors>
 	
+	<beans:bean id="uploadsFolder" class="java.lang.String">
+		<beans:constructor-arg value="#{systemEnvironment['WEBKOCHBUCH_UPLOADS_DESTINATION']}" />
+	</beans:bean>
+	
 </beans:beans>

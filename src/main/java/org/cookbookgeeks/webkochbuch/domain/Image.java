@@ -20,6 +20,7 @@ package org.cookbookgeeks.webkochbuch.domain;
 
 import java.io.File;
 import java.io.Serializable;
+import java.nio.file.Path;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -114,10 +115,16 @@ public class Image implements Serializable {
 	}
 
 	/**
-	 * @param filePath the filePath to set
+	 * @param file Uploaded file
+	 * @param uploadFolder Upload folder where file ist stored
 	 */
-	public void setPath(String path) {
-		this.path = path;
+	public void setPath(File file, File uploadFolder) {
+		// Relativize path to file, depending on where the upload folder is.
+		Path filePath = file.toPath();
+		Path folderPath = uploadFolder.toPath();
+		String relativizedPath = folderPath.relativize(filePath).toString();
+		// For microsoft operating systems: Convert path separator characters with url separator characters.
+		this.path = relativizedPath.replaceAll("\\\\","/");
 	}
 
 	/**
@@ -151,15 +158,10 @@ public class Image implements Serializable {
 	// ----- other methods -----
 	
 	/**
-	 * Helper method to get the path in a format usable for tomcat.
-	 * This should be removed in future by reorganizing the upload location
-	 * handling.
-	 * 
-	 * @return the path
+	 * @return a host relative url that can be referenced for GET requests in a view.
 	 */
-	public String getResourcesPath() {
-		final String seperator = "\\" + File.separator;
-		return path.replaceFirst(".*(?=(" + seperator + "resources))", "");
+	public String getViewUrl() {
+		return "/images/" + this.path;
 	}
 	
 	/** {@inheritDoc} */
