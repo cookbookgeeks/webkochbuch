@@ -56,7 +56,7 @@ Abfrage ob User eingeloggt für rechte Sidebar
             <div class="row">
                 <div class="col-md-6">
                 <c:if test="${!recipe.images.isEmpty()}">
-                  <img src="${recipe.images.get(0).getResourcesPath()}" height="200" width="200">
+                  <img src="${recipe.images.get(0).getViewUrl()}" height="200" width="200">
                    </c:if>
                   <c:if test="${recipe.images.isEmpty()}">
                   <img src="<c:url value="/resources/images/notfound.jpg" />" width="200" height="200">
@@ -94,7 +94,7 @@ Abfrage ob User eingeloggt für rechte Sidebar
 					  <div class="carousel-inner">
 					  <c:forEach var="image" items="${recipe.images}" varStatus="loop">
 					    <div class="item <c:if test="${loop.index == 0}">active</c:if>">
-					      <img src="<c:url value="${image.getResourcesPath()}" />" alt="${image.description}" />
+					      <img src="<c:url value="${image.getViewUrl()}" />" alt="${image.description}" />
 					      <div class="carousel-caption">
 					      	${image.description}
 					      </div>
