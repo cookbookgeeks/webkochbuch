@@ -1,20 +1,15 @@
 language: java
-jdk:
+jdk: 
   - oraclejdk7
-
-before_script:
-  - psql -c 'create database webkochbuch;' -U postgres
-  - mkdir /home/travis/webkochbuch/uploads
-  - mkdir /home/travis/webkochbuch/searchindex
-  
- after_success:
-  - "curl localhost:8080/search/createindex"
-  
-  env:
- - DATABASE_URL=postgres://postgres:@localhost/webkochbuch
- - WEBKOCHBUCH_UPLOADS_DESTINATION=/home/travis/webkochbuch/uploads/
- - LUCENE_INDEX_LOCATION=/home/travis/webkochbuch/searchindex
-
-addons:
+addons: 
   postgresql: "9.3"
-    
+before_script: 
+  - "psql -c 'create database webkochbuch;' -U postgres"
+  - "mkdir /home/travis/webkochbuch/uploads"
+  - "mkdir /home/travis/webkochbuch/searchindex"
+after_success: 
+  - "curl localhost:8080/search/createindex"
+env: 
+  - "DATABASE_URL=postgres://postgres:@localhost/webkochbuch"
+  - WEBKOCHBUCH_UPLOADS_DESTINATION=/home/travis/webkochbuch/uploads/
+  - LUCENE_INDEX_LOCATION=/home/travis/webkochbuch/searchindex
