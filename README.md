@@ -18,7 +18,7 @@ http://webkochbuch.herokuapp.com/
    It looks like that: postgres://username:password@hostname:port/database
  - Create a directory where webkochbuch can store uploaded files. You have to make sure that webkochbuch has the rights to write/read on that directory. Store the path to the directory in an environment variable called WEBKOCHBUCH_UPLOADS_DESTINATION
  - Place the following xml snippet into your servers server.xml and replace the docBase path with the path of your uploads folder:
-   <Context docBase="/home/nils/wkb_uploads" path="/images" reloadable="true" />
+   &lt;Context docBase="/home/nils/wkb_uploads" path="/images" reloadable="true" /&gt;
    (Put it into the host section)
  - Create a directory where webkochbuch can store index files for its fulltext search. Remember that webkochbuch must have write permissions on it.
  - Store the path of the newly created directory in an enviroment variable calles 'LUCENE_INDEX_LOCATION'.
