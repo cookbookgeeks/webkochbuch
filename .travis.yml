@@ -5,8 +5,9 @@ addons:
   postgresql: "9.3"
 before_script: 
   - psql -c 'create database webkochbuch;' -U postgres
-  - mkdir -p /Users/travis/webkochbuch/uploads
-  - mkdir -p /Users/travis/webkochbuch/searchindex
+  - mkdir -p uploads
+  - mkdir -p searchindex
+  - pwd
 after_success: 
   - "curl localhost:8080/search/createindex"
 env:
