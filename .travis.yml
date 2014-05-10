@@ -10,6 +10,6 @@ before_script:
 after_success: 
   - "curl localhost:8080/search/createindex"
 env: 
-  - "DATABASE_URL=postgres://postgres:@localhost/webkochbuch"
+  - DATABASE_URL="postgres://postgres:@localhost/webkochbuch"
   - WEBKOCHBUCH_UPLOADS_DESTINATION=/home/travis/webkochbuch/uploads/
   - LUCENE_INDEX_LOCATION=/home/travis/webkochbuch/searchindex
