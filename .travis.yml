@@ -5,11 +5,11 @@ addons:
   postgresql: "9.3"
 before_script: 
   - psql -c 'create database webkochbuch;' -U postgres
-  - mkdir -p uploads
-  - mkdir -p searchindex
-  - pwd
+  - mkdir -p /tmp/webkochbuch/uploads
+  - mkdir -p /tmp/webkochbuch/searchindex
+  - echo pwd
 after_success: 
-  - "curl localhost:8080/search/createindex"
+  - "curl localhost:80/search/createindex"
 env:
  global:
-  - DATABASE_URL="postgres://postgres:@localhost/webkochbuch" WEBKOCHBUCH_UPLOADS_DESTINATION=/Users/travis/webkochbuch/uploads/ LUCENE_INDEX_LOCATION=/Users/travis/webkochbuch/searchindex
+  - DATABASE_URL="postgres://postgres:@localhost/webkochbuch" WEBKOCHBUCH_UPLOADS_DESTINATION=/tmp/webkochbuch/uploads/ LUCENE_INDEX_LOCATION=/tmp/webkochbuch/searchindex
