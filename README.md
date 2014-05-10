@@ -1,4 +1,4 @@
-webkochboch by cookbookgeeks
+webkochboch by cookbookgeeks [![Build Status](https://travis-ci.org/cookbookgeeks/webkochbuch.png)](https://travis-ci.org/cookbookgeeks/webkochbuch)
 ============================
 contact info:
 -------------
