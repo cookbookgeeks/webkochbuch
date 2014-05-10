@@ -36,7 +36,7 @@ webkochbuch_db=> \i webkochbuch_createtables_experimental.sql
 webkochbuch_db=> \q
 ```
 
-Webkochbuch will get its database connection details from an environment variable called `DATABASE_URL`. You have to set it using the following scheme (assuming a UNIX system):
+Webkochbuch will get its database connection details from an environment variable called `DATABASE_URL`. You have to set it using the following schema (assuming a UNIX system):
 
 ```bash
 $ export DATABASE_URL=postgres://username:password@hostname:port/database
@@ -52,11 +52,11 @@ Create one and set an environment variable called `WEBKOCHBUCH_UPLOADS_DESTINATI
 
 ### Index-files folder
 
-Webkochbuch uses Apache Lucene to create index files of its database entries. They will be used by Hibernate-Search. Create a directory with read and write permissions on it and store the path of in an environment variable called `LUCENE_INDEX_LOCATION`.
+Webkochbuch uses Apache Lucene to create index files of its database entries. They will be used by Hibernate-Search. Create a directory with read and write permissions on it and store the path of it in an environment variable called `LUCENE_INDEX_LOCATION`.
 
 ### Edit server.xml of Apache Tomcat
 
-Finally, you have to edit two lines of the `server.xml` file of Apache Tomcat, the Webserver webkochbuch will run in.
+Finally, you have to edit two lines of the `server.xml` file of Apache Tomcat, the Webserver webkochbuch will be deployed to.
 
 At first, put the line
 
