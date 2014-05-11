@@ -79,4 +79,27 @@ public class HomeController {
 		return "categories";
 	}
 	
+	/**
+	 * Shows the admin-backend.
+	 * 
+	 * @return the view contact.jsp
+	 */
+	@RequestMapping(method=RequestMethod.GET, value="/admin")
+	public String adminBackend() {
+		logger.debug("Returning view with contact form");
+		
+		return "admin";
+	}
+	/**
+	 * Shows the log-out view after logging out.
+	 * 
+	 * @return the view contact.jsp
+	 */
+	@RequestMapping(method=RequestMethod.GET, value="/logut")
+	public String logOut() {
+		logger.debug("Returning logout-view ");
+		
+		return "logout";
+	}
+	
 }

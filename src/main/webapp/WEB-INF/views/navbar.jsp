@@ -22,6 +22,9 @@
               <li>
                 <a href='/contact'><i class="fa fa-envelope-o"></i> Kontakt</a>
               </li>
+              <li>
+                <a href='/admin'><i class="fa fa-linux"></i> Admin</a>
+              </li>
             </ul>
           </div>
         </div>

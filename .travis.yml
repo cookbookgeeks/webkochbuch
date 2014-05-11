@@ -7,7 +7,6 @@ before_script:
   - psql -c 'create database webkochbuch;' -U postgres
   - mkdir -p /tmp/webkochbuch/uploads
   - mkdir -p /tmp/webkochbuch/searchindex
-  - echo pwd
 after_success: 
   - "curl localhost:80/search/createindex"
 env:
