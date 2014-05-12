@@ -82,7 +82,7 @@ public class HomeController {
 	/**
 	 * Shows the admin-backend.
 	 * 
-	 * @return the view contact.jsp
+	 * @return the view admin.jsp
 	 */
 	@RequestMapping(method=RequestMethod.GET, value="/admin")
 	public String adminBackend() {
@@ -93,13 +93,25 @@ public class HomeController {
 	/**
 	 * Shows the log-out view after logging out.
 	 * 
-	 * @return the view contact.jsp
+	 * @return the view logout.jsp
 	 */
-	@RequestMapping(method=RequestMethod.GET, value="/logut")
+	@RequestMapping(method=RequestMethod.GET, value="/logout")
 	public String logOut() {
 		logger.debug("Returning logout-view ");
 		
 		return "logout";
+	}
+	
+	/**
+	 * Shows the access-denied view.
+	 * 
+	 * @return the view denied.jsp
+	 */
+	@RequestMapping(method=RequestMethod.GET, value="/denied")
+	public String denied() {
+		logger.debug("Returning denied-view ");
+		
+		return "denied";
 	}
 	
 }

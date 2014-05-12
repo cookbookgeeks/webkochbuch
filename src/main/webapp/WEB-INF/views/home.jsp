@@ -27,7 +27,7 @@ for each schleife über neugikeiten iterieren und die letzten X neuigkeiten anzei
     <script src="<c:url value="/resources/js/bootstrap.min.js" />" type="text/javascript"></script>
 
 </head>
-<body><div class="container">
+<body onload='document.f.j_username.focus();'><div class="container">
 				
 				<%@ include file="navbar.jsp" %>  
 

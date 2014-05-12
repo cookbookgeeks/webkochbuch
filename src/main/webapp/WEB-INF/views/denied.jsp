@@ -37,11 +37,13 @@
         </div>
         <div class="col-md-6">
           <div class="panel panel-default">
-					<div class="panel-heading">Admin-Seite
+					<div class="panel-heading">Fehler
             </div>
             <div class="panel-body">
-              <h3>Erfolgreich ausgeloggt ! <br /> 
-                 Zuruück zur <a href="<c:url value="/" />" >Startseite</a></h3>  
+              <h3>Kein Zugriff! </h3>
+              <br /> 
+                 <p>Leider haben Sie keinen Zugriff auf diese Seite. <br />
+                 Kehren Sie zurück zur <a href="<c:url value="/home" />" > Startseite</a>.</p>  
 				
             </div>
             <div class="panel-footer">
