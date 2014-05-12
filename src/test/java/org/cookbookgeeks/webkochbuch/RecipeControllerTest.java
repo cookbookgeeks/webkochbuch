@@ -43,7 +43,6 @@ public class RecipeControllerTest {
 	 private MockMvc mockMvc;
 	 
 	 @Mock
-	 @Resource(name="recipeService")
 	 private RecipeService recipeServiceMock;
 	 
 //	 @Autowired
