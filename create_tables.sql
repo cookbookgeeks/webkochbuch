@@ -52,9 +52,9 @@ CREATE TABLE t_recipes
   total_endurance integer NOT NULL,
   creation_date timestamp without time zone NOT NULL,
   last_edit timestamp without time zone NOT NULL,
-  categorie_id integer,
+  category_id integer,
   CONSTRAINT t_recipes_pkey PRIMARY KEY (id),
-  CONSTRAINT t_recipes_categorie_id_fkey FOREIGN KEY (categorie_id)
+  CONSTRAINT t_recipes_category_id_fkey FOREIGN KEY (category_id)
       REFERENCES t_categories (id) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION
 );

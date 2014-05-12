@@ -18,14 +18,30 @@
 
 package org.cookbookgeeks.webkochbuch.domain;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
 /**
  * @author Nils Sommer
  * 
  * POJO that represents a measure of ingredients.
  */
+@Entity
+@Table(name = "t_measures")
 public class Measure {
 	
+	@Id
+	@Column(name = "id")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="my_entity_seq_gen")
+	@SequenceGenerator(name="my_entity_seq_gen", sequenceName="HIBERNATE_SEQUENCE", allocationSize=1)
 	private Integer id;
+	
+	@Column(name = "name")
 	private String name;
 	
 	/**

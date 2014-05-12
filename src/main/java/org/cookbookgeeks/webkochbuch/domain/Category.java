@@ -18,15 +18,37 @@
 
 package org.cookbookgeeks.webkochbuch.domain;
 
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
 /**
  * @author Nils Sommer
  * 
  * POJO that represents a category.
  */
+@Entity
+@Table(name = "t_categories")
 public class Category {
 	
+	@Id
+	@Column(name = "id")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="my_entity_seq_gen")
+	@SequenceGenerator(name="my_entity_seq_gen", sequenceName="HIBERNATE_SEQUENCE", allocationSize=1)
 	private Integer id;
+	
+	@Column(name = "name")
 	private String name;
+	
+	@OneToMany(mappedBy = "category")
+	private List<Recipe> recipes;
 	
 	/**
 	 * Standard Constructor.
@@ -70,6 +92,13 @@ public class Category {
 	 */
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	/**
+	 * @return the recipes
+	 */
+	public List<Recipe> getRecipes() {
+		return recipes;
 	}
 	
 }

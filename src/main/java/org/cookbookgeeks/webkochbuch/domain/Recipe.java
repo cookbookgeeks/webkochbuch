@@ -27,6 +27,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -77,8 +79,17 @@ public class Recipe implements Serializable {
 	
 	@Field
 	@DateBridge(resolution=Resolution.MINUTE)
-	@Column(name="creation")
+	@Column(name="creation_date")
 	private Date creation;
+	
+	@Field
+	@DateBridge(resolution=Resolution.MINUTE)
+	@Column(name = "last_edit")
+	private Date modification;
+	
+	@ManyToOne
+	@JoinColumn(name = "category_id")
+	private Category category;
 	
 	@OneToMany(mappedBy="recipe")
 	private List<Image> images;
@@ -188,6 +199,34 @@ public class Recipe implements Serializable {
 	 */
 	public void setCreation(Date creation) {
 		this.creation = creation;
+	}
+	
+	/**
+	 * @return the modification
+	 */
+	public Date getModification() {
+		return modification;
+	}
+
+	/**
+	 * @param modification the modification to set
+	 */
+	public void setModification(Date modification) {
+		this.modification = modification;
+	}
+	
+	/**
+	 * @return the category
+	 */
+	public Category getCategory() {
+		return category;
+	}
+	
+	/**
+	 * @param category the category to set
+	 */
+	public void setCategory(Category category) {
+		this.category = category;
 	}
 	
 	/**

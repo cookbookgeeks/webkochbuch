@@ -20,19 +20,50 @@ package org.cookbookgeeks.webkochbuch.domain;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
 /**
  * @author Nils Sommer
  * 
  * POJO that represents an ingredient of a recipe.
  */
+@Entity
+@Table(name = "t_ingredients")
 public class Ingredient {
 	
+	@Id
+	@Column(name = "id")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="my_entity_seq_gen")
+	@SequenceGenerator(name="my_entity_seq_gen", sequenceName="HIBERNATE_SEQUENCE", allocationSize=1)
 	private Integer id;
+	
+	@Column(name = "name")
 	private String name;
+	
+	@ManyToOne
+	@JoinColumn(name = "measure_id")
 	private Measure  measure;
+	
+	@Column(name = "amount")
 	private Double amount;
+	
+	@ManyToOne
+	@JoinColumn(name = "recipe_id")
 	private Recipe recipe;
+	
+	@Column(name = "creation_date")
 	private Date creation;
+	
+	@Column(name = "last_edit")
 	private Date modification;
 	
 	/**

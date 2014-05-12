@@ -20,18 +20,46 @@ package org.cookbookgeeks.webkochbuch.domain;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
 /**
  * @author Nils Sommer
  * 
  * POJO that represents the rating by a user on a recipe.
  */
+@Entity
+@Table(name = "t_ratings")
 public class Rating {
 	
+	@Id
+	@Column(name = "id")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="my_entity_seq_gen")
+	@SequenceGenerator(name="my_entity_seq_gen", sequenceName="HIBERNATE_SEQUENCE", allocationSize=1)
 	private Integer id;
+	
+	@ManyToOne
+	@JoinColumn(name ="user_id")
 	private User user;
+	
+	@ManyToOne
+	@JoinColumn(name = "recipe_id")
 	private Recipe recipe;
+	
+	@Column(name = "rating")
 	private Integer rating;
+	
+	@Column(name = "creation_date")
 	private Date creation;
+	
+	@Column(name = "last_edit")
 	private Date modification;
 	
 	/**

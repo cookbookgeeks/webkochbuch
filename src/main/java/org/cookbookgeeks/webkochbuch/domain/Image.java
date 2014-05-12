@@ -21,6 +21,7 @@ package org.cookbookgeeks.webkochbuch.domain;
 import java.io.File;
 import java.io.Serializable;
 import java.nio.file.Path;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -50,15 +51,25 @@ public class Image implements Serializable {
 	@SequenceGenerator(name="my_entity_seq_gen", sequenceName="HIBERNATE_SEQUENCE", allocationSize=1)
 	private Integer id;
 	
-	@Column(name="path")
+	@Column(name="file_path")
 	private String path;
 	
 	@Column(name="description")
 	private String description;
 	
 	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private User user;
+	
+	@ManyToOne
 	@JoinColumn(name="recipe_id")
 	private Recipe recipe;
+	
+	@Column(name = "creation_date")
+	private Date creation;
+	
+	@Column(name = "last_edit")
+	private Date modification;
 	
 	/**
 	 * Default Constructor.
@@ -142,6 +153,20 @@ public class Image implements Serializable {
 	}
 	
 	/**
+	 * @return the user
+	 */
+	public User getUser() {
+		return user;
+	}
+	
+	/**
+	 * @param user the user to set
+	 */
+	public void setUser(User user) {
+		this.user = user;
+	}
+	
+	/**
 	 * @return the recipe
 	 */
 	public Recipe getRecipe() {
@@ -153,6 +178,34 @@ public class Image implements Serializable {
 	 */
 	public void setRecipe(Recipe recipe) {
 		this.recipe = recipe;
+	}
+	
+	/**
+	 * @return the creation
+	 */
+	public Date getCreation() {
+		return creation;
+	}
+
+	/**
+	 * @param creation the creation to set
+	 */
+	public void setCreation(Date creation) {
+		this.creation = creation;
+	}
+
+	/**
+	 * @return the modification
+	 */
+	public Date getModification() {
+		return modification;
+	}
+
+	/**
+	 * @param modification the modification to set
+	 */
+	public void setModification(Date modification) {
+		this.modification = modification;
 	}
 	
 	// ----- other methods -----
