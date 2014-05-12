@@ -71,11 +71,11 @@ public class Recipe implements Serializable {
 	
 	@Field
 	@Column(name="preparation_endurance")
-	private int preparationEndurance;
+	private Integer preparationEndurance;
 	
 	@Field
 	@Column(name="total_endurance")
-	private int totalEndurance;
+	private Integer totalEndurance;
 	
 	@Field
 	@DateBridge(resolution=Resolution.MINUTE)
@@ -95,10 +95,34 @@ public class Recipe implements Serializable {
 	private List<Image> images;
 	
 	/**
-	 * Default Constructor.
+	 * Standard Constructor.
 	 */
 	public Recipe() {
 		
+	}
+	
+	/**
+	 * Constructor without id.
+	 * 
+	 * @param title title of the recipe
+	 * @param description description of the recipe
+	 * @param content content of the recipe
+	 * @param preparationEndurance preparation endurance needed to cook the recipe
+	 * @param totalEndurance total endurance needed to cook the recipe
+	 * @param creation creation date of the recipe
+	 * @param modification last modification date of the recipe
+	 * @param category category of the recipe
+	 */
+	public Recipe(String title, String description, String content, Integer preparationEndurance,
+			Integer totalEndurance, Date creation, Date modification, Category category) {
+		this.title = title;
+		this.description = description;
+		this.content = content;
+		this.preparationEndurance = preparationEndurance;
+		this.totalEndurance = totalEndurance;
+		this.creation = creation;
+		this.modification = modification;
+		this.category = category;
 	}
 	
 	// ----- Getters and setters here: -----
@@ -236,14 +260,4 @@ public class Recipe implements Serializable {
 		return images;
 	}
 	
-	// ----- other methods -----
-
-	/** {@inheritDoc} */
-	public String toString() {
-		return "Title: " + title + "\nDescription: " + description +
-				"\nContent: " + content + "\nPreparation endurance: " +
-				preparationEndurance + "\nTotal endurance: " + totalEndurance +
-				"\nCreation: " + creation.toString() + "\nId: " + id;
-	}
-
 }
