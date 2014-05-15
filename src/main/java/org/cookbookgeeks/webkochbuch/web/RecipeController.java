@@ -86,7 +86,9 @@ public class RecipeController {
 		// Get all recipes.
 		List<Recipe> recipes = recipeService.getAll();
 		
-		model.addAttribute("recipes", recipes);
+		if(recipes != null) {
+			model.addAttribute("recipes", recipes);
+		}
 		return "showList";
 	}
 	
@@ -104,6 +106,7 @@ public class RecipeController {
 		
 		// Current date.
 		recipe.setCreation(new Date());
+		recipe.setModification(recipe.getCreation());
 		
 		// Adding the recipe
 		recipeService.add(recipe);
@@ -164,7 +167,7 @@ public class RecipeController {
 		logger.info("Editing recipe with id " + recipe.getId() + ".");
 		
 		// update date
-		recipe.setCreation(new Date());
+		recipe.setModification(new Date());
 		
 		// Update recipe.
 		recipeService.edit(recipe);
