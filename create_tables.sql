@@ -32,6 +32,20 @@ DROP USER wkb_app_user;
 CREATE USER wkb_app_user WITH PASSWORD 'Ahawolq7RuTTAGCyWML6';
 
 
+CREATE TABLE t_users
+(
+  id integer NOT NULL,
+  username character varying(50) NOT NULL,
+  password_hash character varying(255) NOT NULL,
+  e_mail character varying(255) NOT NULL,
+  creation_date timestamp without time zone NOT NULL,
+  last_edit timestamp without time zone NOT NULL,
+  CONSTRAINT t_users_int_pkey PRIMARY KEY (id)
+);
+
+GRANT SELECT,INSERT,UPDATE,DELETE ON t_users TO wkb_app_user;
+
+
 CREATE TABLE t_categories
 (
   id integer NOT NULL,
@@ -53,27 +67,17 @@ CREATE TABLE t_recipes
   creation_date timestamp without time zone NOT NULL,
   last_edit timestamp without time zone NOT NULL,
   category_id integer,
+  user_id integer NOT NULL,
   CONSTRAINT t_recipes_pkey PRIMARY KEY (id),
   CONSTRAINT t_recipes_category_id_fkey FOREIGN KEY (category_id)
       REFERENCES t_categories (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION,
+  CONSTRAINT t_recipes_user_id_fkey FOREIGN KEY (user_id)
+      REFERENCES t_users (id) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION
 );
 
 GRANT SELECT,INSERT,UPDATE,DELETE ON t_recipes TO wkb_app_user;
-
-
-CREATE TABLE t_users
-(
-  id integer NOT NULL,
-  username character varying(50) NOT NULL,
-  password_hash character varying(255) NOT NULL,
-  e_mail character varying(255) NOT NULL,
-  creation_date timestamp without time zone NOT NULL,
-  last_edit timestamp without time zone NOT NULL,
-  CONSTRAINT t_users_int_pkey PRIMARY KEY (id)
-);
-
-GRANT SELECT,INSERT,UPDATE,DELETE ON t_users TO wkb_app_user;
 
 
 CREATE TABLE t_images
