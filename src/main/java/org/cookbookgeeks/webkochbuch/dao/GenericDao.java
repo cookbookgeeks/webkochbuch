@@ -8,6 +8,14 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
+/**
+ * Implementation of the Interface Dao.
+ * 
+ * @author Nils Sommer
+ *
+ * @param <E> entity type
+ * @param <K> entity key type
+ */
 @Transactional
 public abstract class GenericDao<E, K extends Serializable> implements Dao<E, K> {
 	
