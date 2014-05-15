@@ -184,6 +184,8 @@ public class RecipeService {
 		recipe.setPreparationEndurance(edited.getPreparationEndurance());
 		recipe.setTotalEndurance(edited.getTotalEndurance());
 		recipe.setCreation(edited.getCreation());
+		recipe.setModification(edited.getModification());
+		recipe.setCategory(edited.getCategory());
 
 		// Save updates
 		session.save(recipe);
