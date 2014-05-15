@@ -45,7 +45,7 @@ import org.hibernate.search.annotations.Resolution;
  *
  */
 @Entity
-@Table(name="recipes")
+@Table(name="t_recipes")
 @Indexed
 public class Recipe implements Serializable {
 
@@ -71,11 +71,11 @@ public class Recipe implements Serializable {
 	
 	@Field
 	@Column(name="preparation_endurance")
-	private Integer preparationEndurance;
+	private Integer preparationEndurance				=			0;
 	
 	@Field
 	@Column(name="total_endurance")
-	private Integer totalEndurance;
+	private Integer totalEndurance						=			0;
 	
 	@Field
 	@DateBridge(resolution=Resolution.MINUTE)
@@ -93,6 +93,10 @@ public class Recipe implements Serializable {
 	
 	@OneToMany(mappedBy="recipe")
 	private List<Image> images;
+	
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private User user;
 	
 	/**
 	 * Standard Constructor.
@@ -258,6 +262,20 @@ public class Recipe implements Serializable {
 	 */
 	public List<Image> getImages() {
 		return images;
+	}
+
+	/**
+	 * @return the user
+	 */
+	public User getUser() {
+		return user;
+	}
+
+	/**
+	 * @param user the user to set
+	 */
+	public void setUser(User user) {
+		this.user = user;
 	}
 	
 }
