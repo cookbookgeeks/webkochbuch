@@ -1,6 +1,11 @@
 language: java
 jdk: 
   - oraclejdk7
+  
+# whitelist
+branches:
+  only:
+    - master
 addons: 
   postgresql: "9.3"
 before_script: 
