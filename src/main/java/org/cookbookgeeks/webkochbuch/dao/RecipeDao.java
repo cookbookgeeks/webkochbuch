@@ -23,10 +23,10 @@ import org.cookbookgeeks.webkochbuch.domain.Recipe;
 /**
  * Data access object for recipes.
  * 
- * @author nils
+ * @author Nils Sommer
  *
  */
-public class RecipeDao extends GenericDao<Recipe, Integer> {
+public class RecipeDao extends GenericDao<Recipe, Long> {
 	
 	/**
 	 * Standard constructor.

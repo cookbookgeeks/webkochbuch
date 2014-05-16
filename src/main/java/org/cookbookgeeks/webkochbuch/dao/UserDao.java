@@ -26,7 +26,7 @@ import org.cookbookgeeks.webkochbuch.domain.User;
  * @author Nils Sommer
  *
  */
-public class UserDao extends GenericDao<User, Integer> {
+public class UserDao extends GenericDao<User, Long> {
 	
 	/*
 	 * Standard constructor.

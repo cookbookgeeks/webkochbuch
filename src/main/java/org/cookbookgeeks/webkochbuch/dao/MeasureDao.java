@@ -26,7 +26,7 @@ import org.cookbookgeeks.webkochbuch.domain.Measure;
  * @author Nils Sommer
  *
  */
-public class MeasureDao extends GenericDao<Measure, Integer> {
+public class MeasureDao extends GenericDao<Measure, Long> {
 	
 	/**
 	 * Standard constructor.

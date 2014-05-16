@@ -26,7 +26,7 @@ import org.cookbookgeeks.webkochbuch.domain.Comment;
  * @author Nils Sommer
  *
  */
-public class CommentDao extends GenericDao<Comment, Integer> {
+public class CommentDao extends GenericDao<Comment, Long> {
 	
 	/**
 	 * Standard constructor.

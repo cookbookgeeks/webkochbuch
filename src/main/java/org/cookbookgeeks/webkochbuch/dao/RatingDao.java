@@ -26,7 +26,7 @@ import org.cookbookgeeks.webkochbuch.domain.Rating;
  * @author Nils Sommer
  *
  */
-public class RatingDao extends GenericDao<Rating, Integer> {
+public class RatingDao extends GenericDao<Rating, Long> {
 	
 	/**
 	 * Standard constructor.

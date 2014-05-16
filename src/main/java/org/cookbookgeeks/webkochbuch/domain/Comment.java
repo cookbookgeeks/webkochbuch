@@ -43,7 +43,7 @@ public class Comment {
 	@Column(name = "id")
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="my_entity_seq_gen")
 	@SequenceGenerator(name="my_entity_seq_gen", sequenceName="HIBERNATE_SEQUENCE", allocationSize=1)
-	private Integer id;
+	private Long id;
 	
 	@Column(name = "comment")
 	private String comment;
@@ -89,14 +89,14 @@ public class Comment {
 	/**
 	 * @return the id
 	 */
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 	
 	/**
 	 * @param id the id to set
 	 */
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

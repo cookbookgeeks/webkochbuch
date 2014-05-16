@@ -26,7 +26,7 @@ import org.cookbookgeeks.webkochbuch.domain.Ingredient;
  * @author Nils Sommer
  *
  */
-public class IngredientDao extends GenericDao<Ingredient, Integer> {
+public class IngredientDao extends GenericDao<Ingredient, Long> {
 	
 	/**
 	 * Standard constructor.
