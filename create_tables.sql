@@ -183,3 +183,10 @@ CREATE SEQUENCE hibernate_sequence
   START 100000;
   
 GRANT USAGE ON hibernate_sequence TO wkb_app_user;
+
+
+--
+-- Temporarily needed dummy entries:
+--
+
+INSERT INTO t_users VALUES (0,'dummyuser','hashstring','dummy@example.org',now(),now());
