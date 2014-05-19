@@ -30,7 +30,7 @@ import java.util.List;
  * @param <E> Entity type
  * @param <K> Key type of the entity
  */
-public interface Dao<E, K extends Serializable> {
+public interface GenericDao<E, K extends Serializable> {
 	
 	/**
 	 * Finds an entity by its key.

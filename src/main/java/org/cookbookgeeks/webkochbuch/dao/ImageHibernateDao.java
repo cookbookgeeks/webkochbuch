@@ -26,12 +26,12 @@ import org.cookbookgeeks.webkochbuch.domain.Image;
  * @author Nils Sommer
  *
  */
-public class ImageDao extends GenericDao<Image, Long> {
+public class ImageHibernateDao extends GenericHibernateDao<Image, Long> implements ImageDao {
 	
 	/**
 	 * Standard constructor.
 	 */
-	public ImageDao() {
+	public ImageHibernateDao() {
 		
 	}
 

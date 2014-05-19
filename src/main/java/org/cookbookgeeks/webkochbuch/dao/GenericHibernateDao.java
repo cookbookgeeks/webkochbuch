@@ -26,6 +26,8 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.lang.reflect.ParameterizedType;
+
 /**
  * Implementation of the Interface Dao.
  * 
@@ -35,12 +37,21 @@ import org.springframework.transaction.annotation.Transactional;
  * @param <K> entity key type
  */
 @Transactional
-public abstract class GenericDao<E, K extends Serializable> implements Dao<E, K> {
+public abstract class GenericHibernateDao<E, K extends Serializable> implements GenericDao<E, K> {
 	
 	@Autowired
 	protected SessionFactory sessionFactory;
 	
 	protected Class <? extends E> type;
+	
+	/**
+	 * Standard constructor.
+	 */
+	@SuppressWarnings("unchecked")
+	public GenericHibernateDao() {
+		type = (Class<E>) ((ParameterizedType) getClass().getGenericSuperclass())
+                .getActualTypeArguments()[0];
+	}
 	
 	/**
 	 * Helper method.

@@ -118,7 +118,7 @@ public class Recipe implements Serializable {
 	 * @param category category of the recipe
 	 */
 	public Recipe(String title, String description, String content, Integer preparationEndurance,
-			Integer totalEndurance, Date creation, Date modification, Category category) {
+			Integer totalEndurance, Date creation, Date modification, Category category, User user) {
 		this.title = title;
 		this.description = description;
 		this.content = content;
@@ -127,6 +127,7 @@ public class Recipe implements Serializable {
 		this.creation = creation;
 		this.modification = modification;
 		this.category = category;
+		this.user = user;
 	}
 	
 	// ----- Getters and setters here: -----

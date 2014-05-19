@@ -26,12 +26,12 @@ import org.cookbookgeeks.webkochbuch.domain.Ingredient;
  * @author Nils Sommer
  *
  */
-public class IngredientDao extends GenericDao<Ingredient, Long> {
+public class IngredientHibernateDao extends GenericHibernateDao<Ingredient, Long> implements IngredientDao {
 	
 	/**
 	 * Standard constructor.
 	 */
-	public IngredientDao() {
+	public IngredientHibernateDao() {
 		
 	}
 

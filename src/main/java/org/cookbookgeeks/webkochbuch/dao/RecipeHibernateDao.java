@@ -19,6 +19,7 @@
 package org.cookbookgeeks.webkochbuch.dao;
 
 import org.cookbookgeeks.webkochbuch.domain.Recipe;
+import org.springframework.stereotype.Repository;
 
 /**
  * Data access object for recipes.
@@ -26,12 +27,13 @@ import org.cookbookgeeks.webkochbuch.domain.Recipe;
  * @author Nils Sommer
  *
  */
-public class RecipeDao extends GenericDao<Recipe, Long> {
+@Repository("recipeDao")
+public class RecipeHibernateDao extends GenericHibernateDao<Recipe, Long> implements RecipeDao {
 	
 	/**
 	 * Standard constructor.
 	 */
-	public RecipeDao() {
+	public RecipeHibernateDao() {
 		
 	}
 

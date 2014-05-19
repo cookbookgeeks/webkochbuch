@@ -26,12 +26,12 @@ import org.cookbookgeeks.webkochbuch.domain.Category;
  * @author Nils Sommer
  *
  */
-public class CategoryDao extends GenericDao<Category, Long> {
+public class CategoryHibernateDao extends GenericHibernateDao<Category, Long> implements CategoryDao {
 	
 	/**
 	 * Standard constructor.
 	 */
-	public CategoryDao() {
+	public CategoryHibernateDao() {
 		
 	}
 

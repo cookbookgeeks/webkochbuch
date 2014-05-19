@@ -26,12 +26,12 @@ import org.cookbookgeeks.webkochbuch.domain.Measure;
  * @author Nils Sommer
  *
  */
-public class MeasureDao extends GenericDao<Measure, Long> {
+public class MeasureHibernateDao extends GenericHibernateDao<Measure, Long> implements MeasureDao {
 	
 	/**
 	 * Standard constructor.
 	 */
-	public MeasureDao() {
+	public MeasureHibernateDao() {
 		
 	}
 
