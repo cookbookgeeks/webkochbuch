@@ -21,62 +21,54 @@ package org.cookbookgeeks.webkochbuch.dao;
 import java.io.Serializable;
 import java.util.List;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
-
 /**
- * Implementation of the Interface Dao.
+ * Generic Interface for Data Access Objects, defining some basic
+ * database transactions.
  * 
  * @author Nils Sommer
  *
- * @param <E> entity type
- * @param <K> entity key type
+ * @param <E> Entity type
+ * @param <K> Key type of the entity
  */
-@Transactional
-public abstract class GenericDao<E, K extends Serializable> implements Dao<E, K> {
-	
-	@Autowired
-	protected SessionFactory sessionFactory;
-	
-	protected Class <? extends E> type;
+public interface Dao<E, K extends Serializable> {
 	
 	/**
-	 * Helper method.
+	 * Finds an entity by its key.
 	 * 
-	 * @return the current session
+	 * @param key key value of the entity
+	 * @return the entity
 	 */
-	protected Session currentSession() {
-		return this.sessionFactory.getCurrentSession();
-	}
+	public E find(K key);
 	
-	/** {@inheritDoc} */
-	@SuppressWarnings("unchecked")
-	public E find(K key) {
-		return (E) this.currentSession().get(type, key);
-	}
+	/**
+	 * Adds an entity.
+	 * 
+	 * @param entity entity to add
+	 * @return true if the transaction was successful, false if the transaction failed
+	 */
+	public K add(E entity);
 	
-	/** {@inheritDoc} */
-	@SuppressWarnings("unchecked")
-	public K add(E entity) {
-		return (K) this.currentSession().save(entity);
-	}
+	/**
+	 * Updates an entity.
+	 * 
+	 * @param entity entity to update
+	 * @return the key of the persisted entity
+	 */
+	public void update(E entity);
 	
-	/** {@inheritDoc} */
-	public void update(E entity) {
-		currentSession().saveOrUpdate(entity);
-	}
+	/**
+	 * Deletes an entity.
+	 * 
+	 * @param entity entity to delete
+	 * @return true if the transaction was successful, false if the transaction failed
+	 */
+	public void delete(E entity);
 	
-	/** {@inheritDoc} */
-	public void delete(E entity) {
-		currentSession().delete(entity);
-	}
-	
-	/** {@inheritDoc} */
-	@SuppressWarnings("unchecked")
-	public List<E> findAll() {
-		return currentSession().createCriteria(type).list();
-	}
+	/**
+	 * Finds all entites.
+	 * 
+	 * @return a list of all entities
+	 */
+	public List<E> findAll();
 
 }
