@@ -19,6 +19,7 @@
 package org.cookbookgeeks.webkochbuch.dao;
 
 import org.cookbookgeeks.webkochbuch.domain.Ingredient;
+import org.springframework.stereotype.Repository;
 
 /**
  * Data access object for ingredients.
@@ -26,6 +27,7 @@ import org.cookbookgeeks.webkochbuch.domain.Ingredient;
  * @author Nils Sommer
  *
  */
+@Repository("ingredientDao")
 public class IngredientHibernateDao extends GenericHibernateDao<Ingredient, Long> implements IngredientDao {
 	
 	/**

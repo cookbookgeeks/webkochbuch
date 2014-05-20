@@ -19,6 +19,7 @@
 package org.cookbookgeeks.webkochbuch.dao;
 
 import org.cookbookgeeks.webkochbuch.domain.Comment;
+import org.springframework.stereotype.Repository;
 
 /**
  * Data access object for comments.
@@ -26,6 +27,7 @@ import org.cookbookgeeks.webkochbuch.domain.Comment;
  * @author Nils Sommer
  *
  */
+@Repository("commentDao")
 public class CommentHibernateDao extends GenericHibernateDao<Comment, Long> implements CommentDao {
 	
 	/**

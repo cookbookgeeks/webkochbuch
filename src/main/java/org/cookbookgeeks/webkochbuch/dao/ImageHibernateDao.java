@@ -19,6 +19,7 @@
 package org.cookbookgeeks.webkochbuch.dao;
 
 import org.cookbookgeeks.webkochbuch.domain.Image;
+import org.springframework.stereotype.Repository;
 
 /**
  * Data access object for images.
@@ -26,6 +27,7 @@ import org.cookbookgeeks.webkochbuch.domain.Image;
  * @author Nils Sommer
  *
  */
+@Repository("imageDao")
 public class ImageHibernateDao extends GenericHibernateDao<Image, Long> implements ImageDao {
 	
 	/**

@@ -19,6 +19,7 @@
 package org.cookbookgeeks.webkochbuch.dao;
 
 import org.cookbookgeeks.webkochbuch.domain.Category;
+import org.springframework.stereotype.Repository;
 
 /**
  * Data access object for categories.
@@ -26,6 +27,7 @@ import org.cookbookgeeks.webkochbuch.domain.Category;
  * @author Nils Sommer
  *
  */
+@Repository("categoryDao")
 public class CategoryHibernateDao extends GenericHibernateDao<Category, Long> implements CategoryDao {
 	
 	/**

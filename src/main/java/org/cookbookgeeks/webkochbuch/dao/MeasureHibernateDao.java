@@ -19,6 +19,7 @@
 package org.cookbookgeeks.webkochbuch.dao;
 
 import org.cookbookgeeks.webkochbuch.domain.Measure;
+import org.springframework.stereotype.Repository;
 
 /**
  * Data access object for measures.
@@ -26,6 +27,7 @@ import org.cookbookgeeks.webkochbuch.domain.Measure;
  * @author Nils Sommer
  *
  */
+@Repository("measureDao")
 public class MeasureHibernateDao extends GenericHibernateDao<Measure, Long> implements MeasureDao {
 	
 	/**

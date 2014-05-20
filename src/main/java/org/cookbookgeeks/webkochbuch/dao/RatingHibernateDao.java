@@ -19,6 +19,7 @@
 package org.cookbookgeeks.webkochbuch.dao;
 
 import org.cookbookgeeks.webkochbuch.domain.Rating;
+import org.springframework.stereotype.Repository;
 
 /**
  * Data access object for ratings.
@@ -26,6 +27,7 @@ import org.cookbookgeeks.webkochbuch.domain.Rating;
  * @author Nils Sommer
  *
  */
+@Repository("ratingDao")
 public class RatingHibernateDao extends GenericHibernateDao<Rating, Long> implements RatingDao {
 	
 	/**
