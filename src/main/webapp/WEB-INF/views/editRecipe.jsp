@@ -104,6 +104,7 @@
   </tr>
  
  </table>
+ <form:hidden path="creation" />
  <input type="submit" value="Save" class="btn btn-success"/>
  </div>
 </form:form>

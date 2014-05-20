@@ -21,13 +21,15 @@ package org.cookbookgeeks.webkochbuch.web;
 import java.util.Date;
 import java.util.List;
 
-import javax.annotation.Resource;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.cookbookgeeks.webkochbuch.dao.ImageDao;
+import org.cookbookgeeks.webkochbuch.dao.RecipeDao;
+import org.cookbookgeeks.webkochbuch.dao.UserDao;
 import org.cookbookgeeks.webkochbuch.domain.Image;
 import org.cookbookgeeks.webkochbuch.domain.Recipe;
-import org.cookbookgeeks.webkochbuch.service.RecipeService;
+import org.cookbookgeeks.webkochbuch.domain.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -46,8 +48,26 @@ public class RecipeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(RecipeController.class);
 	
-	@Resource(name="recipeService")
-	private RecipeService recipeService;
+	@Autowired
+	private RecipeDao recipeDao;
+	
+	@Autowired
+	private UserDao userDao;
+	
+	@Autowired
+	private ImageDao imageDao;
+	
+	/**
+	 * Because user management isn't implemented yet, this helper method will return a manually created
+	 * dummy user entry from the database. As soon as user management is completely implemented,
+	 * this will be replaced with a method that returns the currently logged in user.
+	 * 
+	 * @return dummy user object
+	 */
+	private User currentUser() {
+		Long key = 0L;
+		return userDao.find(key);
+	}
 	
 	/**
 	 * Shows a recipe.
@@ -57,13 +77,10 @@ public class RecipeController {
 	 * @return the view recipe.jsp
 	 */
 	@RequestMapping(method=RequestMethod.GET, value="/recipe/{id}")
-	public String showRecipe(@PathVariable("id") int id, Model model) {
+	public String showRecipe(@PathVariable("id") long id, Model model) {
 		logger.info("Returning view recipe with recipe.id=" + id);
-		
-		// Get recipe.
-		Recipe recipe = recipeService.getRecipe(id);
-		
-		// check if there is a recipe with the given id
+		Recipe recipe = recipeDao.find(id);
+
 		if( recipe == null ) {
 			logger.debug("No recipe with id" + id + "found. Return error page.");
 			return "recipeNotFound";
@@ -82,9 +99,7 @@ public class RecipeController {
 	@RequestMapping(method=RequestMethod.GET, value="/list")
 	public String listRecipes(Model model) {
 		logger.info("Returning view with list of all recipes");
-		
-		// Get all recipes.
-		List<Recipe> recipes = recipeService.getAll();
+		List<Recipe> recipes = recipeDao.findAll();
 		
 		if(recipes != null) {
 			model.addAttribute("recipes", recipes);
@@ -101,26 +116,27 @@ public class RecipeController {
 	 */
 	@RequestMapping(method=RequestMethod.POST, value="/recipe/adddata")
 	public String addRecipe(@ModelAttribute("recipe") Recipe recipe, 
-			@RequestParam(value = "ids", required = false) List<Integer> ids) {
+			@RequestParam(value = "ids", required = false) List<Long> ids) {
 		logger.info("Adding new recipe with images.");
 		
 		// Current date.
 		recipe.setCreation(new Date());
 		recipe.setModification(recipe.getCreation());
 		
-		// Adding the recipe
-		recipeService.add(recipe);
+		// Set user to dummy user:
+		recipe.setUser(this.currentUser());
+		
+		recipeDao.add(recipe);
 		
 		// add recipe relationship to images
 		if(ids != null) {
-			for(Integer id : ids) {
-				Image image = recipeService.getImage(id);
+			for(Long id : ids) {
+				Image image = imageDao.find(id);
 				image.setRecipe(recipe);
-				recipeService.saveImage(image);
+				imageDao.update(image);
 			}
 		}
 		
-		// Display view with the newly created recipe.
 		return "redirect:/recipe/" + recipe.getId();
 	}
 	
@@ -132,9 +148,7 @@ public class RecipeController {
 	@RequestMapping(method=RequestMethod.GET, value="/recipe/add")
 	public String addForm(Model model) {
 		logger.info("Returning addRecipe view.");
-		
 		model.addAttribute("recipe", new Recipe());
-		
 		return "addRecipe";
 	}
 	
@@ -145,12 +159,10 @@ public class RecipeController {
 	 * @return the view of the start page.
 	 */
 	@RequestMapping(method=RequestMethod.GET, value="/recipe/delete/{id}")
-	public String deleteRecipe(@PathVariable("id") int id) {
+	public String deleteRecipe(@PathVariable("id") long id) {
 		logger.info("Deleting recipe with id " + id + ".");
-		
-		// Deleting recipe.
-		recipeService.delete(id);
-		
+		Recipe recipe = recipeDao.find(id);
+		recipeDao.delete(recipe);
 		return "redirect:/";
 	}
 	
@@ -163,25 +175,24 @@ public class RecipeController {
 	 */
 	@RequestMapping(method=RequestMethod.POST, value="/recipe/editdata")
 	public String editRecipe(@ModelAttribute("recipe") Recipe recipe,
-			@RequestParam(value = "ids", required = false) List<Integer> ids) {
+			@RequestParam(value = "ids", required = false) List<Long> ids) {
 		logger.info("Editing recipe with id " + recipe.getId() + ".");
 		
 		// update date
 		recipe.setModification(new Date());
 		
 		// Update recipe.
-		recipeService.edit(recipe);
+		recipeDao.update(recipe);
 		
 		// add recipe relationship to images
 		if(ids != null) {
-			for(Integer id : ids) {
-				Image image = recipeService.getImage(id);
+			for(Long id : ids) {
+				Image image = imageDao.find(id);
 				image.setRecipe(recipe);
-				recipeService.saveImage(image);
+				imageDao.update(image);
 			}
 		}
-		
-		// Display edited recipe.
+
 		return "redirect:/recipe/" + recipe.getId();
 	}
 	
@@ -191,35 +202,17 @@ public class RecipeController {
 	 * @return the editRecipe view
 	 */
 	@RequestMapping(method=RequestMethod.GET, value="/recipe/edit/{id}")
-	public String editForm(@PathVariable("id") int id, Model model) {
+	public String editForm(@PathVariable("id") long id, Model model) {
 		logger.info("Returning editRecipe view.");
-		
-		// Get the recipe.
-		Recipe recipe = recipeService.getRecipe(id);
-		
-		// Check if it exists at all.
+		Recipe recipe = recipeDao.find(id);
+
 		if( recipe == null ) {
 			logger.debug("Recipe with id " + id + " does not exist!");
 			return "recipeNotFound";
 		}
-		
-		// Give recipe object to view.
-		model.addAttribute("recipe", recipe);
-		
+
+		model.addAttribute("recipe", recipe);	
 		return "editRecipe";
 	}
 	
-	/**
-	 * Deletes an image.
-	 * 
-	 * @param id of the image
-	 * @return the start page view
-	 */
-	@RequestMapping(method=RequestMethod.GET, value="/image/delete/{id}")
-	public String deleteImage(@PathVariable("id") int id) {
-		logger.info("Deleting image with id " + id);
-		recipeService.deleteImage(id);
-		
-		return "redirect:/";
-	}
 }

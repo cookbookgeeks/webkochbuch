@@ -21,15 +21,11 @@ package org.cookbookgeeks.webkochbuch.web;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.net.URL;
-import java.nio.file.Path;
 import java.util.Date;
 
-import javax.annotation.Resource;
-
 import org.apache.commons.io.FilenameUtils;
+import org.cookbookgeeks.webkochbuch.dao.ImageDao;
 import org.cookbookgeeks.webkochbuch.domain.Image;
-import org.cookbookgeeks.webkochbuch.service.RecipeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,11 +45,11 @@ import org.springframework.web.multipart.MultipartFile;
 @Controller
 public class FileUploadController {
 	
-	@Resource(name="recipeService")
-	private RecipeService recipeService;
-	
 	@Autowired
 	private String uploadsFolder;
+	
+	@Autowired
+	private ImageDao imageDao;
 	
 	public static final Logger logger = LoggerFactory.getLogger(FileUploadController.class);
 	
@@ -98,11 +94,11 @@ public class FileUploadController {
                 image.setPath(serverFile, dir);
                 image.setDescription(description);
                 
-                Integer id = recipeService.saveImage(image);
+                Long key = imageDao.add(image);
  
-                if(id != null) {
-                	logger.info("Image with id " + id + " persisted.");
-                	return id.toString();
+                if(key != null) {
+                	logger.info("Image with id " + key + " persisted.");
+                	return key.toString();
                 } else {
                 	logger.debug("Failed to persist image object.");
                 	return "null";
