@@ -24,7 +24,9 @@ import java.io.FileOutputStream;
 import java.util.Date;
 
 import org.apache.commons.io.FilenameUtils;
+import org.cookbookgeeks.webkochbuch.dao.UserDao;
 import org.cookbookgeeks.webkochbuch.domain.Image;
+import org.cookbookgeeks.webkochbuch.domain.User;
 import org.cookbookgeeks.webkochbuch.service.ImageService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -49,9 +51,24 @@ public class FileUploadController {
 	private String uploadsFolder;
 	
 	@Autowired
+	private UserDao userDao;
+	
+	@Autowired
 	private ImageService imageService;
 	
 	public static final Logger logger = LoggerFactory.getLogger(FileUploadController.class);
+	
+	/**
+	 * Because user management isn't implemented yet, this helper method will return a manually created
+	 * dummy user entry from the database. As soon as user management is completely implemented,
+	 * this will be replaced with a method that returns the currently logged in user.
+	 * 
+	 * @return dummy user object
+	 */
+	private User currentUser() {
+		Long key = 0L;
+		return userDao.find(key);
+	}
 	
 	/**
 	 * Accepts a file and a description string, saves the file to a target directory
@@ -92,8 +109,11 @@ public class FileUploadController {
                 // Persist image metadata in db:                
                 Image image = new Image();
                 image.setPath(serverFile, dir);
+                image.setUser(this.currentUser());
                 image.setDescription(description);
-                
+                Date now = new Date();
+                image.setCreation(now);
+                image.setModification(now);
                 Long key = imageService.add(image);
  
                 if(key != null) {
