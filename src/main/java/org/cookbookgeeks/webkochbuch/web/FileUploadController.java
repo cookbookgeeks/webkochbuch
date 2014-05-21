@@ -24,8 +24,8 @@ import java.io.FileOutputStream;
 import java.util.Date;
 
 import org.apache.commons.io.FilenameUtils;
-import org.cookbookgeeks.webkochbuch.dao.ImageDao;
 import org.cookbookgeeks.webkochbuch.domain.Image;
+import org.cookbookgeeks.webkochbuch.service.ImageService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,7 +49,7 @@ public class FileUploadController {
 	private String uploadsFolder;
 	
 	@Autowired
-	private ImageDao imageDao;
+	private ImageService imageService;
 	
 	public static final Logger logger = LoggerFactory.getLogger(FileUploadController.class);
 	
@@ -61,7 +61,7 @@ public class FileUploadController {
 	 * @param description
 	 * @return the id of the created image database entry, null if anything failed
 	 */
-	@RequestMapping(value = "/upload", method = RequestMethod.POST)
+	@RequestMapping(method = RequestMethod.POST, value = "/upload")
 	public @ResponseBody String uploadFileHandler(@RequestParam("file") MultipartFile file,
 			@RequestParam("description") String description) {
 		Date date = new Date();
@@ -94,7 +94,7 @@ public class FileUploadController {
                 image.setPath(serverFile, dir);
                 image.setDescription(description);
                 
-                Long key = imageDao.add(image);
+                Long key = imageService.add(image);
  
                 if(key != null) {
                 	logger.info("Image with id " + key + " persisted.");
