@@ -28,6 +28,7 @@ import org.cookbookgeeks.webkochbuch.dao.UserDao;
 import org.cookbookgeeks.webkochbuch.domain.Image;
 import org.cookbookgeeks.webkochbuch.domain.Recipe;
 import org.cookbookgeeks.webkochbuch.domain.User;
+import org.cookbookgeeks.webkochbuch.service.ImageService;
 import org.cookbookgeeks.webkochbuch.service.RecipeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -52,10 +53,10 @@ public class RecipeController {
 	private UserDao userDao;
 	
 	@Autowired
-	private ImageDao imageDao;
+	private RecipeService recipeService;
 	
 	@Autowired
-	private RecipeService recipeService;
+	private ImageService imageService;
 	
 	/**
 	 * Because user management isn't implemented yet, this helper method will return a manually created
@@ -131,9 +132,8 @@ public class RecipeController {
 		// add recipe relationship to images
 		if(ids != null) {
 			for(Long id : ids) {
-				Image image = imageDao.find(id);
-				image.setRecipe(recipe);
-				imageDao.update(image);
+				Image image = imageService.find(id);
+				imageService.setRecipeRelation(image, recipe);
 			}
 		}
 		
@@ -186,9 +186,8 @@ public class RecipeController {
 		// add recipe relationship to images
 		if(ids != null) {
 			for(Long id : ids) {
-				Image image = imageDao.find(id);
-				image.setRecipe(recipe);
-				imageDao.update(image);
+				Image image = imageService.find(id);
+				imageService.setRecipeRelation(image, recipe);
 			}
 		}
 
