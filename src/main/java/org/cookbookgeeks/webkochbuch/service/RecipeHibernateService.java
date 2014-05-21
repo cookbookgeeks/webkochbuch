@@ -5,7 +5,7 @@ import org.cookbookgeeks.webkochbuch.domain.Recipe;
 import org.springframework.stereotype.Service;
 
 /**
- *Service class for recipe related database operation. This class contains methods
+ * Service class for recipe related database operation. This class contains methods
  * that are more business related than in the Daos.
  * 
  * @author Nils Sommer
