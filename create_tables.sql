@@ -86,7 +86,7 @@ CREATE TABLE t_images
   file_path character varying(255) NOT NULL,
   description character varying(255) NOT NULL,
   user_id integer NOT NULL,
-  recipe_id integer NOT NULL,
+  recipe_id integer,
   creation_date timestamp without time zone NOT NULL,
   last_edit timestamp without time zone NOT NULL,
   CONSTRAINT t_images_pkey PRIMARY KEY (id),
