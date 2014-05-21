@@ -34,7 +34,7 @@ public class ImageHibernateDao extends GenericHibernateDao<Image, Long> implemen
 	 * Standard constructor.
 	 */
 	public ImageHibernateDao() {
-		
+		super(Image.class);
 	}
 
 }

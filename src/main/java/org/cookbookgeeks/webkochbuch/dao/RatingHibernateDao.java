@@ -34,7 +34,7 @@ public class RatingHibernateDao extends GenericHibernateDao<Rating, Long> implem
 	 * Standard constructor.
 	 */
 	public RatingHibernateDao() {
-		
+		super(Rating.class);
 	}
 
 }

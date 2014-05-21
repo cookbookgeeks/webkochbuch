@@ -34,7 +34,7 @@ public class CategoryHibernateDao extends GenericHibernateDao<Category, Long> im
 	 * Standard constructor.
 	 */
 	public CategoryHibernateDao() {
-		
+		super(Category.class);
 	}
 
 }

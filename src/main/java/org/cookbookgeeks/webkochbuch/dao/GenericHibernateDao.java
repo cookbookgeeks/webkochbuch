@@ -42,15 +42,14 @@ public abstract class GenericHibernateDao<E, K extends Serializable> implements 
 	@Autowired
 	protected SessionFactory sessionFactory;
 	
-	protected Class <? extends E> type;
+	protected Class<E> entityClass;
 	
 	/**
 	 * Standard constructor.
 	 */
 	@SuppressWarnings("unchecked")
-	public GenericHibernateDao() {
-		type = (Class<E>) ((ParameterizedType) getClass().getGenericSuperclass())
-                .getActualTypeArguments()[0];
+	public GenericHibernateDao(Class<E> entityClass) {
+		this.entityClass = entityClass;
 	}
 	
 	/**
@@ -65,7 +64,7 @@ public abstract class GenericHibernateDao<E, K extends Serializable> implements 
 	/** {@inheritDoc} */
 	@SuppressWarnings("unchecked")
 	public E find(K key) {
-		return (E) this.currentSession().get(type, key);
+		return (E) this.currentSession().get(entityClass, key);
 	}
 	
 	/** {@inheritDoc} */
@@ -87,7 +86,7 @@ public abstract class GenericHibernateDao<E, K extends Serializable> implements 
 	/** {@inheritDoc} */
 	@SuppressWarnings("unchecked")
 	public List<E> findAll() {
-		return currentSession().createCriteria(type).list();
+		return currentSession().createCriteria(entityClass).list();
 	}
 
 }

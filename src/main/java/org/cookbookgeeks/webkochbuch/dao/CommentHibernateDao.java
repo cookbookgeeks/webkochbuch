@@ -34,7 +34,7 @@ public class CommentHibernateDao extends GenericHibernateDao<Comment, Long> impl
 	 * Standard constructor.
 	 */
 	public CommentHibernateDao() {
-		
+		super(Comment.class);
 	}
 
 }

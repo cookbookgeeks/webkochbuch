@@ -34,7 +34,7 @@ public class RecipeHibernateDao extends GenericHibernateDao<Recipe, Long> implem
 	 * Standard constructor.
 	 */
 	public RecipeHibernateDao() {
-		
+		super(Recipe.class);
 	}
 
 }

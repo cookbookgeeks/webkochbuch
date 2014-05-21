@@ -34,7 +34,7 @@ public class MeasureHibernateDao extends GenericHibernateDao<Measure, Long> impl
 	 * Standard constructor.
 	 */
 	public MeasureHibernateDao() {
-		
+		super(Measure.class);
 	}
 
 }

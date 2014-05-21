@@ -34,7 +34,7 @@ public class UserHibernateDao extends GenericHibernateDao<User, Long> implements
 	 * Standard constructor.
 	 */
 	public UserHibernateDao() {
-		
+		super(User.class);
 	}
 
 }
