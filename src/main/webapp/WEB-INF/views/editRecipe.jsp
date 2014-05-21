@@ -76,6 +76,7 @@
 <form:form id="recipeForm" modelAttribute="recipe" method="POST" action="${saveUrl}">
  <form:hidden path="id" />
  <table>
+ 
   <tr>
    <td><form:label path="title">Titel:</form:label></td>
    <td><form:input path="title" class="form-control"/></td>
@@ -104,7 +105,6 @@
   </tr>
  
  </table>
- <form:hidden path="creation" />
  <input type="submit" value="Save" class="btn btn-success"/>
  </div>
 </form:form>
