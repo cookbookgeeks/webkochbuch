@@ -24,11 +24,11 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.cookbookgeeks.webkochbuch.dao.ImageDao;
-import org.cookbookgeeks.webkochbuch.dao.RecipeDao;
 import org.cookbookgeeks.webkochbuch.dao.UserDao;
 import org.cookbookgeeks.webkochbuch.domain.Image;
 import org.cookbookgeeks.webkochbuch.domain.Recipe;
 import org.cookbookgeeks.webkochbuch.domain.User;
+import org.cookbookgeeks.webkochbuch.service.RecipeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -49,13 +49,13 @@ public class RecipeController {
 	private static final Logger logger = LoggerFactory.getLogger(RecipeController.class);
 	
 	@Autowired
-	private RecipeDao recipeDao;
-	
-	@Autowired
 	private UserDao userDao;
 	
 	@Autowired
 	private ImageDao imageDao;
+	
+	@Autowired
+	private RecipeService recipeService;
 	
 	/**
 	 * Because user management isn't implemented yet, this helper method will return a manually created
@@ -79,7 +79,7 @@ public class RecipeController {
 	@RequestMapping(method=RequestMethod.GET, value="/recipe/{id}")
 	public String showRecipe(@PathVariable("id") long id, Model model) {
 		logger.info("Returning view recipe with recipe.id=" + id);
-		Recipe recipe = recipeDao.find(id);
+		Recipe recipe = recipeService.find(id);
 
 		if( recipe == null ) {
 			logger.debug("No recipe with id" + id + "found. Return error page.");
@@ -99,7 +99,7 @@ public class RecipeController {
 	@RequestMapping(method=RequestMethod.GET, value="/list")
 	public String listRecipes(Model model) {
 		logger.info("Returning view with list of all recipes");
-		List<Recipe> recipes = recipeDao.findAll();
+		List<Recipe> recipes = recipeService.findAll();
 		
 		if(recipes != null) {
 			model.addAttribute("recipes", recipes);
@@ -126,7 +126,7 @@ public class RecipeController {
 		// Set user to dummy user:
 		recipe.setUser(this.currentUser());
 		
-		recipeDao.add(recipe);
+		recipeService.add(recipe);
 		
 		// add recipe relationship to images
 		if(ids != null) {
@@ -161,8 +161,8 @@ public class RecipeController {
 	@RequestMapping(method=RequestMethod.GET, value="/recipe/delete/{id}")
 	public String deleteRecipe(@PathVariable("id") long id) {
 		logger.info("Deleting recipe with id " + id + ".");
-		Recipe recipe = recipeDao.find(id);
-		recipeDao.delete(recipe);
+		Recipe recipe = recipeService.find(id);
+		recipeService.delete(recipe);
 		return "redirect:/";
 	}
 	
@@ -178,11 +178,10 @@ public class RecipeController {
 			@RequestParam(value = "ids", required = false) List<Long> ids) {
 		logger.info("Editing recipe with id " + recipe.getId() + ".");
 		
-		// update date
 		recipe.setModification(new Date());
 		
 		// Update recipe.
-		recipeDao.update(recipe);
+		recipeService.update(recipe);
 		
 		// add recipe relationship to images
 		if(ids != null) {
@@ -204,7 +203,7 @@ public class RecipeController {
 	@RequestMapping(method=RequestMethod.GET, value="/recipe/edit/{id}")
 	public String editForm(@PathVariable("id") long id, Model model) {
 		logger.info("Returning editRecipe view.");
-		Recipe recipe = recipeDao.find(id);
+		Recipe recipe = recipeService.find(id);
 
 		if( recipe == null ) {
 			logger.debug("Recipe with id " + id + " does not exist!");
