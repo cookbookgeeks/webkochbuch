@@ -8,9 +8,9 @@
 		<param-name>contextConfigLocation</param-name>
 			<param-value>
 				/WEB-INF/spring/root-context.xml,
-				/WEB-INF/spring-security.xml,
 				/WEB-INF/applicationContext.xml
 			</param-value>
+			<!-- /WEB-INF/spring-security.xml, -->
 	</context-param>
 	
 	<!-- Creates the Spring Container shared by all Servlets and Filters -->
@@ -35,6 +35,7 @@
 	</servlet-mapping>
 	
 	<!-- Spring Security -->
+	<!--  
 	<filter>
 		<filter-name>springSecurityFilterChain</filter-name>
 		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
@@ -44,5 +45,6 @@
 		<filter-name>springSecurityFilterChain</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-
+	-->
+	
 </web-app>
