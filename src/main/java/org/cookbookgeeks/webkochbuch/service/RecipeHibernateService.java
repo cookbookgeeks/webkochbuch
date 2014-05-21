@@ -52,7 +52,7 @@ public class RecipeHibernateService extends RecipeHibernateDao implements Recipe
 	
 	/** {@inheritDoc} */
 	public List<Recipe> searchByKeywords(String pattern) {		
-		final FullTextSession fullTextSession = Search.getFullTextSession(sessionFactory.getCurrentSession());
+		final FullTextSession fullTextSession = Search.getFullTextSession(this.currentSession());
 		final org.hibernate.search.query.dsl.QueryBuilder qb = fullTextSession.getSearchFactory()
 				.buildQueryBuilder().forEntity(Recipe.class).get();
 		final org.apache.lucene.search.Query luceneQuery = qb.keyword()
@@ -66,7 +66,7 @@ public class RecipeHibernateService extends RecipeHibernateDao implements Recipe
 	
 	/** {@inheritDoc} */
 	public List<Recipe> searchByKeywords(String pattern, List<String> attributes) {
-		final FullTextSession fullTextSession = Search.getFullTextSession(sessionFactory.getCurrentSession());
+		final FullTextSession fullTextSession = Search.getFullTextSession(this.currentSession());
 		final org.hibernate.search.query.dsl.QueryBuilder qb = fullTextSession.getSearchFactory()
 				.buildQueryBuilder().forEntity(Recipe.class).get();
 		

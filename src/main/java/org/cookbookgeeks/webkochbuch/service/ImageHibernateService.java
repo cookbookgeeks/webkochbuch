@@ -37,7 +37,7 @@ public class ImageHibernateService extends ImageHibernateDao implements
 	/** {@inheritDoc} */
 	@Override
 	public void update(Image updated) {
-		Image image = this.find(updated.getId());
+		final Image image = this.find(updated.getId());
 		image.setDescription(updated.getDescription());
 		image.setModification(updated.getModification());
 		image.setRecipe(updated.getRecipe());
@@ -46,7 +46,7 @@ public class ImageHibernateService extends ImageHibernateDao implements
 	
 	/** {@inheritDoc} */
 	public void setRecipeRelation(Image updated, Recipe recipe) {
-		Image image = this.find(updated.getId());
+		final Image image = this.find(updated.getId());
 		image.setRecipe(recipe);
 		super.update(image);
 	}

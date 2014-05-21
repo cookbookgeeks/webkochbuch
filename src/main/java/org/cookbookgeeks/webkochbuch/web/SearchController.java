@@ -20,12 +20,12 @@ package org.cookbookgeeks.webkochbuch.web;
 
 import java.util.List;
 
-import javax.annotation.Resource;
-
 import org.cookbookgeeks.webkochbuch.domain.Recipe;
+import org.cookbookgeeks.webkochbuch.helper.ApacheLuceneHelper;
 import org.cookbookgeeks.webkochbuch.service.RecipeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,7 +45,7 @@ public class SearchController {
 	
 	private static final Logger Logger = LoggerFactory.getLogger(SearchController.class);
 	
-	@Resource(name="recipeService")
+	@Autowired
 	private RecipeService recipeService;
 	
 	/**
@@ -57,7 +57,7 @@ public class SearchController {
 	 */
 	@RequestMapping(method=RequestMethod.GET)
 	public String genericSearch(Model model, @RequestParam("s") String pattern) {
-		List<Recipe> recipes = recipeService.search(pattern);
+		List<Recipe> recipes = recipeService.searchByKeywords(pattern);
 		if(!recipes.isEmpty()) {
 			Logger.info(recipes.size() + "results found for generic search with pattern: " + pattern);
 			model.addAttribute("recipes", recipes);
@@ -78,7 +78,7 @@ public class SearchController {
 	@RequestMapping(method=RequestMethod.GET, params = {"s", "attributes"})
 	public String detailedSearch(Model model, @RequestParam("s") String pattern, 
 			@RequestParam("attributes") List<String> attributes) {
-		List<Recipe> recipes = recipeService.search(pattern, attributes);
+		List<Recipe> recipes = recipeService.searchByKeywords(pattern, attributes);
 		if(!recipes.isEmpty()) {
 			Logger.info(recipes.size() + "results found for detailed search with pattern: " + pattern);
 			model.addAttribute("recipes", recipes);
@@ -94,7 +94,9 @@ public class SearchController {
 	 */
 	@RequestMapping(method=RequestMethod.GET, value="/createindex")
 	public @ResponseBody String createIndex() {
-		Logger.info("Creating index.");
+		ApacheLuceneHelper helper = new ApacheLuceneHelper();
+		helper.createIndexFiles();
+		Logger.info("Created index files for existing database entries.");
 		return "Index erstellt.";
 	}
 
