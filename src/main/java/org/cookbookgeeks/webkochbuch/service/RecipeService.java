@@ -19,6 +19,7 @@
 package org.cookbookgeeks.webkochbuch.service;
 
 import org.cookbookgeeks.webkochbuch.dao.RecipeDao;
+import org.cookbookgeeks.webkochbuch.dao.SearchDao;
 import org.cookbookgeeks.webkochbuch.domain.Recipe;
 
 /**
@@ -27,7 +28,7 @@ import org.cookbookgeeks.webkochbuch.domain.Recipe;
  * @author Nils Sommer
  *
  */
-public interface RecipeService extends RecipeDao {
+public interface RecipeService extends RecipeDao, SearchDao<Recipe, Long> {
 	
 	/** {@inheritDoc} */
 	@Override

@@ -38,5 +38,15 @@ public interface SearchDao<E, K extends Serializable> {
 	 * @return a list of entities
 	 */
 	public List<E> searchByKeywords(String pattern);
+	
+	/**
+	 * Searches for entities containing the given keyword(s)s,
+	 * but the search is only performed on the given entity attributes.
+	 * 
+	 * @param pattern search pattern containing one or more keywords
+	 * @param attributes a list of the attributes of the entity to search on
+	 * @return a list of entities
+	 */
+	public List<E> searchByKeywords(String pattern, List<String> attributes);
 
 }

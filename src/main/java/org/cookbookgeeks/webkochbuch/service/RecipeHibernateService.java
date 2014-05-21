@@ -18,9 +18,14 @@
 
 package org.cookbookgeeks.webkochbuch.service;
 
+import java.util.List;
+
 import org.cookbookgeeks.webkochbuch.dao.RecipeHibernateDao;
 import org.cookbookgeeks.webkochbuch.domain.Recipe;
+import org.hibernate.search.FullTextSession;
 import org.springframework.stereotype.Service;
+import org.hibernate.search.Search;
+import org.hibernate.search.query.dsl.TermMatchingContext;
 
 /**
  * Service class for recipe related database operation. This class contains methods
@@ -35,7 +40,7 @@ public class RecipeHibernateService extends RecipeHibernateDao implements Recipe
 	/** {@inheritDoc} */
 	@Override
 	public void update(Recipe updated) {
-		Recipe recipe = this.find(updated.getId());
+		final Recipe recipe = this.find(updated.getId());
 		recipe.setTitle(updated.getTitle());
 		recipe.setDescription(updated.getDescription());
 		recipe.setContent(updated.getContent());
@@ -43,6 +48,54 @@ public class RecipeHibernateService extends RecipeHibernateDao implements Recipe
 		recipe.setTotalEndurance(updated.getTotalEndurance());
 		recipe.setModification(updated.getModification());
 		super.update(recipe);
+	}
+	
+	/** {@inheritDoc} */
+	public List<Recipe> searchByKeywords(String pattern) {		
+		final FullTextSession fullTextSession = Search.getFullTextSession(sessionFactory.getCurrentSession());
+		final org.hibernate.search.query.dsl.QueryBuilder qb = fullTextSession.getSearchFactory()
+				.buildQueryBuilder().forEntity(Recipe.class).get();
+		final org.apache.lucene.search.Query luceneQuery = qb.keyword()
+				.onFields("title", "description", "content").matching(pattern).createQuery();
+		final org.hibernate.Query hibQuery = fullTextSession.createFullTextQuery(luceneQuery, Recipe.class);
+		
+		@SuppressWarnings("unchecked")
+		List<Recipe> result = hibQuery.list();
+		return result;
+	}
+	
+	/** {@inheritDoc} */
+	public List<Recipe> searchByKeywords(String pattern, List<String> attributes) {
+		final FullTextSession fullTextSession = Search.getFullTextSession(sessionFactory.getCurrentSession());
+		final org.hibernate.search.query.dsl.QueryBuilder qb = fullTextSession.getSearchFactory()
+				.buildQueryBuilder().forEntity(Recipe.class).get();
+		
+		TermMatchingContext tmc = null;
+		if(attributes.contains("title") && attributes.contains("description") && attributes.contains("content")) {
+			tmc = qb.keyword().onFields("title", "description", "content");
+		} else if(attributes.contains("title") && attributes.contains("description") && !attributes.contains("content")) {
+			tmc = qb.keyword().onFields("title", "description");
+		} else if(attributes.contains("title") && !attributes.contains("description") && attributes.contains("content")) {
+			tmc = qb.keyword().onFields("title", "content");
+		} else if(!attributes.contains("title") && attributes.contains("description") && attributes.contains("content")) {
+			tmc = qb.keyword().onFields("description", "content");
+		} else if(attributes.contains("title") && !attributes.contains("description") && !attributes.contains("content")) {
+			tmc = qb.keyword().onField("title");
+		} else if(!attributes.contains("title") && attributes.contains("description") && !attributes.contains("content")) {
+			tmc = qb.keyword().onField("description");
+		} else if(!attributes.contains("title") && !attributes.contains("description") && attributes.contains("content")) {
+			tmc = qb.keyword().onField("content");
+		} else {	// none of the attributes appear
+			return null;
+		}
+		
+		final org.apache.lucene.search.Query luceneQuery = tmc.matching(pattern).createQuery();
+		final org.hibernate.Query hibQuery = fullTextSession.createFullTextQuery(luceneQuery, Recipe.class);
+
+		@SuppressWarnings("unchecked")
+		final List<Recipe> result = hibQuery.list();
+
+		return result;
 	}
 
 }
