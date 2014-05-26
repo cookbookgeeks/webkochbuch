@@ -18,11 +18,14 @@
 
 package org.cookbookgeeks.webkochbuch.web;
 
+<<<<<<< HEAD
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
 import org.cookbookgeeks.webkochbuch.domain.Recipe;
+=======
+>>>>>>> e9f6e37cd46b6c8820f9976a11b521e9aa8e0596
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -46,16 +49,8 @@ public class HomeController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
-		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
-		
+	public String home(Model model) {
+		logger.info("Returning home view");
 		return "home";
 	}
 	
@@ -66,8 +61,7 @@ public class HomeController {
 	 */
 	@RequestMapping(method=RequestMethod.GET, value="/contact")
 	public String contactForm() {
-		logger.debug("Returning view with contact form");
-		
+		logger.info("Returning view with contact form");
 		return "contact";
 	}
 	
@@ -78,8 +72,7 @@ public class HomeController {
 	 */
 	@RequestMapping(method=RequestMethod.GET, value="/categories")
 	public String categoryView() {
-		logger.debug("Returning view with overview of categories");
-		
+		logger.info("Returning view with overview of categories");
 		return "categories";
 	}
 	
@@ -90,8 +83,12 @@ public class HomeController {
 	 */
 	@RequestMapping(method=RequestMethod.GET, value="/admin")
 	public String adminBackend() {
+<<<<<<< HEAD
 		logger.debug("Returning view with admin info");
 		
+=======
+		logger.info("Returning view with contact form");
+>>>>>>> e9f6e37cd46b6c8820f9976a11b521e9aa8e0596
 		return "admin";
 	}
 
@@ -102,8 +99,7 @@ public class HomeController {
 	 
 	@RequestMapping(method=RequestMethod.GET, value="/logout")
 	public String logOut() {
-		logger.debug("Returning logout-view ");
-		
+		logger.info("Returning logout-view ");
 		return "logout";
 	}
 	*/
@@ -114,8 +110,7 @@ public class HomeController {
 	 */
 	@RequestMapping(method=RequestMethod.GET, value="/denied")
 	public String denied() {
-		logger.debug("Returning denied-view ");
-		
+		logger.info("Returning denied-view ");
 		return "denied";
 	}
 	
