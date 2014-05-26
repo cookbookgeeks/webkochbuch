@@ -1,0 +1,823 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.1.6" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true">  
+  <package id="1" language="java" name="org.cookbookgeeks.webkochbuch.dao" project="webkochbuch" 
+    file="/webkochbuch/src/main/java/org/cookbookgeeks/webkochbuch/dao" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="50" width="244" x="3712" y="37"/>    
+    <display autosize="true" stereotype="true" accessors="true"/>  
+  </package>  
+  <interface id="2" language="java" name="org.cookbookgeeks.webkochbuch.dao.MeasureDao" project="webkochbuch" 
+    file="/webkochbuch/src/main/java/org/cookbookgeeks/webkochbuch/dao/MeasureDao.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="63" width="168" x="5165" y="1197"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="3" language="java" name="org.cookbookgeeks.webkochbuch.dao.SearchDao" project="webkochbuch" 
+    file="/webkochbuch/src/main/java/org/cookbookgeeks/webkochbuch/dao/SearchDao.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="99" width="258" x="4334" y="1197"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="4" language="java" name="org.cookbookgeeks.webkochbuch.dao.ImageDao" project="webkochbuch" 
+    file="/webkochbuch/src/main/java/org/cookbookgeeks/webkochbuch/dao/ImageDao.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="63" width="168" x="2434" y="1197"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="5" language="java" name="org.cookbookgeeks.webkochbuch.dao.RatingHibernateDao" project="webkochbuch" 
+    file="/webkochbuch/src/main/java/org/cookbookgeeks/webkochbuch/dao/RatingHibernateDao.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="81" width="168" x="4415" y="518"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="org.cookbookgeeks.webkochbuch.dao.CommentHibernateDao" project="webkochbuch" 
+    file="/webkochbuch/src/main/java/org/cookbookgeeks/webkochbuch/dao/CommentHibernateDao.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="81" width="168" x="3996" y="518"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="org.cookbookgeeks.webkochbuch.dao.ImageHibernateDao" project="webkochbuch" 
+    file="/webkochbuch/src/main/java/org/cookbookgeeks/webkochbuch/dao/ImageHibernateDao.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="81" width="168" x="2434" y="518"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="8" language="java" name="org.cookbookgeeks.webkochbuch.dao.UserDao" project="webkochbuch" 
+    file="/webkochbuch/src/main/java/org/cookbookgeeks/webkochbuch/dao/UserDao.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="63" width="168" x="3561" y="1732"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="9" language="java" name="org.cookbookgeeks.webkochbuch.dao.GenericHibernateDao" project="webkochbuch" 
+    file="/webkochbuch/src/main/java/org/cookbookgeeks/webkochbuch/dao/GenericHibernateDao.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="225" width="183" x="3996" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="10" language="java" name="org.cookbookgeeks.webkochbuch.dao.IngredientDao" project="webkochbuch" 
+    file="/webkochbuch/src/main/java/org/cookbookgeeks/webkochbuch/dao/IngredientDao.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="63" width="168" x="3164" y="1197"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="11" language="java" name="org.cookbookgeeks.webkochbuch.dao.CommentDao" project="webkochbuch" 
+    file="/webkochbuch/src/main/java/org/cookbookgeeks/webkochbuch/dao/CommentDao.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="63" width="168" x="3622" y="1197"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="12" language="java" name="org.cookbookgeeks.webkochbuch.dao.MeasureHibernateDao" project="webkochbuch" 
+    file="/webkochbuch/src/main/java/org/cookbookgeeks/webkochbuch/dao/MeasureHibernateDao.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="81" width="168" x="4623" y="518"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="org.cookbookgeeks.webkochbuch.dao.IngredientHibernateDao" project="webkochbuch" 
+    file="/webkochbuch/src/main/java/org/cookbookgeeks/webkochbuch/dao/IngredientHibernateDao.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="81" width="168" x="3164" y="518"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="14" language="java" name="org.cookbookgeeks.webkochbuch.dao.RecipeDao" project="webkochbuch" 
+    file="/webkochbuch/src/main/java/org/cookbookgeeks/webkochbuch/dao/RecipeDao.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="63" width="168" x="3830" y="1197"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="15" language="java" name="org.cookbookgeeks.webkochbuch.dao.RatingDao" project="webkochbuch" 
+    file="/webkochbuch/src/main/java/org/cookbookgeeks/webkochbuch/dao/RatingDao.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="63" width="168" x="4957" y="1197"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="16" language="java" name="org.cookbookgeeks.webkochbuch.dao.GenericDao" project="webkochbuch" 
+    file="/webkochbuch/src/main/java/org/cookbookgeeks/webkochbuch/dao/GenericDao.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="153" width="168" x="3580" y="518"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="17" language="java" name="org.cookbookgeeks.webkochbuch.dao.CategoryDao" project="webkochbuch" 
+    file="/webkochbuch/src/main/java/org/cookbookgeeks/webkochbuch/dao/CategoryDao.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="63" width="168" x="3372" y="1197"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="18" language="java" name="org.cookbookgeeks.webkochbuch.dao.CategoryHibernateDao" project="webkochbuch" 
+    file="/webkochbuch/src/main/java/org/cookbookgeeks/webkochbuch/dao/CategoryHibernateDao.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="81" width="168" x="3372" y="518"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="19" language="java" name="org.cookbookgeeks.webkochbuch.dao.UserHibernateDao" project="webkochbuch" 
+    file="/webkochbuch/src/main/java/org/cookbookgeeks/webkochbuch/dao/UserHibernateDao.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="81" width="168" x="3788" y="518"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="20" language="java" name="org.cookbookgeeks.webkochbuch.dao.RecipeHibernateDao" project="webkochbuch" 
+    file="/webkochbuch/src/main/java/org/cookbookgeeks/webkochbuch/dao/RecipeHibernateDao.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="81" width="168" x="4204" y="518"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <package id="21" language="java" name="org.cookbookgeeks.webkochbuch.domain" project="webkochbuch" 
+    file="/webkochbuch/src/main/java/org/cookbookgeeks/webkochbuch/domain" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="50" width="265" x="2582" y="37"/>    
+    <display autosize="true" stereotype="true" accessors="true"/>  
+  </package>  
+  <class id="22" language="java" name="org.cookbookgeeks.webkochbuch.domain.Measure" project="webkochbuch" 
+    file="/webkochbuch/src/main/java/org/cookbookgeeks/webkochbuch/domain/Measure.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="207" width="183" x="4831" y="518"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="23" language="java" name="org.cookbookgeeks.webkochbuch.domain.Ingredient" project="webkochbuch" 
+    file="/webkochbuch/src/main/java/org/cookbookgeeks/webkochbuch/domain/Ingredient.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="441" width="276" x="4831" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="24" language="java" name="org.cookbookgeeks.webkochbuch.domain.Recipe" project="webkochbuch" 
+    file="/webkochbuch/src/main/java/org/cookbookgeeks/webkochbuch/domain/Recipe.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="639" width="349" x="5612" y="518"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="25" language="java" name="org.cookbookgeeks.webkochbuch.domain.Rating" project="webkochbuch" 
+    file="/webkochbuch/src/main/java/org/cookbookgeeks/webkochbuch/domain/Rating.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="387" width="207" x="5147" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="26" language="java" name="org.cookbookgeeks.webkochbuch.domain.Image" project="webkochbuch" 
+    file="/webkochbuch/src/main/java/org/cookbookgeeks/webkochbuch/domain/Image.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="513" width="183" x="5612" y="1732"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="27" language="java" name="org.cookbookgeeks.webkochbuch.domain.User" project="webkochbuch" 
+    file="/webkochbuch/src/main/java/org/cookbookgeeks/webkochbuch/domain/User.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="495" width="197" x="5394" y="1197"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="28" language="java" name="org.cookbookgeeks.webkochbuch.domain.Category" project="webkochbuch" 
+    file="/webkochbuch/src/main/java/org/cookbookgeeks/webkochbuch/domain/Category.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="225" width="183" x="5673" y="1197"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="29" language="java" name="org.cookbookgeeks.webkochbuch.domain.Comment" project="webkochbuch" 
+    file="/webkochbuch/src/main/java/org/cookbookgeeks/webkochbuch/domain/Comment.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="387" width="217" x="5394" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <package id="30" language="java" name="org.cookbookgeeks.webkochbuch.helper" project="webkochbuch" 
+    file="/webkochbuch/src/main/java/org/cookbookgeeks/webkochbuch/helper" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="50" width="259" x="1482" y="37"/>    
+    <display autosize="true" stereotype="true" accessors="true"/>  
+  </package>  
+  <class id="31" language="java" name="org.cookbookgeeks.webkochbuch.helper.ApacheLuceneHelper" project="webkochbuch" 
+    file="/webkochbuch/src/main/java/org/cookbookgeeks/webkochbuch/helper/ApacheLuceneHelper.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="117" width="183" x="3229" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <package id="32" language="java" name="org.cookbookgeeks.webkochbuch.service" project="webkochbuch" 
+    file="/webkochbuch/src/main/java/org/cookbookgeeks/webkochbuch/service" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="50" width="265" x="1990" y="37"/>    
+    <display autosize="true" stereotype="true" accessors="true"/>  
+  </package>  
+  <class id="33" language="java" name="org.cookbookgeeks.webkochbuch.service.ImageHibernateService" 
+    project="webkochbuch" 
+    file="/webkochbuch/src/main/java/org/cookbookgeeks/webkochbuch/service/ImageHibernateService.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="117" width="207" x="2187" y="1197"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="34" language="java" name="org.cookbookgeeks.webkochbuch.service.RecipeService" project="webkochbuch" 
+    file="/webkochbuch/src/main/java/org/cookbookgeeks/webkochbuch/service/RecipeService.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="81" width="184" x="4334" y="1732"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="35" language="java" name="org.cookbookgeeks.webkochbuch.service.ImageService" project="webkochbuch" 
+    file="/webkochbuch/src/main/java/org/cookbookgeeks/webkochbuch/service/ImageService.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="99" width="207" x="2546" y="1732"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="36" language="java" name="org.cookbookgeeks.webkochbuch.service.RecipeHibernateService" 
+    project="webkochbuch" 
+    file="/webkochbuch/src/main/java/org/cookbookgeeks/webkochbuch/service/RecipeHibernateService.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="135" width="285" x="4632" y="1197"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <package id="37" language="java" name="org.cookbookgeeks.webkochbuch.web" project="webkochbuch" 
+    file="/webkochbuch/src/main/java/org/cookbookgeeks/webkochbuch/web" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="50" width="247" x="2295" y="37"/>    
+    <display autosize="true" stereotype="true" accessors="true"/>  
+  </package>  
+  <class id="38" language="java" name="org.cookbookgeeks.webkochbuch.web.SearchController" project="webkochbuch" 
+    file="/webkochbuch/src/main/java/org/cookbookgeeks/webkochbuch/web/SearchController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="153" width="256" x="4038" y="1197"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="39" language="java" name="org.cookbookgeeks.webkochbuch.web.FileUploadController" project="webkochbuch" 
+    file="/webkochbuch/src/main/java/org/cookbookgeeks/webkochbuch/web/FileUploadController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="153" width="237" x="2642" y="1197"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="40" language="java" name="org.cookbookgeeks.webkochbuch.web.RecipeController" project="webkochbuch" 
+    file="/webkochbuch/src/main/java/org/cookbookgeeks/webkochbuch/web/RecipeController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="243" width="205" x="2919" y="1197"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="41" language="java" name="org.cookbookgeeks.webkochbuch.web.HomeController" project="webkochbuch" 
+    file="/webkochbuch/src/main/java/org/cookbookgeeks/webkochbuch/web/HomeController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="207" width="169" x="1781" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <package id="42" language="java" name="org.cookbookgeeks.webkochbuch" project="webkochbuch" 
+    file="/webkochbuch/src/test/java/org/cookbookgeeks/webkochbuch" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="50" width="220" x="3452" y="37"/>    
+    <display autosize="true" stereotype="true" accessors="true"/>  
+  </package>  
+  <class id="43" language="java" name="org.cookbookgeeks.webkochbuch.CreateRecipeStepDefinitions" project="webkochbuch" 
+    file="/webkochbuch/src/test/java/org/cookbookgeeks/webkochbuch/CreateRecipeStepDefinitions.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="171" width="294" x="1148" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="44" language="java" name="org.cookbookgeeks.webkochbuch.EditRecipeStepDefinitions" project="webkochbuch" 
+    file="/webkochbuch/src/test/java/org/cookbookgeeks/webkochbuch/EditRecipeStepDefinitions.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="225" width="430" x="70" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="45" language="java" name="org.cookbookgeeks.webkochbuch.ReadRecipeStepDefinition" project="webkochbuch" 
+    file="/webkochbuch/src/test/java/org/cookbookgeeks/webkochbuch/ReadRecipeStepDefinition.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="153" width="302" x="2887" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="46" language="java" name="org.cookbookgeeks.webkochbuch.BrowserDriver.BrowserCleanup" project="webkochbuch" 
+    file="/webkochbuch/src/test/java/org/cookbookgeeks/webkochbuch/BrowserDriver.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="99" width="150" x="730" y="518"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="47" language="java" name="org.cookbookgeeks.webkochbuch.SearchControllerTest" project="webkochbuch" 
+    file="/webkochbuch/src/test/java/org/cookbookgeeks/webkochbuch/SearchControllerTest.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="117" width="170" x="938" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="48" language="java" name="org.cookbookgeeks.webkochbuch.RunTests" project="webkochbuch" 
+    file="/webkochbuch/src/test/java/org/cookbookgeeks/webkochbuch/RunTests.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="81" width="150" x="540" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="49" language="java" name="org.cookbookgeeks.webkochbuch.RecipeControllerTest" project="webkochbuch" 
+    file="/webkochbuch/src/test/java/org/cookbookgeeks/webkochbuch/RecipeControllerTest.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="207" width="166" x="5651" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="50" language="java" name="org.cookbookgeeks.webkochbuch.BrowserDriver" project="webkochbuch" 
+    file="/webkochbuch/src/test/java/org/cookbookgeeks/webkochbuch/BrowserDriver.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="279" width="168" x="730" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <generalization id="51">    
+    <bendpoint x="3570" y="1197"/>    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="16"/>  
+  </generalization>  
+  <generalization id="52">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="16"/>  
+  </generalization>  
+  <generalization id="53">    
+    <end type="SOURCE" refId="36"/>    
+    <end type="TARGET" refId="20"/>  
+  </generalization>  
+  <association id="54">    
+    <end type="SOURCE" refId="24" navigable="false">      
+      <attribute id="55" name="user"/>      
+      <multiplicity id="56" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="27" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="57">    
+    <end type="SOURCE" refId="29" navigable="false">      
+      <attribute id="58" name="recipe"/>      
+      <multiplicity id="59" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="24" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="60">    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="17"/>  
+  </realization>  
+  <association id="61">    
+    <end type="SOURCE" refId="24" navigable="false">      
+      <attribute id="62" name="category"/>      
+      <multiplicity id="63" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="28" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="64">    
+    <end type="SOURCE" refId="38" navigable="false">      
+      <attribute id="65" name="recipeService"/>      
+      <multiplicity id="66" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="34" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="67">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="15"/>  
+  </realization>  
+  <generalization id="68">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="16"/>  
+  </generalization>  
+  <association id="69">    
+    <bendpoint x="5269" y="518"/>    
+    <end type="SOURCE" refId="25" navigable="false">      
+      <attribute id="70" name="user"/>      
+      <multiplicity id="71" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="27" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="72">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="9"/>  
+  </generalization>  
+  <generalization id="73">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="9"/>  
+  </generalization>  
+  <generalization id="74">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="16"/>  
+  </generalization>  
+  <generalization id="75">    
+    <end type="SOURCE" refId="34"/>    
+    <end type="TARGET" refId="3"/>  
+  </generalization>  
+  <generalization id="76">    
+    <end type="SOURCE" refId="34"/>    
+    <end type="TARGET" refId="14"/>  
+  </generalization>  
+  <generalization id="77">    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="9"/>  
+  </generalization>  
+  <association id="78">    
+    <end type="SOURCE" refId="28" navigable="false">      
+      <attribute id="79" name="recipes"/>      
+      <multiplicity id="80" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="24" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="81">    
+    <end type="SOURCE" refId="27" navigable="false">      
+      <attribute id="82" name="images"/>      
+      <multiplicity id="83" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="26" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="84">    
+    <end type="SOURCE" refId="19"/>    
+    <end type="TARGET" refId="9"/>  
+  </generalization>  
+  <generalization id="85">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="9"/>  
+  </generalization>  
+  <association id="86">    
+    <end type="SOURCE" refId="39" navigable="false">      
+      <attribute id="87" name="imageService"/>      
+      <multiplicity id="88" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="35" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="89">    
+    <end type="SOURCE" refId="49" navigable="false">      
+      <attribute id="90" name="second"/>      
+      <multiplicity id="91" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="24" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="92">    
+    <bendpoint x="5424" y="518"/>    
+    <bendpoint x="5363" y="1197"/>    
+    <end type="SOURCE" refId="49" navigable="false">      
+      <attribute id="93" name="recipeServiceMock"/>      
+      <multiplicity id="94" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="34" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="95">    
+    <end type="SOURCE" refId="36"/>    
+    <end type="TARGET" refId="34"/>  
+  </realization>  
+  <association id="96">    
+    <bendpoint x="5382" y="518"/>    
+    <end type="SOURCE" refId="29" navigable="false">      
+      <attribute id="97" name="user"/>      
+      <multiplicity id="98" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="27" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="99">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="10"/>  
+  </realization>  
+  <generalization id="100">    
+    <end type="SOURCE" refId="33"/>    
+    <end type="TARGET" refId="7"/>  
+  </generalization>  
+  <association id="101">    
+    <end type="SOURCE" refId="27" navigable="false">      
+      <attribute id="102" name="recipes"/>      
+      <multiplicity id="103" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="24" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="104">    
+    <bendpoint x="5290" y="518"/>    
+    <end type="SOURCE" refId="27" navigable="false">      
+      <attribute id="105" name="ratings"/>      
+      <multiplicity id="106" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="25" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="107">    
+    <end type="SOURCE" refId="20"/>    
+    <end type="TARGET" refId="14"/>  
+  </realization>  
+  <realization id="108">    
+    <end type="SOURCE" refId="33"/>    
+    <end type="TARGET" refId="35"/>  
+  </realization>  
+  <association id="109">    
+    <end type="SOURCE" refId="40" navigable="false">      
+      <attribute id="110" name="recipeService"/>      
+      <multiplicity id="111" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="34" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="112">    
+    <end type="SOURCE" refId="40" navigable="false">      
+      <attribute id="113" name="userDao"/>      
+      <multiplicity id="114" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="115">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <generalization id="116">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="9"/>  
+  </generalization>  
+  <association id="117">    
+    <end type="SOURCE" refId="23" navigable="false">      
+      <attribute id="118" name="recipe"/>      
+      <multiplicity id="119" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="24" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="120">    
+    <end type="SOURCE" refId="20"/>    
+    <end type="TARGET" refId="9"/>  
+  </generalization>  
+  <association id="121">    
+    <end type="SOURCE" refId="23" navigable="false">      
+      <attribute id="122" name="measure"/>      
+      <multiplicity id="123" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="22" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="124">    
+    <end type="SOURCE" refId="17"/>    
+    <end type="TARGET" refId="16"/>  
+  </generalization>  
+  <realization id="125">    
+    <bendpoint x="3591" y="1197"/>    
+    <end type="SOURCE" refId="19"/>    
+    <end type="TARGET" refId="8"/>  
+  </realization>  
+  <generalization id="126">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="9"/>  
+  </generalization>  
+  <generalization id="127">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="16"/>  
+  </generalization>  
+  <association id="128">    
+    <end type="SOURCE" refId="26" navigable="false">      
+      <attribute id="129" name="user"/>      
+      <multiplicity id="130" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="27" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="131">    
+    <end type="SOURCE" refId="49" navigable="false">      
+      <attribute id="132" name="first"/>      
+      <multiplicity id="133" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="24" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="134">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="2"/>  
+  </realization>  
+  <association id="135">    
+    <bendpoint x="5642" y="1197"/>    
+    <end type="SOURCE" refId="26" navigable="false">      
+      <attribute id="136" name="recipe"/>      
+      <multiplicity id="137" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="24" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="138">    
+    <bendpoint x="5621" y="1197"/>    
+    <end type="SOURCE" refId="24" navigable="false">      
+      <attribute id="139" name="images"/>      
+      <multiplicity id="140" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="26" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="141">    
+    <bendpoint x="5403" y="518"/>    
+    <end type="SOURCE" refId="27" navigable="false">      
+      <attribute id="142" name="comments"/>      
+      <multiplicity id="143" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="29" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="144">    
+    <end type="SOURCE" refId="39" navigable="false">      
+      <attribute id="145" name="userDao"/>      
+      <multiplicity id="146" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="147">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="16"/>  
+  </generalization>  
+  <realization id="148">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="16"/>  
+  </realization>  
+  <nesting id="149">    
+    <end type="SOURCE" refId="50"/>    
+    <end type="TARGET" refId="46"/>  
+  </nesting>  
+  <realization id="150">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="11"/>  
+  </realization>  
+  <association id="151">    
+    <end type="SOURCE" refId="25" navigable="false">      
+      <attribute id="152" name="recipe"/>      
+      <multiplicity id="153" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="24" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="154">    
+    <end type="SOURCE" refId="40" navigable="false">      
+      <attribute id="155" name="imageService"/>      
+      <multiplicity id="156" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="35" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="157">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="16"/>  
+  </generalization>  
+  <generalization id="158">    
+    <end type="SOURCE" refId="35"/>    
+    <end type="TARGET" refId="4"/>  
+  </generalization>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>
