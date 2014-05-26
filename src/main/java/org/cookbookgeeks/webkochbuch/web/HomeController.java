@@ -22,12 +22,16 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import org.cookbookgeeks.webkochbuch.domain.Recipe;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * Handles requests for the application home page which are not directly about recipes,
@@ -86,23 +90,24 @@ public class HomeController {
 	 */
 	@RequestMapping(method=RequestMethod.GET, value="/admin")
 	public String adminBackend() {
-		logger.debug("Returning view with contact form");
+		logger.debug("Returning view with admin info");
 		
 		return "admin";
 	}
+
 	/**
 	 * Shows the log-out view after logging out.
 	 * 
 	 * @return the view logout.jsp
-	 */
+	 
 	@RequestMapping(method=RequestMethod.GET, value="/logout")
 	public String logOut() {
 		logger.debug("Returning logout-view ");
 		
 		return "logout";
 	}
-	
-	/**
+	*/
+	/** 
 	 * Shows the access-denied view.
 	 * 
 	 * @return the view denied.jsp
@@ -114,4 +119,40 @@ public class HomeController {
 		return "denied";
 	}
 	
+	/** 
+	 * Shows the home view with parameter for login-error
+	 * 
+	 * @return the view home.jsp
+	 */
+	@RequestMapping(value="/login", method = RequestMethod.GET)
+    public String getLogin(@RequestParam(value="error", required=false) boolean error, 
+            Model model){
+
+        if (error == true) {
+            // Assign an error message
+            model.addAttribute("error", "You have entered an invalid username or password!");
+        } else {
+        	model.addAttribute("error", "");
+        }
+        return "home";
+    }
+	
+	/** 
+	 * Shows the home view with parameter for log-out
+	 * 
+	 * @return the view home.jsp
+	 */
+	@RequestMapping(value="/logout", method = RequestMethod.GET)
+    public String getLogout(@RequestParam(value="logout", required=false) boolean logout, 
+            Model model){
+
+        if (logout == true) {
+            // Assign an error message
+            model.addAttribute("logout", "You have been logged out successfull!");
+        } else {
+        	model.addAttribute("logout", "");
+        }
+        return "home";
+    }
+		
 }

@@ -4,3 +4,4 @@ target
 .project
 .springBeans
 doc
+/WebContent/

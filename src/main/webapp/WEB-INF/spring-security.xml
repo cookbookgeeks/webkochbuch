@@ -6,31 +6,43 @@
 	http://www.springframework.org/schema/security
 	http://www.springframework.org/schema/security/spring-security.xsd">
 	
+	<beans:bean id="dataSource">
+		<beans:property name="username" value="chefkoch" />
+		<beans:property name="password" value="koch" />
+	</beans:bean>
+	
 	<http auto-config="true" use-expressions="true" access-denied-page="/denied">
-		<intercept-url pattern="/admin**" access="ROLE_ADMIN" />
-		
+		<intercept-url pattern="/login" access="permitAll"/>
+  		<intercept-url pattern="/admin**" access="hasRole('ROLE_ADMIN')"/>
+  				
     <form-login 
-		    login-page="/login" 
-		    default-target-url="/" 
-			authentication-failure-url="/login?error" 
+		    login-page="/" 
+		    default-target-url="/"  
+			authentication-failure-url="/login?error=true" 
 			username-parameter="username"
 			password-parameter="password" />
     
   		<logout
+  			logout-url="/logout"
     		invalidate-session="true"
-    		logout-success-url="/logout" />
+    		logout-success-url="/logout?logout=true" 
+    		delete-cookies="JSESSIONID"
+    		/>
     		
     	<!-- enable csrf protection -->
 		<csrf/>
-		
+		<remember-me />
+        <session-management invalid-session-url="/">
+            <concurrency-control max-sessions="1" error-if-maximum-exceeded="true" />
+        </session-management>
+        
 	</http>
 
 	<authentication-manager>
 		<authentication-provider>
-			<user-service>
+		    	<user-service>
 				<user name="benutzer" password="123456" authorities="ROLE_USER" />
 				<user name="admin" password="123456" authorities="ROLE_ADMIN" />
-
 			</user-service>
 		</authentication-provider>
 	</authentication-manager>

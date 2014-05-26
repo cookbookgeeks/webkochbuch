@@ -43,7 +43,7 @@
               <h3>Kein Zugriff! </h3>
               <br /> 
                  <p>Leider haben Sie keinen Zugriff auf diese Seite. <br />
-                 Kehren Sie zurück zur <a href="<c:url value="/home" />" > Startseite</a>.</p>  
+                 Kehren Sie zurück zur <a href="<c:url value="/" />" > Startseite</a>.</p>  
 				
             </div>
             <div class="panel-footer">

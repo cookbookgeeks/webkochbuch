@@ -21,12 +21,12 @@
                   <h4 class="media-heading"><%= request.getUserPrincipal().getName() %> Langenbacher <small> Karlsruhe</small></h4>
                   <hr style="margin:8px auto">
                   <span class="label label-default">zum Profil von <c:out value="${request.getUserPrincipal().getName()}"/></span><span class="label label-default">Freunde</span>
-                  <span class="label label-info"><a href="<c:url value="/logout" />" >log out</a></span></form>
+                  <span class="label label-info"><a href="/logout" >log out</a></span></form>
                 </div>
               </div>
             </div>
             <div class="panel-footer">
-              <p class="smalltext"><a href="<c:url value="/logout" />" ><i class="fa fa-unlock-o"></i>&nbsp; log out</a></p>
+              <p class="smalltext"><a href="<c:url value="/logout?logout=true" />" ><i class="fa fa-unlock-o"></i>&nbsp; log out</a></p>
             </div>
           </div>
         </div>
@@ -37,7 +37,6 @@
    		 <div class="panel-body">
             	<c:if test="${not empty error}">
 					<div class="error">${error} 
-					<br /> Invalid username and password.
 					</div>
 				</c:if>
 				
@@ -69,3 +68,15 @@
            </div>	
     </c:otherwise>
     </c:choose>
+    
+    
+    <sec:authorize access="isAnonymous()">
+    <form method="POST" action="<c:url value='j_spring_security_check'/>">
+        Username: <input name="j_username" type="text" value="${SPRING_SECURITY_LAST_USERNAME}" /> 
+        Password: <input name="j_password" type="password" /> 
+        <input type="submit" value="Sign in" />
+    </form>
+</sec:authorize>
+<sec:authorize access="isAuthenticated()">
+    <p>Hello, ${userDetails.username}! <a href="/j_spring_security_logout">Sign Out</a></p>
+</sec:authorize>
