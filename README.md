@@ -86,3 +86,7 @@ $ git clone git@github.com:cookbookgeeks/webkochbuch.git
 ```
 
 and import the sources as a maven project into the Spring Tool Suite.
+
+## Documentation
+
+We use GitHub pages to host our javadoc files: [Official Documentation](http://cookbookgeeks.github.io/webkochbuch/)
