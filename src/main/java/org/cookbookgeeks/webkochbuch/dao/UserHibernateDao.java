@@ -30,7 +30,7 @@ import org.springframework.stereotype.Repository;
 @Repository("userDao")
 public class UserHibernateDao extends GenericHibernateDao<User, Long> implements UserDao {
 	
-	/*
+	/**
 	 * Standard constructor.
 	 */
 	public UserHibernateDao() {
