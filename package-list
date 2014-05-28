@@ -1,4 +1,6 @@
 org.cookbookgeeks.webkochbuch
+org.cookbookgeeks.webkochbuch.dao
 org.cookbookgeeks.webkochbuch.domain
+org.cookbookgeeks.webkochbuch.helper
 org.cookbookgeeks.webkochbuch.service
 org.cookbookgeeks.webkochbuch.web
