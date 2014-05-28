@@ -32,7 +32,7 @@ After that, create a database and the tables for webkochbuch:
 ```bash
 $ createdb webkochbuch_db
 $ psql webkochbuch_db
-webkochbuch_db=> \i webkochbuch_createtables_experimental.sql
+webkochbuch_db=> \i webkochbuch_createtables.sql
 webkochbuch_db=> \q
 ```
 
