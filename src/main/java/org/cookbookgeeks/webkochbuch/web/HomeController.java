@@ -18,14 +18,6 @@
 
 package org.cookbookgeeks.webkochbuch.web;
 
-<<<<<<< HEAD
-import java.text.DateFormat;
-import java.util.Date;
-import java.util.Locale;
-
-import org.cookbookgeeks.webkochbuch.domain.Recipe;
-=======
->>>>>>> e9f6e37cd46b6c8820f9976a11b521e9aa8e0596
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -83,12 +75,7 @@ public class HomeController {
 	 */
 	@RequestMapping(method=RequestMethod.GET, value="/admin")
 	public String adminBackend() {
-<<<<<<< HEAD
-		logger.debug("Returning view with admin info");
-		
-=======
 		logger.info("Returning view with contact form");
->>>>>>> e9f6e37cd46b6c8820f9976a11b521e9aa8e0596
 		return "admin";
 	}
 
