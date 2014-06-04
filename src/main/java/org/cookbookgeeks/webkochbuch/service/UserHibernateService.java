@@ -20,6 +20,7 @@ package org.cookbookgeeks.webkochbuch.service;
 
 import org.cookbookgeeks.webkochbuch.dao.UserHibernateDao;
 import org.cookbookgeeks.webkochbuch.domain.User;
+import org.springframework.stereotype.Service;
 
 /**
  * Service class for recipe related database operation. This class contains methods
@@ -28,6 +29,7 @@ import org.cookbookgeeks.webkochbuch.domain.User;
  * @author Nils Sommer
  *
  */
+@Service("userService")
 public class UserHibernateService extends UserHibernateDao implements
 		UserService {
 	

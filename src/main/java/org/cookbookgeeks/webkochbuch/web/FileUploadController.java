@@ -24,10 +24,10 @@ import java.io.FileOutputStream;
 import java.util.Date;
 
 import org.apache.commons.io.FilenameUtils;
-import org.cookbookgeeks.webkochbuch.dao.UserDao;
 import org.cookbookgeeks.webkochbuch.domain.Image;
 import org.cookbookgeeks.webkochbuch.domain.User;
 import org.cookbookgeeks.webkochbuch.service.ImageService;
+import org.cookbookgeeks.webkochbuch.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,7 +51,7 @@ public class FileUploadController {
 	private String uploadsFolder;
 	
 	@Autowired
-	private UserDao userDao;
+	private UserService userService;
 	
 	@Autowired
 	private ImageService imageService;
@@ -67,7 +67,7 @@ public class FileUploadController {
 	 */
 	private User currentUser() {
 		Long key = 0L;
-		return userDao.find(key);
+		return userService.find(key);
 	}
 	
 	/**
