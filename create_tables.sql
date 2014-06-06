@@ -190,3 +190,12 @@ GRANT USAGE ON hibernate_sequence TO wkb_app_user;
 --
 
 INSERT INTO t_users VALUES (0,'dummyuser','hashstring','dummy@example.org',now(),now());
+
+
+--
+-- Content, needed to run webkochbuch usefully.
+--
+
+INSERT INTO t_categories VALUES (0, 'Kochen');
+INSERT INTO t_categories VALUES (1, 'Backen');
+INSERT INTO t_categories VALUES (2, 'Dessert');
