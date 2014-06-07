@@ -30,6 +30,7 @@ for (int i=sitenumber*10; i<=Arraylist.length;  i++)
 
     <script src="<c:url value="/resources/js/jquery.min.js" />" type="text/javascript"></script>
     <script src="<c:url value="/resources/js/bootstrap.min.js" />" type="text/javascript"></script>
+    <script src="<c:url value="/resources/js/jquery.raty.js" />" type="text/javascript"></script>
 
 
 </head>
@@ -76,13 +77,8 @@ for (int i=sitenumber*10; i<=Arraylist.length;  i++)
                   <br>                    
                   <i>Dauer: ${recipe.preparationEndurance} min / ${recipe.totalEndurance} min Backofen</i>                    
                   </a><br>
-                  Wertung: 
-                  
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star-o"></i>
+                  	<div id="star${recipe.id}"></div>
+					
                   <p></p>
                 </div>
               </div>
@@ -131,7 +127,17 @@ for (int i=sitenumber*10; i<=Arraylist.length;  i++)
 	    
       </footer>
     </div>
-
+    	<script type="text/javascript">
+		$(document).ready(function() {
+			$("div[id^=star]").raty({
+				 
+				 readOnly   : true,	 score: 3
+				 // add method to get corret value of each recipes score 
+				 
+			});
+		});
+		
+	</script>
 </body>
 </html>
            

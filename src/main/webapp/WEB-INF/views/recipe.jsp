@@ -11,10 +11,12 @@
     <link rel="stylesheet" href="<c:url value="/resources/css/webkochbuch-main.css" />" />
     <link rel="stylesheet" href="<c:url value="/resources/css/jquery.fancybox.css"  />" />
     
+    
     <script src="<c:url value="/resources/js/jquery.min.js" />" type="text/javascript"></script>
     <script src="<c:url value="/resources/js/bootstrap.min.js" />" type="text/javascript"></script>
     <script src="<c:url value="/resources/js/jquery.fancybox.pack.js" />" type="text/javascript"></script>
-    
+    <script src="<c:url value="/resources/js/jquery.raty.js" />" type="text/javascript"></script>
+
     <script type="text/javascript">
 	    function loeschen() {
     		if(confirm("Rezept wirklich löschen?")){
@@ -61,7 +63,8 @@
                   Erstellt: <fmt:formatDate value="${recipe.creation}" pattern="dd.mm.yyyy" /> <br>
                   <i>Dauer: ${recipe.preparationEndurance} min / 
                   Gesamt: ${recipe.totalEndurance} min </i><br>
-                  Wertung:<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i><br><br>
+                  <form id="ratingform"><div id="star"></div></form>
+                  <br><br>
                   <a href="/recipe/edit/${recipe.id}"><span id="editdelete" class="label label-success"><i class="fa fa-pencil"></i>&nbsp; Rezept bearbeiten</span></a>
                   <a href="javascript:loeschen()"><span id="editdelete" class="label label-success"><i class="fa fa-pencil"></i>&nbsp; Rezept löschen</span></a>
                 </div>
@@ -69,6 +72,8 @@
               <div class="row">
                 <div class="col-md-12">
                   <p>
+
+				<br>
                   <!-- <b>Zutaten:</b><br> -->
 					
                     <b>Zubereitung:</b><br><br>
@@ -132,7 +137,14 @@
 					{
 					        padding : 0
 					});
+			$('#star').raty({
+				click: function(score, evt) {
+				   // alert('ID: ' + $(this).attr('id') + "\nscore: " + score + "\nevent: " + evt);
+				    document.getElementById('ratingform').submit();
+				  }
+			});
 		});
+		
 	</script>
 </body>
 </html>
