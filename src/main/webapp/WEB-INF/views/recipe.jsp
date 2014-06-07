@@ -1,11 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page session="false" %>
-
-<!-- 
-TODO:
-Abfrage ob User eingeloggt für rechte Sidebar
- -->
 <html>
 <head>
 	<title>Webkochbuch</title>
@@ -14,49 +9,47 @@ Abfrage ob User eingeloggt für rechte Sidebar
     <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.min.css"  />" />
     <link rel="stylesheet" href="<c:url value="/resources/css/font-awesome.css" />" />
     <link rel="stylesheet" href="<c:url value="/resources/css/webkochbuch-main.css" />" />
+    <link rel="stylesheet" href="<c:url value="/resources/css/jquery.fancybox.css"  />" />
     
     <script src="<c:url value="/resources/js/jquery.min.js" />" type="text/javascript"></script>
     <script src="<c:url value="/resources/js/bootstrap.min.js" />" type="text/javascript"></script>
-
-
+    <script src="<c:url value="/resources/js/jquery.fancybox.pack.js" />" type="text/javascript"></script>
     
     <script type="text/javascript">
-    function loeschen() {
-    if(confirm("Rezept wirklich löschen?")){
-    	location.href="/recipe/delete/${recipe.id}";
+	    function loeschen() {
+    		if(confirm("Rezept wirklich löschen?")){
+    			location.href="/recipe/delete/${recipe.id}";
+    		}
+    		else {
+	    		location.href="/recipe/${recipe.id}";
+    		}
     	}
-    else {
-    	location.href="/recipe/${recipe.id}";
-    	}
-    }
     </script>
 </head>
 <body><div class="container">
-				
 				<%@ include file="navbar.jsp" %>  
-
       </div>
       <header>
-      
       	<%@ include file="header.jsp" %>
       </header>
       <div class="row">
         <div class="col-md-3">
           <div class="panel panel-default">
           		<%@ include file="leftSB.jsp" %>
-			           
           </div>
         </div>
         <div class="col-md-6">
           <div class="panel panel-default">
 			<div class="panel-heading">
-				${recipe.title}
+				<h3>${recipe.title}</h3>
             </div>
             <div class="panel-body">
             <div class="row">
                 <div class="col-md-6">
                 <c:if test="${!recipe.images.isEmpty()}">
-                  <img src="${recipe.images.get(0).getViewUrl()}" height="200" width="200">
+                	<a class="fancybox" href="${recipe.images.get(0).getViewUrl()}" title="${recipe.title}">
+                  		<img src="${recipe.images.get(0).getViewUrl()}" alt="${recipe.title}" class="img-responsive">
+                  		</a>
                    </c:if>
                   <c:if test="${recipe.images.isEmpty()}">
                   <img src="<c:url value="/resources/images/notfound.jpg" />" width="200" height="200">
@@ -133,6 +126,13 @@ Abfrage ob User eingeloggt für rechte Sidebar
     		<%@ include file="footer.jsp" %>
       </footer>
     </div>
-
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$(".fancybox").fancybox(
+					{
+					        padding : 0
+					});
+		});
+	</script>
 </body>
 </html>

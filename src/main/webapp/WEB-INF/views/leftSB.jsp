@@ -5,7 +5,7 @@
             </div>
             <ul class="list-group">
               <li class="list-group-item"><a href="/list">Alle Rezepte</a></li>
-              <li class="list-group-item"><a href="/recipe/0">Rezept des Tages</a></li>
+              <li class="list-group-item"><a href="/recipe/100001">Rezept des Tages</a></li>
               <li class="list-group-item"><a href="/list">Kochen</a></li> <!-- Aufruf über list mit Übergabe einer Kategorienummer/-Name -->
               <li class="list-group-item"><a href="/list">Backen</a></li>
               <li class="list-group-item"><a href="/list">Desert</a></li>

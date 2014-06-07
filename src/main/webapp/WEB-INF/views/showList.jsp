@@ -61,7 +61,7 @@ for (int i=sitenumber*10; i<=Arraylist.length;  i++)
               <div class="row">
                 <div class="col-md-4">
                 	<c:if test="${!recipe.images.isEmpty()}">
-                  <img src="${recipe.images.get(0).getViewUrl()}" width="100" height="100">
+                  <img src="${recipe.images.get(0).getViewUrl()}" class="img-responsive">
                   </c:if>
                   <c:if test="${recipe.images.isEmpty()}">
                   <img src="<c:url value="/resources/images/notfound.jpg" />" width="100" height="100">
