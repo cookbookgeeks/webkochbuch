@@ -48,8 +48,6 @@ public class RecipeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(RecipeController.class);
 	
-//	@Autowired
-//	private UserDao userDao;
 	@Autowired
 	private UserService userService;
 	
