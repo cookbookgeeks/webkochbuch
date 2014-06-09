@@ -24,6 +24,7 @@ for each schleife über neugikeiten iterieren und die letzten X neuigkeiten anzei
 
     <script src="<c:url value="/resources/js/jquery.min.js" />" type="text/javascript"></script>
     <script src="<c:url value="/resources/js/bootstrap.min.js" />" type="text/javascript"></script>
+    <script src="<c:url value="/resources/js/jquery.raty.js" />" type="text/javascript"></script>
 
 </head>
 <body>
@@ -87,12 +88,7 @@ for each schleife über neugikeiten iterieren und die letzten X neuigkeiten anzei
 		                  		<br>                    
 		                  		<i>Dauer: ${recipe.preparationEndurance} min / ${recipe.totalEndurance} min Backofen</i>                    
 	                  		</a><br>
-	                  		Wertung: 
-		                  <i class="fa fa-star"></i>
-		                  <i class="fa fa-star"></i>
-		                  <i class="fa fa-star"></i>
-		                  <i class="fa fa-star"></i>
-		                  <i class="fa fa-star-o"></i>
+	                  		<div id="star${recipe.id}" data-score="${recipe.meanRating()}"></div>
 		                  <p></p>
 	               		</div>
               		</div>
@@ -118,6 +114,17 @@ for each schleife über neugikeiten iterieren und die letzten X neuigkeiten anzei
     		<%@ include file="footer.jsp" %>
       </footer>
     </div>
+    
+    <script type="text/javascript">
+		$(document).ready(function() {
+			$("div[id^=star]").raty({
+				 readOnly   : true,	 
+				 score: function() {
+					    return $(this).attr('data-score');
+				}				 
+			});
+		});
+	</script>
 
 </body>
 </html>

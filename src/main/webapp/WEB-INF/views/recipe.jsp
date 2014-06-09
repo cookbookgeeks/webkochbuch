@@ -138,10 +138,11 @@
 					        padding : 0
 					});
 			$('#star').raty({
+				score: ${recipe.meanRating()},
 				click: function(score, evt) {
 				   // alert('ID: ' + $(this).attr('id') + "\nscore: " + score + "\nevent: " + evt);
 				    document.getElementById('ratingform').submit();
-				  }
+				}
 			});
 		});
 		

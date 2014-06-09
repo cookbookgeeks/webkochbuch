@@ -77,7 +77,7 @@ for (int i=sitenumber*10; i<=Arraylist.length;  i++)
                   <br>                    
                   <i>Dauer: ${recipe.preparationEndurance} min / ${recipe.totalEndurance} min Backofen</i>                    
                   </a><br>
-                  	<div id="star${recipe.id}"></div>
+                  	<div id="star${recipe.id}" data-score="${recipe.meanRating()}"></div>
 					
                   <p></p>
                 </div>
@@ -121,22 +121,18 @@ for (int i=sitenumber*10; i<=Arraylist.length;  i++)
     
     <div class="container">
       <footer>
-    	
-    		<%@ include file="footer.jsp" %>
-		
-	    
+    	<%@ include file="footer.jsp" %>
       </footer>
     </div>
-    	<script type="text/javascript">
+    <script type="text/javascript">
 		$(document).ready(function() {
 			$("div[id^=star]").raty({
-				 
-				 readOnly   : true,	 score: 3
-				 // add method to get corret value of each recipes score 
-				 
+				 readOnly   : true,	 
+				 score: function() {
+					    return $(this).attr('data-score');
+				}				 
 			});
 		});
-		
 	</script>
 </body>
 </html>
