@@ -98,6 +98,12 @@ public class Recipe implements Serializable {
 	@JoinColumn(name = "user_id")
 	private User user;
 	
+	@OneToMany(mappedBy="recipe")
+	private List<Rating> ratings;
+	
+	@OneToMany(mappedBy="recipe")
+	private List<Comment> comments;
+	
 	/**
 	 * Standard Constructor.
 	 */
@@ -277,6 +283,35 @@ public class Recipe implements Serializable {
 	 */
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	/**
+	 * @return the ratings
+	 */
+	public List<Rating> getRatings() {
+		return ratings;
+	}
+
+	/**
+	 * @return the comments
+	 */
+	public List<Comment> getComments() {
+		return comments;
+	}
+	
+	/**
+	 * Get the mean value of all ratings.
+	 * 
+	 * @return the mean value of all ratings
+	 */
+	public float meanRating() {
+		int sum = 0;
+		
+		for(Rating rating : ratings) {
+			sum += rating.getRating();
+		}
+		
+		return (float) sum / ratings.size();
 	}
 	
 }
