@@ -304,14 +304,18 @@ public class Recipe implements Serializable {
 	 * 
 	 * @return the mean value of all ratings
 	 */
-	public float meanRating() {
+	public int meanRating() {
 		int sum = 0;
+		
+		if(0 == ratings.size()) {
+			return 0;
+		}
 		
 		for(Rating rating : ratings) {
 			sum += rating.getRating();
 		}
 		
-		return (float) sum / ratings.size();
+		return (int) sum / ratings.size();
 	}
 	
 }
