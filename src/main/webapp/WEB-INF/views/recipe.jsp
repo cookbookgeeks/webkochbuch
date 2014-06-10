@@ -65,13 +65,12 @@
                   Gesamt: ${recipe.totalEndurance} min </i><br>
                   <form id="ratingform" method="GET" action="/recipe/${recipe.id}/rating"><div id="star"></div></form>
                   <br><br>
-                  <!-- Should show error, if rating failed. However, this does not work yet. TODO.
-                  <c:if test="${not empty ratingError}">
-                  	<c:if test="${true == ratingError }">
+                  <c:if test="${!ratingError.isEmpty()}">
+                  	<c:if test="${param.ratingError == true}">
                   		Bewertung fehlgeschlagen!
                   	</c:if>
                   </c:if>
-                  -->
+                  <!-- -->
                   <a href="/recipe/edit/${recipe.id}"><span id="editdelete" class="label label-success"><i class="fa fa-pencil"></i>&nbsp; Rezept bearbeiten</span></a>
                   <a href="javascript:loeschen()"><span id="editdelete" class="label label-success"><i class="fa fa-pencil"></i>&nbsp; Rezept löschen</span></a>
                 </div>
