@@ -63,8 +63,15 @@
                   Erstellt: <fmt:formatDate value="${recipe.creation}" pattern="dd.mm.yyyy" /> <br>
                   <i>Dauer: ${recipe.preparationEndurance} min / 
                   Gesamt: ${recipe.totalEndurance} min </i><br>
-                  <form id="ratingform"><div id="star"></div></form>
+                  <form id="ratingform" method="GET" action="/recipe/${recipe.id}/rating"><div id="star"></div></form>
                   <br><br>
+                  <!-- Should show error, if rating failed. However, this does not work yet. TODO.
+                  <c:if test="${not empty ratingError}">
+                  	<c:if test="${true == ratingError }">
+                  		Bewertung fehlgeschlagen!
+                  	</c:if>
+                  </c:if>
+                  -->
                   <a href="/recipe/edit/${recipe.id}"><span id="editdelete" class="label label-success"><i class="fa fa-pencil"></i>&nbsp; Rezept bearbeiten</span></a>
                   <a href="javascript:loeschen()"><span id="editdelete" class="label label-success"><i class="fa fa-pencil"></i>&nbsp; Rezept löschen</span></a>
                 </div>
