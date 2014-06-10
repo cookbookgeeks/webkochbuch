@@ -24,9 +24,11 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.cookbookgeeks.webkochbuch.domain.Image;
+import org.cookbookgeeks.webkochbuch.domain.Rating;
 import org.cookbookgeeks.webkochbuch.domain.Recipe;
 import org.cookbookgeeks.webkochbuch.domain.User;
 import org.cookbookgeeks.webkochbuch.service.ImageService;
+import org.cookbookgeeks.webkochbuch.service.RatingService;
 import org.cookbookgeeks.webkochbuch.service.RecipeService;
 import org.cookbookgeeks.webkochbuch.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,6 +58,9 @@ public class RecipeController {
 	
 	@Autowired
 	private ImageService imageService;
+	
+	@Autowired
+	private RatingService ratingService;
 	
 	/**
 	 * Because user management isn't implemented yet, this helper method will return a manually created
@@ -210,6 +215,40 @@ public class RecipeController {
 
 		model.addAttribute("recipe", recipe);	
 		return "editRecipe";
+	}
+	
+	/**
+	 * Adds a new rating from the current user to a recipe.
+	 * 
+	 * @param model model the view extracts its data from
+	 * @param id id of the rated recipe
+	 * @param score score of the rating
+	 * @return the single site view of the recipe
+	 */
+	@RequestMapping(method=RequestMethod.GET, value="/recipe/{id}/rating")
+	public String rating(Model model, @PathVariable("id") long id, @RequestParam("score") int score) {
+		// Invalid score value?
+		if(0 >= score || 5 < score) {
+			logger.warn("Invalid rating score value.");
+			model.addAttribute("ratingError", new Boolean(true));
+			return "redirect:/recipe/" + id;
+		}
+		
+		final Recipe recipe = recipeService.find(id);
+		final Date now = new Date();
+		final Rating rating = new Rating(this.currentUser(), recipe, score, now, now);
+		
+		// TODO: Check, if the current user already rated the recipe and deny it if it applies.
+		
+		// Adding rating failed?
+		if(null == ratingService.add(rating)) {
+			logger.warn("Adding rating to recipe failed.");
+			model.addAttribute("ratingError", new Boolean(true));
+			return "redirect:/recipe/" + id;
+		}
+		
+		model.addAttribute("ratingError", new Boolean(false));
+		return "redirect:/recipe/" + id;
 	}
 	
 }
