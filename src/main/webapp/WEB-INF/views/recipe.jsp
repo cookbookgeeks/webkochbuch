@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ page session="false" %>
 <html>
 <head>
@@ -16,6 +17,7 @@
     <script src="<c:url value="/resources/js/bootstrap.min.js" />" type="text/javascript"></script>
     <script src="<c:url value="/resources/js/jquery.fancybox.pack.js" />" type="text/javascript"></script>
     <script src="<c:url value="/resources/js/jquery.raty.js" />" type="text/javascript"></script>
+    <script src="<c:url value="/resources/js/tinymce/tinymce.min.js" />" type="text/javascript"></script>
 
     <script type="text/javascript">
 	    function loeschen() {
@@ -115,8 +117,73 @@
 					  </a>
 					</div>
 				</c:if>
-                </div>
+				
+				<!-- Comment Container -->
+				<!--  TODO: insert method to fetch comments and iterate with c:foreach through all comments -->
+				<div class="container">
+				    <div class="row">
+				        <div class="panel panel-default widget">
+				            <div class="panel-heading">
+				                
+				                <h3 class="panel-title"><span class="glyphicon glyphicon-comment"></span>
+				                    Benutzer-Kommentare</h3>
+				            </div>
+				            <div class="panel-body">
+				                <ul class="list-group">
+				                   
+				                   
+				                    <li class="list-group-item">
+				                        <div class="row">
+				                            <div class="col-xs-2 col-md-1">
+				                                <img src="http://placehold.it/80" class="img-circle img-responsive" alt="" /></div> 
+				                                <!--  profile-pic if possible-->
+				                            <div class="col-xs-10 col-md-11">
+				                                <div>
+				                                    <div class="mic-info">
+				                                        By: <a href="#">Bhaumik Patel(username)</a> on 11 Nov 2013(timestamp)
+				                                    </div>
+				                                </div>
+				                                <div class="comment-text">(comment-text)
+				                                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh
+				                                    euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim
+				                                </div>
+				                                <div class="action">
+				                                    <button type="button" class="btn btn-primary btn-xs" title="Edit">
+				                                        <span class="glyphicon glyphicon-pencil"></span>
+				                                    </button>
+				                                    <button type="button" class="btn btn-success btn-xs" title="Approved">
+				                                        <span class="glyphicon glyphicon-ok"></span>
+				                                    </button>
+				                                    <button type="button" class="btn btn-danger btn-xs" title="Delete">
+				                                        <span class="glyphicon glyphicon-trash"></span>
+				                                    </button>
+				                                </div>
+				                            </div>
+				                        </div>
+				                    </li>
+				                    
+				                    
+				                </ul>
+				                <a href="javascript:location.reload()" class="btn btn-success btn-primary btn-sm btn-block" role="button"><span class="glyphicon glyphicon-refresh"></span>aktualisieren</a>
+				            </div>
+				        </div>
+				    </div>
+			</div>
+				<!--  Comment Container End -->
+				
+				<!--  TODO: insert right form with saveUrl and iterate with c:foreach through all comments -->
+							<div class="form-group">							
+								<c:url var="saveUrl" value="/comment/adddata" /> 
+								<form>
+									 <textarea  rows="3"
+													class="form-control" ></textarea></td>
+									<input type="submit" value="Save" class="btn btn-success btn-block" />
+								</form>
+							</div>
+
+						</div>
               </div>
+              
             </div>
             
             <div class="panel-footer">
@@ -150,8 +217,32 @@
 				    document.getElementById('ratingform').submit();
 				}
 			});
+			tinymce.init({
+			    selector: "textarea",
+			    	theme: "modern",
+			        //width: 300,
+			        //height: 300,
+			        menubar:false,
+			        statusbar: false,
+			        language : 'de',
+			        fontsize_formats: "8pt 10pt 12pt 14pt 18pt 24pt 36pt",
+			        plugins: [
+								"advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker",
+								"searchreplace  visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
+								"save table contextmenu directionality emoticons template paste textcolor"
+
+			       ],
+			       toolbar: " undo redo  | bold italic  | bullist numlist outdent indent | forecolor emoticons", 
+			       style_formats: [
+			            {title: 'Bold text', inline: 'b'},
+			            {title: 'Big header', block: 'h1', styles: {color: '#000000'}},
+			            {title: 'Example 1', inline: 'span', classes: 'example1'},
+			            {title: 'Example 2', inline: 'span', classes: 'example2'},
+			            
+			        ]
+
+			 });
 		});
-		
 	</script>
 </body>
 </html>
