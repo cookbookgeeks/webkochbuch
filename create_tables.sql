@@ -199,3 +199,17 @@ INSERT INTO t_users VALUES (0,'dummyuser','hashstring','dummy@example.org',now()
 INSERT INTO t_categories VALUES (0, 'Kochen');
 INSERT INTO t_categories VALUES (1, 'Backen');
 INSERT INTO t_categories VALUES (2, 'Dessert');
+
+--
+-- standard measures
+--
+
+INSERT INTO t_measures VALUES (100001, 'TL');
+INSERT INTO t_measures VALUES (100002, 'EL');
+INSERT INTO t_measures VALUES (100004, 'kG');
+INSERT INTO t_measures VALUES (100003, 'gr');
+INSERT INTO t_measures VALUES (100005, 'ml');
+INSERT INTO t_measures VALUES (100006, 'L');
+INSERT INTO t_measures VALUES (100007, 'Tasse');
+INSERT INTO t_measures VALUES (100008, 'Prise');
+INSERT INTO t_measures VALUES (100009, 'Portion');
