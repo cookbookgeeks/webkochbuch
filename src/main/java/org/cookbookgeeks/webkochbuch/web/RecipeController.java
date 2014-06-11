@@ -23,10 +23,12 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.cookbookgeeks.webkochbuch.domain.Comment;
 import org.cookbookgeeks.webkochbuch.domain.Image;
 import org.cookbookgeeks.webkochbuch.domain.Rating;
 import org.cookbookgeeks.webkochbuch.domain.Recipe;
 import org.cookbookgeeks.webkochbuch.domain.User;
+import org.cookbookgeeks.webkochbuch.service.CommentService;
 import org.cookbookgeeks.webkochbuch.service.ImageService;
 import org.cookbookgeeks.webkochbuch.service.RatingService;
 import org.cookbookgeeks.webkochbuch.service.RecipeService;
@@ -61,6 +63,9 @@ public class RecipeController {
 	
 	@Autowired
 	private RatingService ratingService;
+	
+	@Autowired
+	private CommentService commentService;
 	
 	/**
 	 * Because user management isn't implemented yet, this helper method will return a manually created
@@ -226,7 +231,7 @@ public class RecipeController {
 	 * @return the single site view of the recipe
 	 */
 	@RequestMapping(method=RequestMethod.GET, value="/recipe/{id}/rating")
-	public String rating(Model model, @PathVariable("id") long id, @RequestParam("score") int score) {
+	public String rate(Model model, @PathVariable("id") long id, @RequestParam("score") int score) {
 		// Invalid score value?
 		if(0 >= score || 5 < score) {
 			logger.warn("Invalid rating score value.");
@@ -248,6 +253,28 @@ public class RecipeController {
 		}
 		
 		model.addAttribute("ratingError", new Boolean(false));
+		return "redirect:/recipe/" + id;
+	}
+	
+	/**
+	 * Adds a new comment from the current user to the recipe.
+	 * 
+	 * @param id id of the recipe the comment belongs to
+	 * @param commentText text of the comment
+	 * @return the single page view of the recipe
+	 */
+	@RequestMapping(method=RequestMethod.POST, value="/recipe/{id}/comment")
+	public String comment(@PathVariable("id") long id, @RequestParam("comment") String commentText) {
+		// comment string empty, don't do anything.
+		if(commentText.isEmpty()) {
+			return "redirect:/recipe/" + id;
+		}
+		
+		final Recipe recipe = recipeService.find(id);
+		final Date now = new Date();
+		final Comment comment = new Comment(commentText, this.currentUser(), recipe, now, now);
+		commentService.add(comment);
+		
 		return "redirect:/recipe/" + id;
 	}
 	
