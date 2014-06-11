@@ -122,7 +122,6 @@
 				</c:if>
 				
 				<!-- Comment Container -->
-				<!--  TODO: insert method to fetch comments and iterate with c:foreach through all comments -->
 				<div class="container">
 				    <div class="row">
 				        <div class="panel panel-default widget">
@@ -133,9 +132,9 @@
 				            </div>
 				            <div class="panel-body">
 				                <ul class="list-group">
-				                   
-				                   
-				                    <li class="list-group-item">
+				                   <c:forEach var="comment" items="${recipe.comments}">
+						    			
+						    			<li class="list-group-item">
 				                        <div class="row">
 				                            <div class="col-xs-2 col-md-1">
 				                                <img src="http://placehold.it/80" class="img-circle img-responsive" alt="" /></div> 
@@ -143,14 +142,13 @@
 				                            <div class="col-xs-10 col-md-11">
 				                                <div>
 				                                    <div class="mic-info">
-				                                        By: <a href="#">Bhaumik Patel(username)</a> on 11 Nov 2013(timestamp)
+				                                        By: <a href="#">${comment.user.userName}</a> on <fmt:formatDate value="${comment.creation}" pattern="dd.mm.yyyy" /> 
 				                                    </div>
 				                                </div>
-				                                <div class="comment-text">(comment-text)
-				                                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh
-				                                    euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim
+				                                <div class="comment-text">${comment.comment}
 				                                </div>
 				                                <div class="action">
+				                                <!-- show the control-buttons only fpr ADMIN users? or for comment owners? -->
 				                                    <button type="button" class="btn btn-primary btn-xs" title="Edit">
 				                                        <span class="glyphicon glyphicon-pencil"></span>
 				                                    </button>
@@ -163,10 +161,9 @@
 				                                </div>
 				                            </div>
 				                        </div>
-				                    </li>
-				                    
-				                    
-				                </ul>
+				                    </li>				                
+					    			</c:forEach>
+					    		</ul>
 				                <a href="javascript:location.reload()" class="btn btn-success btn-primary btn-sm btn-block" role="button"><span class="glyphicon glyphicon-refresh"></span>aktualisieren</a>
 				            </div>
 				        </div>
@@ -174,14 +171,14 @@
 			</div>
 				<!--  Comment Container End -->
 				
-				<!--  TODO: insert right form with saveUrl and iterate with c:foreach through all comments -->
+				
 							<div class="form-group">							
-								<c:url var="saveUrl" value="/comment/adddata" /> 
-								<form>
+								<c:url var="saveComUrl" value="/recipe/${recipe.id}/comment" />
+								<form:form id="commentForm" modelAttribute="recipe" method="POST" action="${saveComUrl}">
 									 <textarea  rows="3"
-													class="form-control" ></textarea></td>
+													class="form-control" name="comment" path="comment"></textarea></td>
 									<input type="submit" value="Save" class="btn btn-success btn-block" />
-								</form>
+								</form:form>
 							</div>
 
 						</div>
