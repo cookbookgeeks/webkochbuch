@@ -65,6 +65,9 @@
                   Erstellt: <fmt:formatDate value="${recipe.creation}" pattern="dd.mm.yyyy" /> <br>
                   <i>Dauer: ${recipe.preparationEndurance} min / 
                   Gesamt: ${recipe.totalEndurance} min </i><br>
+                  <c:if test="${recipe.ratings.size() > 0}">
+                  	${recipe.ratings.size()} Bewertungen
+                  </c:if>
                   <form id="ratingform" method="GET" action="/recipe/${recipe.id}/rating"><div id="star"></div></form>
                   <br><br>
                   <c:if test="${!ratingError.isEmpty()}">
