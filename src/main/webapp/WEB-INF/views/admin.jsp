@@ -45,7 +45,7 @@
               <p><u>Funktion mit abgefragtem Usernamen:</u></p>
               	<c:if test="${pageContext.request.userPrincipal.name != null}">
 					<h3>Username : ${pageContext.request.userPrincipal.name} 
-                 | <a href="<c:url value="/logout" />" > Logout</a></h3>  
+                 | <a href="<c:url value="/j_spring_security_logout" />" > Logout</a></h3>  
 				</c:if>
             </div>
             <div class="panel-footer">

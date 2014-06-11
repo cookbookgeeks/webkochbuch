@@ -271,8 +271,9 @@
 		</dependency>
 	</dependencies>
 
-	<build>
+	<build>	
 		<defaultGoal>install</defaultGoal>
+		<pluginManagement>
 		<plugins>
 			<plugin>
 				<artifactId>maven-eclipse-plugin</artifactId>
@@ -396,5 +397,6 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		</pluginManagement>
 	</build>
 </project>

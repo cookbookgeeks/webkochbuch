@@ -3,13 +3,11 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page session="false" %>
 
-
+<c:url value="/logout" var="logoutUrl" />
 
 <sec:authorize var="loggedIn" access="isAuthenticated()" />
 
-	<c:choose>
-    	<c:when test="${loggedIn}">		
-	
+    	<sec:authorize access="isAuthenticated()">			
     			<!-- 
 				TODO:
 				* User Object empfangen und anschließend auf diesem Objekt Bild, Namen, usw abfragen und anzeigen
@@ -21,19 +19,19 @@
                   <h4 class="media-heading"><%= request.getUserPrincipal().getName() %> Langenbacher <small> Karlsruhe</small></h4>
                   <hr style="margin:8px auto">
                   <span class="label label-default">zum Profil von <c:out value="${request.getUserPrincipal().getName()}"/></span><span class="label label-default">Freunde</span>
-                  <span class="label label-info"><a href="/logout" >log out</a></span></form>
+                  <span class="label label-info"><a href="${logoutUrl}">Log Out</a></span></form>
                 </div>
               </div>
             </div>
             <div class="panel-footer">
-              <p class="smalltext"><a href="<c:url value="/logout?logout=true" />" ><i class="fa fa-unlock-o"></i>&nbsp; log out</a></p>
+              <p class="smalltext"><a href="<c:url value="${logoutUrl}" />" ><i class="fa fa-unlock-o"></i>&nbsp; log out</a></p>
             </div>
           </div>
         </div>
     			
-    	</c:when>
+    </sec:authorize>
 	
-    <c:otherwise>
+    <sec:authorize access="isAnonymous()">
    		 <div class="panel-body">
             	<c:if test="${not empty error}">
 					<div class="error">${error} 
@@ -48,14 +46,14 @@
 				  action="<c:url value='j_spring_security_check' />" accept-charset="UTF-8" method="POST">
                 <fieldset>
                   <div class="form-group">
-                    <input class="form-control" path="email" placeholder="E-mail" name="username" type="text" autofocus>
+                    <input class="form-control" path="email" placeholder="E-mail" value="${SPRING_SECURITY_LAST_USERNAME}" name="username" type="text" autofocus>
                   </div>
                   <div class="form-group">
                     <input class="form-control" path="password" placeholder="Password" name="password" type="password">
                   </div>
                   <div class="checkbox">
                     <label>
-                      <input name="remember" value="Remember Me" type="checkbox">Remember Me</label>
+                      <input id="_spring_security_remember_me" name="_spring_security_remember_me"  type="checkbox">remember me</label>	
                   </div>
                   <input class="btn btn-lg btn-success btn-block" value="Login" type="submit">
                   <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
@@ -63,20 +61,4 @@
               </form>
               <p class="smalltext"><br>not registered? <a href="#">sing up!</a></p>
             </div>
-            <div class="panel-footer">
-              <p class="smalltext">log out</p>
-           </div>	
-    </c:otherwise>
-    </c:choose>
-    
-    
-    <sec:authorize access="isAnonymous()">
-    <form method="POST" action="<c:url value='j_spring_security_check'/>">
-        Username: <input name="j_username" type="text" value="${SPRING_SECURITY_LAST_USERNAME}" /> 
-        Password: <input name="j_password" type="password" /> 
-        <input type="submit" value="Sign in" />
-    </form>
-</sec:authorize>
-<sec:authorize access="isAuthenticated()">
-    <p>Hello, ${userDetails.username}! <a href="/j_spring_security_logout">Sign Out</a></p>
-</sec:authorize>
+    </sec:authorize>

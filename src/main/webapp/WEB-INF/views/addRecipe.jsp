@@ -37,7 +37,7 @@
         </div>
         <div class="col-md-6">
           <div class="panel panel-default">
-					<div class="panel-heading">Rezept bearbeiten
+					<div class="panel-heading"> <b>Rezept erstellen</b>
             </div>
             <div class="panel-body">
 <div class="form-group">
@@ -95,11 +95,31 @@
    <td><form:label path="totalEndurance">Gesamtzeit(min):</form:label></td>
    <td><form:input path="totalEndurance" class="form-control"/></td>
   </tr>
+  
+  <tr>
+   <td>
+   		<form:label path="incredients">Zutaten:</form:label></td>
+   <td>
+		<div id="dynamisch"></div>
+		   
+   		<form:input path="ammount" class="form-control"/>
+   		<form:select path="measure" class="form-control">
+   			<form:options items="${measures}" itemLabel="getName"/>
+    	</form:select>
+    	<form:input path="incredient" class="form-control"/>
+   </td>
+  </tr> 
+  <tr>
+  	<td>
+  		<input type="button" value="-" onClick="minus();" class="btn btn-success btn-xs">
+  		<input type="button" value="+" onClick="plus();"class="btn btn-success btn-xs">
+  	</td>
+  </tr>
    
   <tr>
-   <td><form:label path="content">Inhalt:</form:label></td>
+   <td><form:label path="content">Zubereitung:</form:label></td>
    <td>
-   <form:textarea path="content" cols="50" rows="10"  class="form-control"/> 
+   <form:textarea path="content"  class="form-control"/> 
    </td>
   </tr>
  
@@ -191,6 +211,31 @@
 
 	});</script>
 	
+	<script>
+	// Formularfelder dynamisch hinzufügen
+	
+	var feld = 1;
+	
+	function plus() {
+	 if (feld <= 10) {
+	  document.getElementById("dynamisch").innerHTML +=
+	  "<p><label>Wunsch " + feld + ": <input type='text' name='wunsch_" + feld + "'></label></p>";
+	  //prüfen ob hier auch felder mit c:options eingefügt werden können 
+	  feld++;
+	 }
+	}
+	
+	function minus() {
+	 if (feld > 1) {
+	  feld--;
+	  document.getElementById("dynamisch").innerHTML = "";
+	  for (var zaehler = 1; zaehler < feld; zaehler++) {
+	    document.getElementById("dynamisch").innerHTML +=
+	     "<p>Wunsch " + zaehler + ": <input type='text' name='wunsch_" + zaehler + "'></p>";
+	  }
+	 }
+	}
+	</script>
 	      
 </body>
 </html>

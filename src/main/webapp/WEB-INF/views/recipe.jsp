@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page session="false" %>
 <html>
 <head>
@@ -148,16 +149,17 @@
 				                                <div class="comment-text">${comment.comment}
 				                                </div>
 				                                <div class="action">
-				                                <!-- show the control-buttons only fpr ADMIN users? or for comment owners? -->
-				                                    <button type="button" class="btn btn-primary btn-xs" title="Edit">
+				                                <sec:authorize ifAnyGranted="ROLE_ADMIN">
+				                                    <a class="btn btn-primary btn-xs" title="Edit">
 				                                        <span class="glyphicon glyphicon-pencil"></span>
-				                                    </button>
-				                                    <button type="button" class="btn btn-success btn-xs" title="Approved">
+				                                    </a>
+				                                    <a class="btn btn-success btn-xs" title="Approved">
 				                                        <span class="glyphicon glyphicon-ok"></span>
-				                                    </button>
-				                                    <button type="button" class="btn btn-danger btn-xs" title="Delete">
+				                                    </a>
+				                                    <a class="btn btn-danger btn-xs" title="Delete" href="location.href="/comment/${comment.id}/delete">
 				                                        <span class="glyphicon glyphicon-trash"></span>
-				                                    </button>
+				                                    </a>
+				                                    </sec:authorize>
 				                                </div>
 				                            </div>
 				                        </div>
