@@ -18,9 +18,6 @@
 			password-parameter="password" />
     	
     	<logout logout-success-url="/" logout-url="/logout" />
-    		
-    	<!-- enable csrf protection -->
-		
          <remember-me/>
 	</http>
 

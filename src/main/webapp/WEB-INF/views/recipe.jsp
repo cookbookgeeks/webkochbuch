@@ -150,13 +150,13 @@
 				                                </div>
 				                                <div class="action">
 				                                <sec:authorize ifAnyGranted="ROLE_ADMIN">
-				                                    <a class="btn btn-primary btn-xs" title="Edit">
+				                                    <a class="btn btn-primary btn-xs" title="Edit" href="comment/edit/${comment.id}">
 				                                        <span class="glyphicon glyphicon-pencil"></span>
 				                                    </a>
 				                                    <a class="btn btn-success btn-xs" title="Approved">
 				                                        <span class="glyphicon glyphicon-ok"></span>
 				                                    </a>
-				                                    <a class="btn btn-danger btn-xs" title="Delete" href="location.href="/comment/${comment.id}/delete">
+				                                    <a class="btn btn-danger btn-xs" title="Delete" href="comment/delete/${comment.id}">
 				                                        <span class="glyphicon glyphicon-trash"></span>
 				                                    </a>
 				                                    </sec:authorize>
