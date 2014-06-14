@@ -104,6 +104,9 @@ public class Recipe implements Serializable {
 	@OneToMany(mappedBy="recipe")
 	private List<Comment> comments;
 	
+	@OneToMany(mappedBy="recipe")
+	private List<Ingredient> ingredients;
+	
 	/**
 	 * Standard Constructor.
 	 */
@@ -297,6 +300,13 @@ public class Recipe implements Serializable {
 	 */
 	public List<Comment> getComments() {
 		return comments;
+	}
+	
+	/**
+	 * @return the ingredients
+	 */
+	public List<Ingredient> getIngredients() {
+		return ingredients;
 	}
 	
 	/**
