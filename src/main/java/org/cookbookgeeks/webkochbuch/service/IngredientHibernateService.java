@@ -66,4 +66,19 @@ public class IngredientHibernateService extends IngredientHibernateDao
 			this.update(ingredient);
 		}
 	}
+	
+	/** {@inheritDoc} */
+	public List<Ingredient> find(List<Long> ids) {
+		final List<Ingredient> ingredients = new ArrayList<Ingredient>();
+		
+		for(Long id : ids) {
+			final Ingredient ingredient = this.find(id);
+			if(null != ingredient) {
+				ingredients.add(ingredient);
+			}
+		}
+		
+		return ingredients;
+	}
+	
 }
