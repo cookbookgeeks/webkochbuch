@@ -60,4 +60,10 @@ public class IngredientHibernateService extends IngredientHibernateDao
 		return ids;
 	}
 
+	/** {@inheritDoc} */
+	public void update(List<Ingredient> ingredients) {
+		for(Ingredient ingredient : ingredients) {
+			this.update(ingredient);
+		}
+	}
 }

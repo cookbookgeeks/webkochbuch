@@ -42,5 +42,12 @@ public interface IngredientService extends IngredientDao {
 	 * @return list of ids from the added ingredients
 	 */
 	public List<Long> add(List<Ingredient> ingredients);
+	
+	/**
+	 * Update a list of ingredients.
+	 * 
+	 * @param ingredients ingredients to update.
+	 */
+	public void update(List<Ingredient> ingredients);
 
 }
