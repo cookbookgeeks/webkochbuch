@@ -46,6 +46,7 @@ public class RecipeHibernateService extends RecipeHibernateDao implements Recipe
 		recipe.setContent(updated.getContent());
 		recipe.setPreparationEndurance(updated.getPreparationEndurance());
 		recipe.setTotalEndurance(updated.getTotalEndurance());
+		recipe.setCategory(updated.getCategory());
 		recipe.setModification(updated.getModification());
 		super.update(recipe);
 	}
