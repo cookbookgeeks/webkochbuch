@@ -211,10 +211,18 @@ public class RecipeController {
 	 */
 	@RequestMapping(method=RequestMethod.POST, value="/recipe/editdata")
 	public String editRecipe(@ModelAttribute("recipe") Recipe recipe,
-			@RequestParam(value = "ids", required = false) List<Long> ids) {
+			@RequestParam(value = "ids", required = false) List<Long> ids,
+			@RequestParam(value="amount", required=false) List<Double> amounts,
+			@RequestParam(value="measure", required=false) List<Long> measureIds,
+			@RequestParam(value="ingredientName", required=false) List<String> ingredientNames,
+			@RequestParam(value="ingredientId", required=false) List<Long> ingredientIds,
+			@RequestParam(value="amountNew", required=false) List<Double> newAmounts,
+			@RequestParam(value="measureNew", required=false) List<Long> newMeasureIds,
+			@RequestParam(value="ingredientNameNew", required=false) List<String> newIngredientNames) {
 		logger.info("Editing recipe with id " + recipe.getId() + ".");
 		
-		recipe.setModification(new Date());
+		final Date now = new Date();
+		recipe.setModification(now);
 		
 		// Update recipe.
 		recipeService.update(recipe);
@@ -226,7 +234,19 @@ public class RecipeController {
 				imageService.setRecipeRelation(image, recipe);
 			}
 		}
-
+		
+		// Update existing ingredients
+		this.updateIngredients(ingredientIds, amounts, measureIds, ingredientNames, now);
+		
+		
+		// Add new ingredients
+		final List<Ingredient> newIngredients = this.instantiateIngredients(newAmounts, newMeasureIds,
+				newIngredientNames, recipe, now, now);
+		if(newIngredients != null) {
+			logger.info("Persisting ingredients ...");
+			ingredientService.add(newIngredients);
+		}
+		
 		return "redirect:/recipe/" + recipe.getId();
 	}
 	
@@ -244,8 +264,12 @@ public class RecipeController {
 			logger.debug("Recipe with id " + id + " does not exist!");
 			return "recipeNotFound";
 		}
-
+		
 		model.addAttribute("recipe", recipe);	
+		
+		// Add measures list, to offer them in dropdown fields.
+		model.addAttribute("measures", measureService.findAll());
+		
 		return "editRecipe";
 	}
 	
@@ -320,6 +344,10 @@ public class RecipeController {
 	 */
 	private List<Ingredient> instantiateIngredients(List<Double> amounts,
 			List<Long> measureIds, List<String> names, Recipe recipe, Date creation, Date modification) {
+		if(null == amounts || null == measureIds || null == names) {
+			return null;
+		}
+		
 		if(amounts.size() != measureIds.size() || amounts.size() != names.size()) {
 			// lists are of different size
 			return null;
@@ -336,6 +364,35 @@ public class RecipeController {
 		return ingredients;
 	}
 	
-	
+	/**
+	 * Updates a list of ingredients.
+	 * 
+	 * @param ids ids of the ingredients to update.
+	 * @param amounts list of amount numbers
+	 * @param measureIds list of ids of measures
+	 * @param names list of names
+	 * @param modification modification date
+	 */
+	private void updateIngredients(List<Long> ids, List<Double> amounts,
+			List<Long> measureIds, List<String> names, Date modification) {
+		if(null == ids || null == amounts || null == measureIds || null == names) {
+			return;
+		}
+		
+		if(amounts.size() != measureIds.size() || amounts.size() != names.size() 
+				|| amounts.size() != ids.size()) {
+			return;
+		}
+		
+		for(int i = 0; i < ids.size(); i++) {
+			final Ingredient ingredient = ingredientService.find(ids.get(i));
+			ingredient.setAmount(amounts.get(i));
+			ingredient.setMeasure(measureService.find(measureIds.get(i)));
+			ingredient.setName(names.get(i));
+			ingredient.setModification(modification);
+			ingredientService.update(ingredient);
+		}
+		
+	}
 	
 }

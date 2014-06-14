@@ -96,6 +96,29 @@
    <td><form:label path="totalEndurance">Gesamtzeit:</form:label></td>
    <td><form:input path="totalEndurance" class="form-control"/></td>
   </tr>
+  
+  <tr>
+   <td>
+   		<b>Zutaten:</b>
+   </td>
+   <td>
+   <c:forEach items="${recipe.ingredients}" var="ingredient">
+	   		<input name="amount" class="form-control" type="number" length="4" value="${ingredient.amount}" />
+	   		<select name="measure" class="form-control">
+	   			<c:forEach items="${measures}" var="measure">
+	   				<option value="${measure.id}"
+	   				<c:if test="${measure.id == ingredient.measure.id}">selected</c:if>
+	   				>${measure.name}</option>
+	   			</c:forEach>
+	    	</select>
+	    	<input name="ingredientName" class="form-control" length="100" value="${ingredient.name}" />
+	    	<input name="ingredientId" type="hidden" value="${ingredient.id}">
+	</c:forEach>
+	<div id="dynamisch"></div>
+  		<input type="button" value="-" onClick="minus();" class="btn btn-success btn-xs">
+	  	<input type="button" value="+" onClick="plus();"class="btn btn-success btn-xs">
+  	</td>
+  </tr>
    
   <tr>
    <td><form:label path="content">Inhalt:</form:label></td>
@@ -189,7 +212,43 @@
 
 	 });
 
-	});</script>
+	});
+    
+	// Formularfelder dynamisch hinzufügen
+	
+	var feld = 1;
+	
+	function plus() {
+	 if (feld <= 10) {
+	  document.getElementById("dynamisch").innerHTML +=
+		"<input name='amountNew' class='form-control' type='number' length='4' placeholder='Anzahl' />\
+ 		<select name='measureNew' class='form-control'>\
+ 			<c:forEach items='${measures}' var='measure'>\
+ 				<option value='${measure.id}'>${measure.name}</option>\
+ 			</c:forEach>\
+  		</select>\
+  		<input name='ingredientNameNew' class='form-control' length='100' placeholder='Zutat' />";
+	  feld++;
+	 }
+	}
+	
+	function minus() {
+	 if (feld > 1) {
+	  feld--;
+	  document.getElementById("dynamisch").innerHTML = "";
+	  for (var zaehler = 1; zaehler < feld; zaehler++) {
+	    document.getElementById("dynamisch").innerHTML +=
+			"<input name='amountNew' class='form-control' type='number' length='4' placeholder='Anzahl' />\
+	 		<select name='measureNew' class='form-control'>\
+	 			<c:forEach items='${measures}' var='measure'>\
+	 				<option value='${measure.id}'>${measure.name}</option>\
+	 			</c:forEach>\
+	  		</select>\
+	  		<input name='ingredientNameNew' class='form-control' length='100' placeholder='Zutat' />";
+	  }
+	 }
+	}
+    </script>
 </body>
 </html>
 
