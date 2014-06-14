@@ -6,9 +6,9 @@
             <ul class="list-group">
               <li class="list-group-item"><a href="/list">Alle Rezepte</a></li>
               <li class="list-group-item"><a href="/recipe/100001">Rezept des Tages</a></li>
-              <li class="list-group-item"><a href="/list">Kochen</a></li> <!-- Aufruf über list mit Übergabe einer Kategorienummer/-Name -->
-              <li class="list-group-item"><a href="/list">Backen</a></li>
-              <li class="list-group-item"><a href="/list">Desert</a></li>
+              <li class="list-group-item"><a href="/category/0">Kochen</a></li>
+              <li class="list-group-item"><a href="/category/1">Backen</a></li>
+              <li class="list-group-item"><a href="/category/2">Desert</a></li>
               <li class="list-group-item"><a href="/recipe/add">Rezept erstellen</a></li>
             </ul>
             <div class="panel-footer">

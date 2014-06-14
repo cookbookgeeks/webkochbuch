@@ -45,10 +45,9 @@ Abfrage ob User eingeloggt für rechte Sidebar
             <h4>Ver&uuml;gbare Kategorien:</h4>
             </p>
             <ul>
-            	<a href="/category/0"><li class="">Kochen</li></a>
-            	<a href="/category/1"><li class="">Backen</li></a>
-            	<a href="/category/2"><li class="">Desert</li></a>
-            	
+            <c:forEach items="${categories}" var="category">
+            	<a href="/category/${category.id}"><li class="">${category.name}</li></a>
+			</c:forEach>
             </ul>
             </div>
             <div class="panel-footer">
