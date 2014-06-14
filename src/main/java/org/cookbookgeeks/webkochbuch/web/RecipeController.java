@@ -305,36 +305,6 @@ public class RecipeController {
 		return "redirect:/recipe/" + id;
 	}
 	
-	/**
-	 * Adds a new 
-	 * 
-	 * @param name
-	 * @param amount
-	 * @param measureId
-	 * @param recipeId
-	 * @return
-	 */
-	@RequestMapping(method=RequestMethod.GET, value="/recipe/addingredient")
-	public @ResponseBody String addIngredient(@RequestParam("name") String name, 
-			@RequestParam("amount") double amount, @RequestParam("measureId") long measureId,
-			@RequestParam("recipeId") long recipeId) {
-		final Measure measure = measureService.find(measureId);
-		final Recipe recipe = recipeService.find(recipeId);
-		if(null == measure || null == recipe) {
-			return "null";
-		}
-		
-		final Date now = new Date();
-		final Ingredient ingredient = new Ingredient(name, measure, amount, recipe, now, now);
-		final Long id = ingredientService.add(ingredient);
-		
-		if(null == id) {
-			return "null";
-		}
-		
-		return "";
-	}
-	
 	// ######### Helpers: #########
 	
 	/**
