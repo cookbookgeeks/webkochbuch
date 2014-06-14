@@ -97,6 +97,17 @@
   </tr>
   
   <tr>
+  <td><label for="categoryInput">Kategorie</label></td>
+  <td>
+  	<select name="categoryInput">
+  		<c:forEach items="${categories}" var="category">
+  			<option value="${category.id}">${category.name}</option>
+  		</c:forEach>
+  	</select>
+  </td>
+  </tr>
+  
+  <tr>
    <td>
    		<b>Zutaten:</b>
    </td>

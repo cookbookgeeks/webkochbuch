@@ -24,6 +24,7 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.cookbookgeeks.webkochbuch.domain.Category;
 import org.cookbookgeeks.webkochbuch.domain.Comment;
 import org.cookbookgeeks.webkochbuch.domain.Image;
 import org.cookbookgeeks.webkochbuch.domain.Ingredient;
@@ -31,6 +32,7 @@ import org.cookbookgeeks.webkochbuch.domain.Measure;
 import org.cookbookgeeks.webkochbuch.domain.Rating;
 import org.cookbookgeeks.webkochbuch.domain.Recipe;
 import org.cookbookgeeks.webkochbuch.domain.User;
+import org.cookbookgeeks.webkochbuch.service.CategoryService;
 import org.cookbookgeeks.webkochbuch.service.CommentService;
 import org.cookbookgeeks.webkochbuch.service.ImageService;
 import org.cookbookgeeks.webkochbuch.service.IngredientService;
@@ -78,6 +80,9 @@ public class RecipeController {
 	
 	@Autowired
 	private IngredientService ingredientService;
+	
+	@Autowired
+	private CategoryService categoryService;
 	
 	/**
 	 * Because user management isn't implemented yet, this helper method will return a manually created
@@ -138,6 +143,7 @@ public class RecipeController {
 	 */
 	@RequestMapping(method=RequestMethod.POST, value="/recipe/adddata")
 	public String addRecipe(@ModelAttribute("recipe") Recipe recipe, 
+			@RequestParam(value = "categoryInput") Long categoryId,
 			@RequestParam(value = "ids", required = false) List<Long> ids,
 			@RequestParam(value="amount", required=false) List<Double> amounts,
 			@RequestParam(value="measure", required=false) List<Long> measureIds,
@@ -145,12 +151,16 @@ public class RecipeController {
 		logger.info("Adding new recipe with images.");
 		
 		// Current date.
-		Date now = new Date();
+		final Date now = new Date();
 		recipe.setCreation(now);
 		recipe.setModification(now);
 		
 		// Set user to dummy user:
 		recipe.setUser(this.currentUser());
+		
+		// Set category
+		final Category category = categoryService.find(categoryId);
+		recipe.setCategory(category);
 		
 		recipeService.add(recipe);
 		
@@ -181,10 +191,8 @@ public class RecipeController {
 	public String addForm(Model model) {
 		logger.info("Returning addRecipe view.");
 		model.addAttribute("recipe", new Recipe());
-		
-		// Add measures list, to offer them in dropdown fields.
 		model.addAttribute("measures", measureService.findAll());
-		
+		model.addAttribute("categories", categoryService.findAll());
 		return "addRecipe";
 	}
 	
@@ -212,6 +220,7 @@ public class RecipeController {
 	@RequestMapping(method=RequestMethod.POST, value="/recipe/editdata")
 	public String editRecipe(@ModelAttribute("recipe") Recipe recipe,
 			@RequestParam(value = "ids", required = false) List<Long> ids,
+			@RequestParam(value = "categoryInput") Long categoryId,
 			@RequestParam(value="amount", required=false) List<Double> amounts,
 			@RequestParam(value="measure", required=false) List<Long> measureIds,
 			@RequestParam(value="ingredientName", required=false) List<String> ingredientNames,
@@ -223,6 +232,11 @@ public class RecipeController {
 		
 		final Date now = new Date();
 		recipe.setModification(now);
+		
+		// Set category
+		final Category category = categoryService.find(categoryId);
+		logger.info("==== category: " + categoryId + " ===" + category.getId());
+		recipe.setCategory(category);
 		
 		// Update recipe.
 		recipeService.update(recipe);
@@ -266,9 +280,8 @@ public class RecipeController {
 		}
 		
 		model.addAttribute("recipe", recipe);	
-		
-		// Add measures list, to offer them in dropdown fields.
 		model.addAttribute("measures", measureService.findAll());
+		model.addAttribute("categories", categoryService.findAll());
 		
 		return "editRecipe";
 	}
