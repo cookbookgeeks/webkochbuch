@@ -98,21 +98,19 @@
   
   <tr>
    <td>
-   		<form:label path="incredients">Zutaten:</form:label></td>
-   <td>
-		<div id="dynamisch"></div>
-		   
-   		<form:input path="ammount" class="form-control"/>
-   		<form:select path="measure" class="form-control">
-   			<form:options items="${measures}" itemLabel="getName"/>
-    	</form:select>
-    	<form:input path="incredient" class="form-control"/>
+   		<b>Zutaten:</b>
    </td>
-  </tr> 
-  <tr>
-  	<td>
+   <td>
+	   		<input name="amount" class="form-control" type="number" length="4" placeholder="Anzahl" />
+	   		<select name="measure" class="form-control">
+	   			<c:forEach items="${measures}" var="measure">
+	   				<option value="${measure.id}">${measure.name}</option>
+	   			</c:forEach>
+	    	</select>
+	    	<input name="ingredientName" class="form-control" length="100" placeholder="Zutat" />
+	    <div id="dynamisch"></div>
   		<input type="button" value="-" onClick="minus();" class="btn btn-success btn-xs">
-  		<input type="button" value="+" onClick="plus();"class="btn btn-success btn-xs">
+	  	<input type="button" value="+" onClick="plus();"class="btn btn-success btn-xs">
   	</td>
   </tr>
    
@@ -219,8 +217,13 @@
 	function plus() {
 	 if (feld <= 10) {
 	  document.getElementById("dynamisch").innerHTML +=
-	  "<p><label>Wunsch " + feld + ": <input type='text' name='wunsch_" + feld + "'></label></p>";
-	  //prüfen ob hier auch felder mit c:options eingefügt werden können 
+		"<input name='amount' class='form-control' type='number' length='4' placeholder='Anzahl' />\
+ 		<select name='measure' class='form-control'>\
+ 			<c:forEach items='${measures}' var='measure'>\
+ 				<option value='${measure.id}'>${measure.name}</option>\
+ 			</c:forEach>\
+  		</select>\
+  		<input name='ingredientName' class='form-control' length='100' placeholder='Zutat' />";
 	  feld++;
 	 }
 	}
@@ -231,7 +234,13 @@
 	  document.getElementById("dynamisch").innerHTML = "";
 	  for (var zaehler = 1; zaehler < feld; zaehler++) {
 	    document.getElementById("dynamisch").innerHTML +=
-	     "<p>Wunsch " + zaehler + ": <input type='text' name='wunsch_" + zaehler + "'></p>";
+			"<input name='amount' class='form-control' type='number' length='4' placeholder='Anzahl' />\
+	 		<select name='measure' class='form-control'>\
+	 			<c:forEach items='${measures}' var='measure'>\
+	 				<option value='${measure.id}'>${measure.name}</option>\
+	 			</c:forEach>\
+	  		</select>\
+	  		<input name='ingredientName' class='form-control' length='100' placeholder='Zutat' />";
 	  }
 	 }
 	}

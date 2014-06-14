@@ -18,6 +18,7 @@
 
 package org.cookbookgeeks.webkochbuch.web;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -25,11 +26,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.cookbookgeeks.webkochbuch.domain.Comment;
 import org.cookbookgeeks.webkochbuch.domain.Image;
+import org.cookbookgeeks.webkochbuch.domain.Ingredient;
+import org.cookbookgeeks.webkochbuch.domain.Measure;
 import org.cookbookgeeks.webkochbuch.domain.Rating;
 import org.cookbookgeeks.webkochbuch.domain.Recipe;
 import org.cookbookgeeks.webkochbuch.domain.User;
 import org.cookbookgeeks.webkochbuch.service.CommentService;
 import org.cookbookgeeks.webkochbuch.service.ImageService;
+import org.cookbookgeeks.webkochbuch.service.IngredientService;
+import org.cookbookgeeks.webkochbuch.service.MeasureService;
 import org.cookbookgeeks.webkochbuch.service.RatingService;
 import org.cookbookgeeks.webkochbuch.service.RecipeService;
 import org.cookbookgeeks.webkochbuch.service.UserService;
@@ -41,6 +46,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * @author Nils Sommer
@@ -66,6 +72,12 @@ public class RecipeController {
 	
 	@Autowired
 	private CommentService commentService;
+	
+	@Autowired
+	private MeasureService measureService;
+	
+	@Autowired
+	private IngredientService ingredientService;
 	
 	/**
 	 * Because user management isn't implemented yet, this helper method will return a manually created
@@ -126,12 +138,16 @@ public class RecipeController {
 	 */
 	@RequestMapping(method=RequestMethod.POST, value="/recipe/adddata")
 	public String addRecipe(@ModelAttribute("recipe") Recipe recipe, 
-			@RequestParam(value = "ids", required = false) List<Long> ids) {
+			@RequestParam(value = "ids", required = false) List<Long> ids,
+			@RequestParam(value="amount", required=false) List<Double> amounts,
+			@RequestParam(value="measure", required=false) List<Long> measureIds,
+			@RequestParam(value="ingredientName", required=false) List<String> ingredientNames) {
 		logger.info("Adding new recipe with images.");
 		
 		// Current date.
-		recipe.setCreation(new Date());
-		recipe.setModification(recipe.getCreation());
+		Date now = new Date();
+		recipe.setCreation(now);
+		recipe.setModification(now);
 		
 		// Set user to dummy user:
 		recipe.setUser(this.currentUser());
@@ -146,6 +162,13 @@ public class RecipeController {
 			}
 		}
 		
+		// Add ingredients
+		List<Ingredient> ingredients = this.instantiateIngredients(amounts, measureIds, ingredientNames, recipe, now, now);
+		if(ingredients != null) {
+			logger.info("Persisting ingredients ...");
+			ingredientService.add(ingredients);
+		}
+		
 		return "redirect:/recipe/" + recipe.getId();
 	}
 	
@@ -158,6 +181,10 @@ public class RecipeController {
 	public String addForm(Model model) {
 		logger.info("Returning addRecipe view.");
 		model.addAttribute("recipe", new Recipe());
+		
+		// Add measures list, to offer them in dropdown fields.
+		model.addAttribute("measures", measureService.findAll());
+		
 		return "addRecipe";
 	}
 	
@@ -277,5 +304,68 @@ public class RecipeController {
 		
 		return "redirect:/recipe/" + id;
 	}
+	
+	/**
+	 * Adds a new 
+	 * 
+	 * @param name
+	 * @param amount
+	 * @param measureId
+	 * @param recipeId
+	 * @return
+	 */
+	@RequestMapping(method=RequestMethod.GET, value="/recipe/addingredient")
+	public @ResponseBody String addIngredient(@RequestParam("name") String name, 
+			@RequestParam("amount") double amount, @RequestParam("measureId") long measureId,
+			@RequestParam("recipeId") long recipeId) {
+		final Measure measure = measureService.find(measureId);
+		final Recipe recipe = recipeService.find(recipeId);
+		if(null == measure || null == recipe) {
+			return "null";
+		}
+		
+		final Date now = new Date();
+		final Ingredient ingredient = new Ingredient(name, measure, amount, recipe, now, now);
+		final Long id = ingredientService.add(ingredient);
+		
+		if(null == id) {
+			return "null";
+		}
+		
+		return "";
+	}
+	
+	// ######### Helpers: #########
+	
+	/**
+	 * Helper class that instantiates a list of ingredients.
+	 * 
+	 * @param amounts amount numbers of the ingredients
+	 * @param measureIds ids of the measures of the ingredients
+	 * @param names names of the ingredients
+	 * @param recipe recipe the ingredients belong to
+	 * @param creation time of creation of the ingredients
+	 * @param modification time of modification of the ingredients
+	 * @return list of ingredients
+	 */
+	private List<Ingredient> instantiateIngredients(List<Double> amounts,
+			List<Long> measureIds, List<String> names, Recipe recipe, Date creation, Date modification) {
+		if(amounts.size() != measureIds.size() || amounts.size() != names.size()) {
+			// lists are of different size
+			return null;
+		}
+		
+		final List<Ingredient> ingredients = new ArrayList<Ingredient>();
+		
+		for(int i = 0; i < amounts.size(); i++) {
+			final Ingredient ingredient = new Ingredient(names.get(i), measureService.find(measureIds.get(i)),
+					amounts.get(i), recipe, creation, modification);
+			ingredients.add(ingredient);
+		}
+		
+		return ingredients;
+	}
+	
+	
 	
 }
