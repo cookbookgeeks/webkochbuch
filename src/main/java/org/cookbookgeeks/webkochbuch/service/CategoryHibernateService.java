@@ -20,6 +20,7 @@ package org.cookbookgeeks.webkochbuch.service;
 
 import org.cookbookgeeks.webkochbuch.dao.CategoryHibernateDao;
 import org.cookbookgeeks.webkochbuch.domain.Category;
+import org.springframework.stereotype.Service;
 
 /**
  * Service class for category related database operations. This class contains methods
@@ -28,6 +29,7 @@ import org.cookbookgeeks.webkochbuch.domain.Category;
  * @author Nils Sommer
  *
  */
+@Service("categoryService")
 public class CategoryHibernateService extends CategoryHibernateDao implements
 		CategoryService {
 	
