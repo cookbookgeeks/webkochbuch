@@ -18,6 +18,8 @@
 
 package org.cookbookgeeks.webkochbuch.service;
 
+import java.util.List;
+
 import org.cookbookgeeks.webkochbuch.dao.IngredientDao;
 import org.cookbookgeeks.webkochbuch.domain.Ingredient;
 
@@ -32,5 +34,13 @@ public interface IngredientService extends IngredientDao {
 	/** {@inheritDoc} */
 	@Override
 	public void update(Ingredient updated);
+	
+	/**
+	 * Persists a list of ingredients.
+	 * 
+	 * @param ingredients ingredients to add
+	 * @return list of ids from the added ingredients
+	 */
+	public List<Long> add(List<Ingredient> ingredients);
 
 }

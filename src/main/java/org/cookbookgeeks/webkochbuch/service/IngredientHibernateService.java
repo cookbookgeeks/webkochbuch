@@ -18,6 +18,9 @@
 
 package org.cookbookgeeks.webkochbuch.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.cookbookgeeks.webkochbuch.dao.IngredientHibernateDao;
 import org.cookbookgeeks.webkochbuch.domain.Ingredient;
 import org.springframework.stereotype.Service;
@@ -43,6 +46,18 @@ public class IngredientHibernateService extends IngredientHibernateDao
 		ingredient.setAmount(updated.getAmount());
 		ingredient.setModification(updated.getModification());
 		super.update(ingredient);
+	}
+	
+	/** {@inheritDoc} */
+	public List<Long> add(List<Ingredient> ingredients) {
+		final List<Long> ids = new ArrayList<Long>();
+		
+		for(Ingredient ingredient : ingredients) {
+			final Long id = this.add(ingredient);
+			ids.add(id);
+		}
+		
+		return ids;
 	}
 
 }
