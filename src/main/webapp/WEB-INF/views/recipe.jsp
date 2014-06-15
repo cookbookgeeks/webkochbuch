@@ -78,17 +78,28 @@
                   	</c:if>
                   </c:if>
                   <!-- -->
+                  <sec:authorize ifAnyGranted="ROLE_ADMIN, ROLE_USER">
                   <a href="/recipe/edit/${recipe.id}"><span id="editdelete" class="label label-success"><i class="fa fa-pencil"></i>&nbsp; Rezept bearbeiten</span></a>
                   <a href="javascript:loeschen()"><span id="editdelete" class="label label-success"><i class="fa fa-pencil"></i>&nbsp; Rezept löschen</span></a>
+                  </sec:authorize>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-12">
                   <p>
-
-				<br>
-                  <!-- <b>Zutaten:</b><br> -->
-					
+                  <hr>
+                  <br>
+                  <b>Zutaten:</b><br>
+                  <table>
+	                  <c:forEach var="ingredient" items="${recipe.ingredients }">
+	                  	<tr>
+	                  		<td>${ingredient.amount }</td><td>${ingredient.measure }</td><td>${ingredient.name }</td>
+	                  	</tr>
+	                  </c:forEach>
+                  </table>
+                  <br>
+					<hr>
+					<br>
                     <b>Zubereitung:</b><br><br>
                     ${recipe.content}
 					</p>
@@ -175,13 +186,14 @@
 				<!--  Comment Container End -->
 				
 				
-							<div class="form-group">							
+							<div class="form-group"> <sec:authorize ifAnyGranted="ROLE_ADMIN, ROLE_USER">							
 								<c:url var="saveComUrl" value="/recipe/${recipe.id}/comment" />
 								<form:form id="commentForm" modelAttribute="recipe" method="POST" action="${saveComUrl}">
 									 <textarea  rows="3"
 													class="form-control" name="comment" path="comment"></textarea></td>
 									<input type="submit" value="Save" class="btn btn-success btn-block" />
 								</form:form>
+								</sec:authorize>
 							</div>
 
 						</div>
@@ -215,6 +227,9 @@
 					});
 			$('#star').raty({
 				score: ${recipe.meanRating()},
+				<sec:authorize ifNotGranted="ROLE_ADMIN, ROLE_USER">
+				readOnly   : true,
+				</sec:authorize>
 				click: function(score, evt) {
 				   // alert('ID: ' + $(this).attr('id') + "\nscore: " + score + "\nevent: " + evt);
 				    document.getElementById('ratingform').submit();
