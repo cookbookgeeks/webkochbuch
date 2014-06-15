@@ -90,12 +90,21 @@
                   <hr>
                   <br>
                   <b>Zutaten:</b><br>
-                  <table>
+                  <table class=table table-hover table-responsive">
+                  <thead>
+			        <tr>
+			          <th>Menge</th>
+			          <th>Einheit</th>
+			          <th>Zutat</th>
+			        </tr>
+                  </thead>
+                  <tbody>
 	                  <c:forEach var="ingredient" items="${recipe.ingredients }">
 	                  	<tr>
 	                  		<td>${ingredient.amount }</td><td>${ingredient.measure.name }</td><td>${ingredient.name }</td>
 	                  	</tr>
 	                  </c:forEach>
+	              </tbody>
                   </table>
                   <br>
 					<hr>
