@@ -93,7 +93,7 @@
                   <table>
 	                  <c:forEach var="ingredient" items="${recipe.ingredients }">
 	                  	<tr>
-	                  		<td>${ingredient.amount }</td><td>${ingredient.measure }</td><td>${ingredient.name }</td>
+	                  		<td>${ingredient.amount }</td><td>${ingredient.measure.name }</td><td>${ingredient.name }</td>
 	                  	</tr>
 	                  </c:forEach>
                   </table>

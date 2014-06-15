@@ -9,7 +9,9 @@
               <li class="list-group-item"><a href="/category/0">Kochen</a></li>
               <li class="list-group-item"><a href="/category/1">Backen</a></li>
               <li class="list-group-item"><a href="/category/2">Desert</a></li>
+              <sec:authorize ifAnyGranted="ROLE_ADMIN, ROLE_USER">
               <li class="list-group-item"><a href="/recipe/add">Rezept erstellen</a></li>
+              </sec:authorize>
             </ul>
             <div class="panel-footer">
               <div class=" input-group">
