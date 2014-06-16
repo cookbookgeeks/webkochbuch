@@ -44,6 +44,7 @@ public class CategoryController {
 	public String category(Model model, @PathVariable("id") long id) {
 		final Category category = categoryService.find(id);
 		model.addAttribute("recipes", category.getRecipes());
+		model.addAttribute("heading", "Kategorie: " + categoryService.find(id).getName());
 		return "showList";
 	}
 	

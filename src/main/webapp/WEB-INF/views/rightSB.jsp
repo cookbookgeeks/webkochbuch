@@ -16,7 +16,7 @@
               <div class="media">
                 <a href="#">                <img class="media-object dp img-circle" src="<c:url value="/resources/images/test_keks.jpg" />" style="width: 80px;height:80px;">            </a>
                 <div class="media-body">
-                  <h4 class="media-heading"><%= request.getUserPrincipal().getName() %> Langenbacher <small> Karlsruhe</small></h4>
+                  <h4 class="media-heading"><%= request.getUserPrincipal().getName() %><small> Karlsruhe</small></h4>
                   <hr style="margin:8px auto">
                   <span class="label label-default">zum Profil von <c:out value="${request.getUserPrincipal().getName()}"/></span><span class="label label-default">Freunde</span>
                   <span class="label label-info"><a href="${logoutUrl}">Log Out</a></span></form>

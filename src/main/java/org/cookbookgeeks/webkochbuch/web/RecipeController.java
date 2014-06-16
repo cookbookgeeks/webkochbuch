@@ -40,6 +40,8 @@ import org.cookbookgeeks.webkochbuch.service.RatingService;
 import org.cookbookgeeks.webkochbuch.service.RecipeService;
 import org.cookbookgeeks.webkochbuch.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -83,15 +85,14 @@ public class RecipeController {
 	private CategoryService categoryService;
 	
 	/**
-	 * Because user management isn't implemented yet, this helper method will return a manually created
-	 * dummy user entry from the database. As soon as user management is completely implemented,
-	 * this will be replaced with a method that returns the currently logged in user.
+	 * Returns the user currently logged on.
 	 * 
-	 * @return dummy user object
+	 * @return current user
 	 */
 	private User currentUser() {
-		Long key = 0L;
-		return userService.find(key);
+		final Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		final User user = userService.getByUserName(auth.getName());
+		return user;
 	}
 	
 	/**
@@ -122,13 +123,19 @@ public class RecipeController {
 	 * @return the view showList.jsp
 	 */
 	@RequestMapping(method=RequestMethod.GET, value="/list")
-	public String listRecipes(Model model) {
+	public String listRecipes(Model model, @RequestParam(value = "heading", required = false) String heading) {
 		logger.info("Returning view with list of all recipes");
 		List<Recipe> recipes = recipeService.findAll();
 		
 		if(recipes != null) {
 			model.addAttribute("recipes", recipes);
 		}
+		
+		if(null == heading) {
+			heading = "Alle Rezepte";
+		}
+		
+		model.addAttribute("heading", heading);
 		return "showList";
 	}
 	

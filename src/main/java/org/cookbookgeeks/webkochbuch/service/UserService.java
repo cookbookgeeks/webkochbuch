@@ -32,5 +32,14 @@ public interface UserService extends UserDao {
 	/** {@inheritDoc} */
 	@Override
 	public void update(User updated);
+	
+	/**
+	 * Gets an user by its username.
+	 * Username has to be unique.
+	 * 
+	 * @param userName username of the user to get
+	 * @return the user
+	 */
+	public User getByUserName(String userName);
 
 }
