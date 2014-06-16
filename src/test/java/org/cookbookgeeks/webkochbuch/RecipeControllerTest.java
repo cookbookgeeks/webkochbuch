@@ -17,6 +17,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -28,6 +29,7 @@ import org.springframework.web.context.WebApplicationContext;
 import static org.hamcrest.Matchers.*;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -58,82 +60,42 @@ public class RecipeControllerTest {
 	 }
 	 
 	 @Test
-	 public void getRecipe() throws Exception
+	 public void getRecipeFail() throws Exception
 	 {
 		 this.mockMvc.perform(get("/recipe/0"))
+		 	.andExpect(status().isOk())
+		 	.andExpect(view().name("recipeNotFound"));
+	 }
+	 
+	 @Test
+	 public void getRecipe() throws Exception
+	 {
+		 this.mockMvc.perform(get("/recipe/100000"))
 		 	.andExpect(status().isOk())
 		 	.andExpect(view().name("recipe"));
 	 }
 	 
-
- 
 	 @Test
-	 public void findAllRecipes() throws Exception {
- 	
-       first = new Recipe();
-       first.setId(1);
-       first.setTitle("Rezept 1");
-       first.setDescription("Beschreibung 1");
-       first.setContent("Beschreibung 1");
-       first.setDescription("Blah fasel");
-       first.setPreparationEndurance(20);
-       first.setTotalEndurance(30);
-       first.setCreation(new Date());
-       
-       second = new Recipe();
-       second.setId(1);
-       second.setTitle("Rezept 2");
-       second.setDescription("Beschreibung 2");
-       second.setContent("Beschreibung 2");
-       second.setDescription("Blah fasel 2");
-       second.setPreparationEndurance(41);
-       second.setTotalEndurance(50);
-       second.setCreation(new Date());
-       
-       when(recipeServiceMock.getAll()).thenReturn(Arrays.asList(first, second));
-       
-       mockMvc.perform(get("/list"))
-       	.andExpect(status().isOk())
-       	.andExpect(view().name("showList"));
-       
-       
-	 }    
- 
-	 
-	 @Test
-	 public void createRecipes(){
-	    		
+	 public void getList() throws Exception
+	 {
+		 this.mockMvc.perform(get("/list"))
+		 	.andExpect(status().isOk())
+		 	.andExpect(view().name("showList"));
 	 }
-	 
+ 
 	 @Test
-	 public void deleteTestRecipes(){
+	 public void addRecipe() throws Exception
+	 {
+		 this.mockMvc.perform(get("/recipe/add"))
+		 	.andExpect(status().isOk())
+		 	.andExpect(view().name("addRecipe"));
 		 
+//		 this.mockMvc.perform(post("/recipe/adddata")
+//				 .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+//				 .param("categoryInput", "1"))
+//				 .andExpect(status().isOk());
 	 }
-	
-//	private MockMvc mockMvc;
-//
-//	Recipe first, second;
-//	
-////    @Autowired
-////    private RecipeService recipeServiceMock;
-//	
-//	
-////	@Resource(name="recipeService")
-////	private RecipeService recipeServiceMock;
-//	
-//    @Autowired
-//    private WebApplicationContext webApplicationContext;
-//
-//
-//    @Before
-//    public void setUp() {
-//        //We have to reset our mock between tests because the mock objects
-//        //are managed by the Spring container. If we would not reset them,
-//        //stubbing and verified behavior would "leak" from one test to another.
-////        Mockito.reset(recipeServiceMock);
-//
-////        mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
-//        
+	 
 
 
 		
