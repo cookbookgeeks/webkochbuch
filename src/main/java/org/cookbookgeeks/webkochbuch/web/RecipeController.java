@@ -28,7 +28,6 @@ import org.cookbookgeeks.webkochbuch.domain.Category;
 import org.cookbookgeeks.webkochbuch.domain.Comment;
 import org.cookbookgeeks.webkochbuch.domain.Image;
 import org.cookbookgeeks.webkochbuch.domain.Ingredient;
-import org.cookbookgeeks.webkochbuch.domain.Measure;
 import org.cookbookgeeks.webkochbuch.domain.Rating;
 import org.cookbookgeeks.webkochbuch.domain.Recipe;
 import org.cookbookgeeks.webkochbuch.domain.User;
@@ -48,7 +47,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * @author Nils Sommer
