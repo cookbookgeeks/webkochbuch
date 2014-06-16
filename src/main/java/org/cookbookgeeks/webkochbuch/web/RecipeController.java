@@ -40,6 +40,8 @@ import org.cookbookgeeks.webkochbuch.service.RatingService;
 import org.cookbookgeeks.webkochbuch.service.RecipeService;
 import org.cookbookgeeks.webkochbuch.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -83,15 +85,14 @@ public class RecipeController {
 	private CategoryService categoryService;
 	
 	/**
-	 * Because user management isn't implemented yet, this helper method will return a manually created
-	 * dummy user entry from the database. As soon as user management is completely implemented,
-	 * this will be replaced with a method that returns the currently logged in user.
+	 * Returns the user currently logged on.
 	 * 
-	 * @return dummy user object
+	 * @return current user
 	 */
 	private User currentUser() {
-		Long key = 0L;
-		return userService.find(key);
+		final Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		final User user = userService.getByUserName(auth.getName());
+		return user;
 	}
 	
 	/**
