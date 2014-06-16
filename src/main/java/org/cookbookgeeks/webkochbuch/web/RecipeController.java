@@ -122,13 +122,19 @@ public class RecipeController {
 	 * @return the view showList.jsp
 	 */
 	@RequestMapping(method=RequestMethod.GET, value="/list")
-	public String listRecipes(Model model) {
+	public String listRecipes(Model model, @RequestParam(value = "heading", required = false) String heading) {
 		logger.info("Returning view with list of all recipes");
 		List<Recipe> recipes = recipeService.findAll();
 		
 		if(recipes != null) {
 			model.addAttribute("recipes", recipes);
 		}
+		
+		if(null == heading) {
+			heading = "Alle Rezepte";
+		}
+		
+		model.addAttribute("heading", heading);
 		return "showList";
 	}
 	

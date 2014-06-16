@@ -53,8 +53,7 @@ for (int i=sitenumber*10; i<=Arraylist.length;  i++)
         <div class="col-md-6">
           <div class="panel panel-default">
  
-            <div class="panel-heading">Suchterm oder Kategorie
-            </div>
+            <div class="panel-heading">${heading}</div>
             <div class="panel-body">
               
               <c:forEach items="${recipes}" var="recipe">
