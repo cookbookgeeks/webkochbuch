@@ -18,8 +18,12 @@
 
 package org.cookbookgeeks.webkochbuch.service;
 
+import java.util.List;
+
 import org.cookbookgeeks.webkochbuch.dao.UserHibernateDao;
 import org.cookbookgeeks.webkochbuch.domain.User;
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Service;
 
 /**
@@ -41,6 +45,18 @@ public class UserHibernateService extends UserHibernateDao implements
 		user.setEmail(updated.getEmail());
 		user.setModification(updated.getModification());
 		super.update(user);
+	}
+	
+	/** {@inheritDoc} */
+	public User getByUserName(String userName) {
+		final Criteria criteria = currentSession().createCriteria(User.class);
+		criteria.add(Restrictions.eq("userName", userName));
+		@SuppressWarnings("unchecked")
+		final List<User> result = criteria.list();
+		if(1 != result.size()) {
+			return null;
+		}
+		return result.get(0);
 	}
 
 }
