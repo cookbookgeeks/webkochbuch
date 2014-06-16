@@ -155,6 +155,11 @@ public class RecipeController {
 			@RequestParam(value="ingredientName", required=false) List<String> ingredientNames) {
 		logger.info("Adding new recipe with images.");
 		
+		if(null == currentUser()) {
+			logger.info("No authorized user.");
+			return "home";
+		}
+		
 		// Current date.
 		final Date now = new Date();
 		recipe.setCreation(now);
@@ -194,6 +199,10 @@ public class RecipeController {
 	 */
 	@RequestMapping(method=RequestMethod.GET, value="/recipe/add")
 	public String addForm(Model model) {
+		if(null == currentUser()) {
+			logger.info("No authorized user.");
+			return "home";
+		}
 		logger.info("Returning addRecipe view.");
 		model.addAttribute("recipe", new Recipe());
 		model.addAttribute("measures", measureService.findAll());
@@ -209,6 +218,15 @@ public class RecipeController {
 	 */
 	@RequestMapping(method=RequestMethod.GET, value="/recipe/delete/{id}")
 	public String deleteRecipe(@PathVariable("id") long id) {
+		if(null == currentUser()) {
+			logger.info("No authorized user.");
+			return "home";
+		}
+		if(currentUser() != recipeService.find(id).getUser()) {
+			logger.info("User " + currentUser().getUserName() + "cannot delete recipe."
+					+ "User has to be the owner of the recipe to delete it");
+			return "redirect:/recipe/" + id;
+		}
 		logger.info("Deleting recipe with id " + id + ".");
 		Recipe recipe = recipeService.find(id);
 		recipeService.delete(recipe);
@@ -233,6 +251,10 @@ public class RecipeController {
 			@RequestParam(value="amountNew", required=false) List<Double> newAmounts,
 			@RequestParam(value="measureNew", required=false) List<Long> newMeasureIds,
 			@RequestParam(value="ingredientNameNew", required=false) List<String> newIngredientNames) {
+		if(null == currentUser()) {
+			logger.info("No authorized user.");
+			return "home";
+		}
 		logger.info("Editing recipe with id " + recipe.getId() + ".");
 		
 		final Date now = new Date();
@@ -276,6 +298,10 @@ public class RecipeController {
 	 */
 	@RequestMapping(method=RequestMethod.GET, value="/recipe/edit/{id}")
 	public String editForm(@PathVariable("id") long id, Model model) {
+		if(null == currentUser()) {
+			logger.info("No authorized user.");
+			return "home";
+		}
 		logger.info("Returning editRecipe view.");
 		Recipe recipe = recipeService.find(id);
 
@@ -301,6 +327,11 @@ public class RecipeController {
 	 */
 	@RequestMapping(method=RequestMethod.GET, value="/recipe/{id}/rating")
 	public String rate(Model model, @PathVariable("id") long id, @RequestParam("score") int score) {
+		if(null == currentUser()) {
+			logger.info("No authorized user.");
+			return "home";
+		}
+		
 		// Invalid score value?
 		if(0 >= score || 5 < score) {
 			logger.warn("Invalid rating score value.");
@@ -334,6 +365,11 @@ public class RecipeController {
 	 */
 	@RequestMapping(method=RequestMethod.POST, value="/recipe/{id}/comment")
 	public String comment(@PathVariable("id") long id, @RequestParam("comment") String commentText) {
+		if(null == currentUser()) {
+			logger.info("No authorized user.");
+			return "home";
+		}
+		
 		// comment string empty, don't do anything.
 		if(commentText.isEmpty()) {
 			return "redirect:/recipe/" + id;
