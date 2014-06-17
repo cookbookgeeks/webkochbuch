@@ -48,7 +48,11 @@ public class BrowserDriver {
 		}
 	}
 	
-	
+	public static void searchfor(String w){
+	    mDriver.findElement(By.name("s")).clear();
+	    mDriver.findElement(By.name("s")).sendKeys(w);
+	    mDriver.findElement(By.cssSelector("button.btn")).click();
+	}
 	public static void loadPage(String url){;
 //		LOGGER.info("Directing browser to:" + url);
 		getCurrentDriver().get(url);
@@ -86,9 +90,28 @@ public class BrowserDriver {
 		textField.sendKeys(text);
 	}
 	
+	public static void fillTextfieldByName(String id, String text){
+		WebElement textField = mDriver.findElement(By.name(id));
+		textField.sendKeys(text);
+	}
+	
+
 	public static void submitFormular(){
 		WebElement form = mDriver.findElement(By.id("recipeForm"));
 		form.submit();
+	}
+
+
+	public static void login() {
+	    mDriver.findElement(By.name("username")).clear();
+	    mDriver.findElement(By.name("username")).sendKeys("testuser");
+	    mDriver.findElement(By.name("password")).clear();
+	    mDriver.findElement(By.name("password")).sendKeys("123");
+	    mDriver.findElement(By.xpath("//input[@value='Login']")).click();
+	}
+
+	public static void clickFourStars() {
+	    mDriver.findElement(By.cssSelector("img[alt=\"4\"]")).click();
 	}
 	
 //	public static boolean findText(String text){
