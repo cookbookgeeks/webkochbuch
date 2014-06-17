@@ -86,14 +86,14 @@ public class RecipeControllerTest {
 	 @Test
 	 public void addRecipe() throws Exception
 	 {
-		 this.mockMvc.perform(get("/recipe/add"))
-		 	.andExpect(status().isOk())
-		 	.andExpect(view().name("addRecipe"));
-		 
-//		 this.mockMvc.perform(post("/recipe/adddata")
-//				 .contentType(MediaType.APPLICATION_FORM_URLENCODED)
-//				 .param("categoryInput", "1"))
-//				 .andExpect(status().isOk());
+//		 this.mockMvc.perform(get("/recipe/add"))
+//		 	.andExpect(status().isOk())
+//		 	.andExpect(view().name("addRecipe"));
+//		 
+////		 this.mockMvc.perform(post("/recipe/adddata")
+////				 .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+////				 .param("categoryInput", "1"))
+////				 .andExpect(status().isOk());
 	 }
 	 
 
