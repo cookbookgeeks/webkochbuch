@@ -108,19 +108,11 @@ public class BrowserDriver {
 	}
 
 
-//	public static void login() {
-//	    mDriver.findElement(By.name("username")).clear();
-//	    mDriver.findElement(By.name("username")).sendKeys("testuser");
-//	    mDriver.findElement(By.name("password")).clear();
-//	    mDriver.findElement(By.name("password")).sendKeys("123");
-//	    mDriver.findElement(By.xpath("//input[@value='Login']")).click();
-//	}
-	
 	public static void login() {
 	    mDriver.findElement(By.name("username")).clear();
-	    mDriver.findElement(By.name("username")).sendKeys("nsommer");
+	    mDriver.findElement(By.name("username")).sendKeys("testuser");
 	    mDriver.findElement(By.name("password")).clear();
-	    mDriver.findElement(By.name("password")).sendKeys("passwordhash");
+	    mDriver.findElement(By.name("password")).sendKeys("123");
 	    mDriver.findElement(By.xpath("//input[@value='Login']")).click();
 	}
 
