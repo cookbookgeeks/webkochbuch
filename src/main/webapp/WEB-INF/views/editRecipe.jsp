@@ -100,7 +100,7 @@
   <tr>
   <td><label for="categoryInput">Kategorie</label></td>
   <td>
-  	<select name="categoryInput">
+  	<select name="categoryInput" class="form-control">
   		<c:forEach items="${categories}" var="category">
   			<option value="${category.id}"
   			<c:if test="${category.id == recipe.category.id}">selected</c:if>
