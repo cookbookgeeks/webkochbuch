@@ -70,7 +70,7 @@ public class RecipeControllerTest {
 	 @Test
 	 public void getRecipe() throws Exception
 	 {
-		 this.mockMvc.perform(get("/recipe/100000"))
+		 this.mockMvc.perform(get("/recipe/100001"))
 		 	.andExpect(status().isOk())
 		 	.andExpect(view().name("recipe"));
 	 }

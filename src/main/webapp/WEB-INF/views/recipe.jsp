@@ -164,23 +164,26 @@
 				                            <div class="col-xs-10 col-md-11">
 				                                <div>
 				                                    <div class="mic-info">
-				                                        By: <a href="#">${comment.user.userName}</a> on <fmt:formatDate value="${comment.creation}" pattern="dd.mm.yyyy" /> 
+				                                        Von: <a href="#">${comment.user.userName}</a> am <fmt:formatDate value="${comment.creation}" pattern="dd.mm.yyyy" /> 
 				                                    </div>
 				                                </div>
 				                                <div class="comment-text">${comment.comment}
 				                                </div>
 				                                <div class="action">
-				                                <sec:authorize ifAnyGranted="ROLE_ADMIN">
-				                                    <a class="btn btn-primary btn-xs" title="Edit" href="comment/edit/${comment.id}">
-				                                        <span class="glyphicon glyphicon-pencil"></span>
-				                                    </a>
-				                                    <a class="btn btn-success btn-xs" title="Approved">
-				                                        <span class="glyphicon glyphicon-ok"></span>
-				                                    </a>
-				                                    <a class="btn btn-danger btn-xs" title="Delete" href="comment/delete/${comment.id}">
-				                                        <span class="glyphicon glyphicon-trash"></span>
-				                                    </a>
-				                                    </sec:authorize>
+				                                <c:if test="${not empty pageContext.request.userPrincipal}">
+				                                  
+					                                <c:if test="${comment.user.userName == pageContext.request.userPrincipal.name}">
+					                                    <a class="btn btn-primary btn-xs" title="Edit" href="comment/edit/${comment.id}">
+					                                        <span class="glyphicon glyphicon-pencil"></span>
+					                                    </a>
+					                                    <a class="btn btn-success btn-xs" title="Approved">
+					                                        <span class="glyphicon glyphicon-ok"></span>
+					                                    </a>
+					                                    <a class="btn btn-danger btn-xs" title="Delete" href="comment/delete/${comment.id}">
+					                                        <span class="glyphicon glyphicon-trash"></span>
+					                                    </a>
+					                                    </c:if>
+				                                    </c:if>
 				                                </div>
 				                            </div>
 				                        </div>
@@ -195,7 +198,7 @@
 				<!--  Comment Container End -->
 				
 				
-							<div class="form-group"> <sec:authorize ifAnyGranted="ROLE_ADMIN, ROLE_USER">							
+							<div class="form-group"> <sec:authorize ifAnyGranted="ROLE_ADMIN, ROLE_USER">
 								<c:url var="saveComUrl" value="/recipe/${recipe.id}/comment" />
 								<form:form id="commentForm" modelAttribute="recipe" method="POST" action="${saveComUrl}">
 									 <textarea  rows="3"

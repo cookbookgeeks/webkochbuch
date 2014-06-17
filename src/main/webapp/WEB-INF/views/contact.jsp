@@ -41,9 +41,9 @@
               <div class="row">
               
                 <div class="col-md-6">
-                  <label>First Name</label><br>
-                  <label>Last Name</label><br>
-                  <label>Email Address</label>
+                  <label>Vorname</label><br>
+                  <label>Nachname</label><br>
+                  <label>Email Addresse</label>
                   <br><br>
                   <label>Betreff</label>
                 </div>
