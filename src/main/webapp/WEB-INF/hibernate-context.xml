@@ -44,7 +44,7 @@
 	
 	<!-- Read database url from environment variable. -->
 	<bean class="java.net.URI" id="dbUrl">
-    	<constructor-arg value="#{systemEnvironment['DATABASE_URL']}"/>
+    	<constructor-arg value="postgres://wkb_app_user:Ahawolq7RuTTAGCyWML6@localhost:5432/webkochbuch_db"/>
 	</bean>
 	
 	<!-- Declare a datasource that has pooling capabilities-->
