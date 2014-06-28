@@ -40,7 +40,7 @@
 	</mvc:interceptors>
 	
 	<beans:bean id="uploadsFolder" class="java.lang.String">
-		<beans:constructor-arg value="#{systemEnvironment['WEBKOCHBUCH_UPLOADS_DESTINATION']}" />
+		<beans:constructor-arg value="/tmp/webkochbuch_upload_files" />
 	</beans:bean>
 	
 </beans:beans>
