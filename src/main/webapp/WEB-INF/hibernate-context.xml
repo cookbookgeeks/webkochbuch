@@ -39,7 +39,7 @@
 				 
 	<!-- Read index storage location from environment variable. -->
 	<bean class="java.lang.String" id="luceneIndexLocation">
-		<constructor-arg value="#{systemEnvironment['LUCENE_INDEX_LOCATION']}"/>
+		<constructor-arg value="/tmp/webkochbuch_index_files"/>
 	</bean>
 	
 	<!-- Read database url from environment variable. -->
